@@ -69,7 +69,7 @@ function FiltersInner({ handleFilters, filtering, genres, ordering }) {
 function SearchInner({ handleOnSearch }) {
     return (
         <>
-            <div >
+            <div style={{ width: "100%" }}>
                 <div className="padding-lr-t1" style={{ width: "100%" }}>
                     <h1 className="titulo3-bold" style={{ color: "#ffffff" }}>Busca a tu juego favorito</h1>
                     <Search handleOnSearch={handleOnSearch} mode="dark" />
