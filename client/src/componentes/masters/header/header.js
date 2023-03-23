@@ -40,15 +40,15 @@ export default function Header() {
 
 
     return (
-        <header id={styles["header"]} className="padding-lr-t1"   style={headerType === "alternative" ? { background: "#B9000094", backdropFilter:"blur(3px)" } : {}}>
+        <header id={styles["header"]} className="padding-lr-t1"   style={headerType === "alternative" && !hamburguer ? { background: "#B9000094", backdropFilter:"blur(3px)" } : {}}>
             <Link to="/">
-                <img id={styles["header_logo"]} src={headerType === "alternative" ? "/img/gamingXLogo.svg" : "/img/gamingXLogo.svg"} alt="logo" />
+                <img id={styles["header_logo"]} src="/img/gamingXLogo.svg" alt="logo" />
             </Link>
             <ul id={styles["header_ul"]} className="margin-b-0 body-regular" >
                 <Nav style={headerType === "alternative" ? { color: "#fff" } : {}} />
             </ul>
             <div>
-                <img id={styles["openMenu"]} src={headerType === "alternative" ? "img/fi-br-apps.svg" : "img/fi-br-apps.svg"} alt="menu" onClick={() => handleHamburguer(true)} />
+                <img id={styles["openMenu"]} src="img/fi-br-apps.svg" alt="menu" onClick={() => handleHamburguer(true)} />
             </div>
             <Button text="Conocenos" id={styles["header_btn"]} type="button" className="btn1 btn1-t2" link={"/about"} ></Button>
 
