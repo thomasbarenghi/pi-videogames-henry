@@ -30,7 +30,7 @@ const getVideogames = async (req, res) => {
                     rating: res.rating,
                 }
             })
-            games = games.concat(apiGames).slice(0, 100);
+            games = games.concat(apiGames).slice(0, 100)
         }
 
         let localGames = await Game.findAll({
@@ -40,17 +40,18 @@ const getVideogames = async (req, res) => {
         console.log(localGames);
         localGames = localGames.map(game => { return { id: game.id, name: game.name, source: "own", genres: game.genres, rating: game.rating, background_image: game.background_image, platforms: game.platforms } });
 
-        games = [...localGames, ...games];
+        games = [...games, ...localGames];
 
 
-        const filteredGames = searchValue ? games.filter(game => game.name.toLowerCase().includes(searchValue)).slice(0, 15) : games;
+        let filteredGames = searchValue ? games.filter(game => game.name.toLowerCase().includes(searchValue)).slice(0, 15) : games;
+        filteredGames = filteredGames.sort((a, b) => a.id - b.id);
         cachedGames = filteredGames;
 
         return res.status(200).json({ "results": filteredGames, "count": filteredGames.length });
-    } catch (error) { 
-        console.error(error); 
-      //  return res.status(500).json({ error: "Error interno del servidor" }); 
-       throw new Error(error.message);
+    } catch (error) {
+        console.error(error);
+        //  return res.status(500).json({ error: "Error interno del servidor" }); 
+        throw new Error(error.message);
     }
 }
 
@@ -153,7 +154,7 @@ const addVideogame = async (req, res) => {
             const platformsFn = await Platform.findAll({ where: { id: platforms } });
             await game.addPlatforms(platformsFn);
         }
-        
+
 
         cachedGames = []
 
@@ -172,7 +173,7 @@ const deleteGame = async (req, res) => {
         await game.destroy();
         cachedGames = cachedGames.filter(game => game.id !== id);
         return res.status(200).json({ message: "Juego eliminado" });
-    } catch (error) { console.error(error.message); res.status(500).json({ message: "Error interno del servidocr" });}
+    } catch (error) { console.error(error.message); res.status(500).json({ message: "Error interno del servidocr" }); }
 
 }
 

@@ -45,19 +45,26 @@ export const setFilterRating = (value) => (dispatch) => {
 export const setPageSorting = () => (dispatch, getState) => {
 
   const { filters, apiGames } = getState();
-  console.log("filters", filters)
+  console.log("filterxds", filters.ordering.active)
   const games = apiGames?.games;
+  console.log("games", games)
+
+  // games.sort((a, b) => {
+  //   return filters.ordering.active === 'A-Z' ? a.name.localeCompare(b.name)
+  //     : filters.ordering.active === 'Z-A' ? b.name.localeCompare(a.name)
+  //       : a.id - b.id;
+  // })
 
   games.sort((a, b) => {
     return filters.ordering.active === 'A-Z' ? a.name.localeCompare(b.name)
       : filters.ordering.active === 'Z-A' ? b.name.localeCompare(a.name)
-        : a.id - b.id;
-  })
+          : a.id - b.id;
+  });
 
   games.sort((a, b) => {
     return filters.filtering.rating.active === '0-5' ? a.rating - b.rating
       : filters.filtering.rating.active === '5-0' ? b.rating - a.rating
-        : a.id - b.id;
+        : null;
   })
 
   dispatch(setPageAllGames(games));
