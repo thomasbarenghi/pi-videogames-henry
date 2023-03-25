@@ -2,7 +2,6 @@ import styles from "./createGame.module.scss";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addGame } from "../../../redux/actions/api/apiGames";
-//import { MultiSelect } from "react-multi-select-component";
 import { validateForm } from "../../../../src/utils/validateCreateGame";
 import MultiSelect2 from "../../general/multiSelect/multiSelect";
 
@@ -68,8 +67,8 @@ function Form({ setVisible, errorOnAdd, isLoadingOnAdd }) {
 
     useEffect(() => {
         console.log("selectedPlatforms =>", selectedPlatforms)
-      setForm({ ...form, platforms: selectedPlatforms })
-     if (!fieldsToValidate.includes("platforms") && selectedPlatforms.length > 0) { setFieldsToValidate([...fieldsToValidate, "platforms"]); }
+        setForm({ ...form, platforms: selectedPlatforms })
+        if (!fieldsToValidate.includes("platforms") && selectedPlatforms.length > 0) { setFieldsToValidate([...fieldsToValidate, "platforms"]); }
     }, [selectedPlatforms])
 
     useEffect(() => { setErrors(validateForm(form, fieldsToValidate)); }, [form, fieldsToValidate]);

@@ -10,7 +10,7 @@ import axios from "axios";
 import { SERVER_URL, headers } from "../../../api/config";
 import { setPageAllGames } from "../frontend/games";
 
-export const fetchApiGames= () => async (dispatch, getState) => {
+export const fetchApiGames = () => async (dispatch, getState) => {
 
   const { games } = getState().apiGames;
   if (games.results && games.results.length > 0) return;

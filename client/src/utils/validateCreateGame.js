@@ -1,6 +1,6 @@
 export function validateForm(form, fieldsToValidate) {
     const errors = {};
-    
+
     if (fieldsToValidate === '*') {
         fieldsToValidate = Object.keys(form);
     }
@@ -43,7 +43,7 @@ export function validateForm(form, fieldsToValidate) {
             case 'platforms':
                 if (!form.platforms) {
                     errors.platforms = 'Las plataformas son obligatorias';
-                }else if (form.platforms.length > 5) {
+                } else if (form.platforms.length > 5) {
                     errors.platforms = 'No puede seleccionar más de 5 plataformas';
                 } else if (form.platforms.length < 1) {
                     errors.platforms = 'Debe seleccionar al menos 1 plataforma';

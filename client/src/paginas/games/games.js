@@ -12,9 +12,9 @@ export default function Games() {
         metaThemeColor.setAttribute('content', '#000');
         document.head.appendChild(metaThemeColor);
         return () => {
-          document.head.removeChild(metaThemeColor);
+            document.head.removeChild(metaThemeColor);
         };
-      }, []);
+    }, []);
 
     return (
         <>

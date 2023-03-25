@@ -10,7 +10,7 @@ export default function LoaderWhite() {
                 alignContent: "center"
             }}
         >
-            <img src="/img/Infinity-1s-200px(2).svg" style={{ width: 80, height: 80 }} />
+            <img src="/img/Infinity-1s-200px(2).svg" style={{ width: 80, height: 80 }} alt="loader" />
         </section>
     )
 }

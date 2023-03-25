@@ -1,4 +1,4 @@
-export default function errorBlack( {error} ) {
+export default function errorBlack({ error }) {
     return (
         <section
             style={{
@@ -10,7 +10,7 @@ export default function errorBlack( {error} ) {
                 alignContent: "center"
             }}
         >
-            <h3 className="titulo3-bold" style={{color:"white"}}>Algo salio mal {error}</h3>
+            <h3 className="titulo3-bold" style={{ color: "white" }}>Algo salio mal {error}</h3>
         </section>
     )
 }

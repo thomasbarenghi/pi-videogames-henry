@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-export default function Nav({style}) {
+export default function Nav({ style }) {
     return (
         <>
             <li ><Link to="/" style={style}>Inicio</Link></li>

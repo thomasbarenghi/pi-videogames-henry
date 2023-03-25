@@ -3,7 +3,7 @@ import Button from "../../componentes/general/button/button"
 import { useEffect } from "react"
 
 export default function Home() {
-  
+
     useEffect(() => {
         document.title = 'PI Videogames | Home';
         const metaThemeColor = document.createElement('meta');
@@ -11,10 +11,10 @@ export default function Home() {
         metaThemeColor.setAttribute('content', '#000');
         document.head.appendChild(metaThemeColor);
         return () => {
-          document.head.removeChild(metaThemeColor);
+            document.head.removeChild(metaThemeColor);
         };
-      }, []);
-  
+    }, []);
+
     return (
         <>
             <section id={styles["hero"]} className="padding-lr-t2">

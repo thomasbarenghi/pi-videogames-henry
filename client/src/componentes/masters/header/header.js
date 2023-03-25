@@ -40,7 +40,7 @@ export default function Header() {
 
 
     return (
-        <header id={styles["header"]} className="padding-lr-t1"   style={headerType === "alternative" && !hamburguer ? { background: "#B9000094", backdropFilter:"blur(3px)" } : {}}>
+        <header id={styles["header"]} className="padding-lr-t1" style={headerType === "alternative" && !hamburguer ? { background: "#B9000094", backdropFilter: "blur(3px)" } : {}}>
             <Link to="/">
                 <img id={styles["header_logo"]} src="/img/gamingXLogo.svg" alt="logo" />
             </Link>

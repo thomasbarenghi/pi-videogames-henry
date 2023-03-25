@@ -6,11 +6,9 @@ import styles from "./pagination.module.scss";
 
 export default function PaginationComponent({ totalItems, itemsPerPage }) {
 
-    const { currentPage, gamesPerPage } = useSelector((state) => state?.frontGames);
+    const { currentPage } = useSelector((state) => state?.frontGames);
     const dispatch = useDispatch();
     const totalPages = Math.ceil(totalItems / itemsPerPage);
-    // const pages = [];
-    // for (let i = 1; i <= totalPages; i++) {pages.push(i);}
     const visiblePageCount = 5;
     const startPage = Math.max(1, currentPage - Math.floor(visiblePageCount / 2));
     const endPage = Math.min(totalPages, startPage + visiblePageCount - 1);

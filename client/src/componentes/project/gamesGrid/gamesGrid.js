@@ -26,7 +26,7 @@ const GamesGrid = () => {
   const [paginados, setPaginados] = useState([])
 
 
- 
+
   useEffect(() => { setPaginados(paginate(allGames, gamesPerPage, currentPage)) }, [currentPage, allGames, gamesPerPage]);
 
   if (isLoading) { return <LoaderWhite />; }

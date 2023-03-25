@@ -3,8 +3,6 @@ import { Tecnologias } from "../../api/data";
 import { useEffect } from "react";
 
 
-
-
 export default function About() {
 
     useEffect(() => {
@@ -14,9 +12,9 @@ export default function About() {
         metaThemeColor.setAttribute('content', '#000');
         document.head.appendChild(metaThemeColor);
         return () => {
-          document.head.removeChild(metaThemeColor);
+            document.head.removeChild(metaThemeColor);
         };
-      }, []);
+    }, []);
 
 
     return (
@@ -83,6 +81,7 @@ export default function About() {
                                     style={{ width: 50, height: 50 }}
                                     width={50}
                                     height={50}
+                                    alt="icono"
                                 />
                                 <h1 className="margin-b-0 titulo3-bold">{tecnologia.titulo}</h1>
                             </div>
