@@ -1,14 +1,22 @@
 import styles from "./home.module.scss"
-import Helmet from "react-helmet"
 import Button from "../../componentes/general/button/button"
+import { useEffect } from "react"
 
 export default function Home() {
+  
+    useEffect(() => {
+        document.title = 'PI Videogames | Home';
+        const metaThemeColor = document.createElement('meta');
+        metaThemeColor.setAttribute('name', 'theme-color');
+        metaThemeColor.setAttribute('content', '#000');
+        document.head.appendChild(metaThemeColor);
+        return () => {
+          document.head.removeChild(metaThemeColor);
+        };
+      }, []);
+  
     return (
         <>
-            <Helmet>
-                <title>PI Videogames | Home</title>
-                <meta name="theme-color" content="#000" />
-            </Helmet>
             <section id={styles["hero"]} className="padding-lr-t2">
                 <div id={styles["hero_contents"]}>
                     <h1 id={styles["contents_h1"]} className="display1-regular margin-b-16">

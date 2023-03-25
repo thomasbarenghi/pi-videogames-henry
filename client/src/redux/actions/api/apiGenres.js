@@ -15,7 +15,7 @@ export const getGenres = () => async (dispatch) => {
         dispatch({ type: FETCH_API_GENRES_SUCCESS, payload: response.data.result });
     } catch (error) {
         dispatch({ type: FETCH_API_GENRES_FAILURE, payload: error.message });
-        alert("Error al cargar los géneros")
+        return alert("Error al cargar los géneros")
     }
     
 };

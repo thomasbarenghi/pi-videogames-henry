@@ -1,14 +1,26 @@
 import styles from "./about.module.scss";
-import { Helmet } from "react-helmet";
 import { Tecnologias } from "../../api/data";
+import { useEffect } from "react";
+
+
+
 
 export default function About() {
+
+    useEffect(() => {
+        document.title = 'PI Videogames | About';
+        const metaThemeColor = document.createElement('meta');
+        metaThemeColor.setAttribute('name', 'theme-color');
+        metaThemeColor.setAttribute('content', '#000');
+        document.head.appendChild(metaThemeColor);
+        return () => {
+          document.head.removeChild(metaThemeColor);
+        };
+      }, []);
+
+
     return (
         <>
-            <Helmet>
-                <title>PI Videogames | Home</title>
-                <meta name="theme-color" content="#000" />
-            </Helmet>
             <section id={styles["seccion-hero"]} className="padding-t1">
                 <div id={styles["div_hero"]}>
                     <h1 className="titulo1-regular margin-b-0" style={{ paddingTop: 15 }}>

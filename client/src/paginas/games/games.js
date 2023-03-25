@@ -1,15 +1,23 @@
 import GamesGrid from "../../componentes/project/gamesGrid/gamesGrid"
-import { Helmet } from "react-helmet"
 import styles from "./games.module.scss"
+import { useEffect } from "react"
 
 
 export default function Games() {
+
+    useEffect(() => {
+        document.title = 'PI Videogames | Games';
+        const metaThemeColor = document.createElement('meta');
+        metaThemeColor.setAttribute('name', 'theme-color');
+        metaThemeColor.setAttribute('content', '#000');
+        document.head.appendChild(metaThemeColor);
+        return () => {
+          document.head.removeChild(metaThemeColor);
+        };
+      }, []);
+
     return (
         <>
-            <Helmet>
-                <title>PI Videogames | Games</title>
-                <meta name="theme-color" content="#000" />
-            </Helmet>
             <section id={styles["hero"]} className="padding-lr-t2">
                 <div id={styles["hero_contents"]}>
                     <div>

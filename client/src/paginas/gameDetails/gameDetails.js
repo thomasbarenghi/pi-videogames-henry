@@ -1,23 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGameById } from '../../redux/actions/api/apiGames';
 import styles from './gameDetails.module.scss';
-import parse from 'html-react-parser';
 import LoaderBlack from '../../componentes/general/loader/loaderBlack';
+import ErrorBlack from '../../componentes/general/error/errorBlack';
 
 export default function GameDetails() {
 
     const dispatch = useDispatch();
     const slug = useParams();
     const { isLoading, error, currentGame } = useSelector((state) => state?.apiGames ?? {});
-    const [description, setDescription] = useState('');
 
     useEffect(() => { dispatch(getGameById(slug.id)); }, [dispatch, slug.id]);
-    useEffect(() => { if (currentGame?.description) { setDescription(parse(currentGame.description)); } }, [currentGame.description]);
+    //  useEffect(() => { if (currentGame?.description) { setDescription(parse(currentGame.description)); } }, [currentGame.description]);
+
+    useEffect(() => {
+        document.title = `PI Videogames | ${currentGame.name}`;
+        const metaThemeColor = document.createElement('meta');
+        metaThemeColor.setAttribute('name', 'theme-color');
+        metaThemeColor.setAttribute('content', '#000');
+        document.head.appendChild(metaThemeColor);
+        return () => {
+            document.head.removeChild(metaThemeColor);
+        };
+    }, []);
+
 
     if (isLoading) { return (<LoaderBlack />) }
-    if (error) { return <div>Error: {error}</div>; }
+    if (error) { return (<ErrorBlack error={error} />) }
 
     return (
         <>
@@ -32,9 +43,7 @@ export default function GameDetails() {
                             {currentGame.name}
                             <br />
                         </h1>
-                        <p id={styles["card1_desc"]} className="body-regular">
-                            {description}
-                        </p>
+                        <div id={styles["card1_desc"]} className="body-regular" dangerouslySetInnerHTML={{ __html: currentGame.description }}></div>
                     </div>
                     <div id={styles["col1_card2"]} className={styles["blured-red-box"]}>
                         <p className="body-regular">
@@ -61,7 +70,7 @@ export default function GameDetails() {
                 </div>
                 <div id={styles["hero_col2"]}>
                     <div id={styles["col2_card_inner"]}>
-                        <img id={styles["inner_img"]} src={currentGame.background_image} />
+                        <img id={styles["inner_img"]} src={currentGame.background_image} alt={currentGame.name} />
                     </div>
                 </div>
             </section>

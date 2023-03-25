@@ -2,8 +2,9 @@ import styles from "./createGame.module.scss";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addGame } from "../../../redux/actions/api/apiGames";
-import { MultiSelect } from "react-multi-select-component";
+//import { MultiSelect } from "react-multi-select-component";
 import { validateForm } from "../../../../src/utils/validateCreateGame";
+import MultiSelect2 from "../../general/multiSelect/multiSelect";
 
 export const manageCreateGame = (status) => { CreateGame.toggle(status); };
 
@@ -24,7 +25,7 @@ export default function CreateGame() {
                             <div id={styles["grid_col1"]}>
                                 <h1 className="titulo3-bold margin-b-24">Creemos un juego 🚀</h1>
                                 {
-                                    errorOnAdd ? <p className="smallText-regular margin-b-24">{errorOnAdd}</p>
+                                    errorOnAdd ? <p className="smallText-regular margin-b-24">Algo salió mal, intenta recargar la pagina. {errorOnAdd}</p>
                                         : isLoadingOnAdd ? <p className="smallText-regular margin-b-24">Cargando...</p>
                                             : <Form setVisible={setVisible} errorOnAdd={errorOnAdd} isLoadingOnAdd={isLoadingOnAdd} />
                                 }
@@ -61,14 +62,14 @@ function Form({ setVisible, errorOnAdd, isLoadingOnAdd }) {
     });
 
     useEffect(() => {
-     //   console.log("selected:", selected)
         setForm({ ...form, genres: selected })
         if (!fieldsToValidate.includes("genres") && selected.length > 0) { setFieldsToValidate([...fieldsToValidate, "genres"]); }
     }, [selected])
 
     useEffect(() => {
-        setForm({ ...form, platforms: selectedPlatforms })
-        if (!fieldsToValidate.includes("platforms") && selectedPlatforms.length > 0) { setFieldsToValidate([...fieldsToValidate, "platforms"]); }
+        console.log("selectedPlatforms =>", selectedPlatforms)
+      setForm({ ...form, platforms: selectedPlatforms })
+     if (!fieldsToValidate.includes("platforms") && selectedPlatforms.length > 0) { setFieldsToValidate([...fieldsToValidate, "platforms"]); }
     }, [selectedPlatforms])
 
     useEffect(() => { setErrors(validateForm(form, fieldsToValidate)); }, [form, fieldsToValidate]);
@@ -129,22 +130,24 @@ function Form({ setVisible, errorOnAdd, isLoadingOnAdd }) {
             <div className={styles["inputs-row"]} style={{ gap: 8 }}>
                 <label id="label" className="form-label smallText-regular">
                     Plataformas
-                    <MultiSelect
+                    {/* <MultiSelect
                         options={optionsPlatforms}
                         value={selectedPlatforms}
                         onChange={setSelectedPlatforms}
-                    />
+                    /> */}
+                    <MultiSelect2 valores={optionsPlatforms} setSeleccionados={setSelectedPlatforms} seleccionados={selectedPlatforms} label="Plataformas" />
 
                     {errors.platforms && <p className="smallText-regular" style={{ color: "red" }}>{errors.platforms}</p>}
                 </label>
 
                 <label id="label" className="form-label smallText-regular">
                     Generos
-                    <MultiSelect
+                    {/* <MultiSelect
                         options={options}
                         value={selected}
                         onChange={setSelected}
-                    />
+                    /> */}
+                    <MultiSelect2 valores={options} setSeleccionados={setSelected} seleccionados={selected} label="Generos" />
                     {errors.genres && <p className="smallText-regular" style={{ color: "red" }}>{errors.genres}</p>}
                 </label>
             </div>

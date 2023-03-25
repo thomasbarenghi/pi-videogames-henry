@@ -27,7 +27,6 @@ export const fetchApiGames= () => async (dispatch, getState) => {
     dispatch(setPageAllGames(response.data.results));
   } catch (error) {
     dispatch({ type: FETCH_API_GAMES_FAILURE, payload: error.message });
-    alert("Error al obtener los juegos");
   }
 };
 
@@ -40,7 +39,6 @@ export const getGameById = (id) => async (dispatch) => {
     dispatch({ type: GET_GAME_BY_ID, payload: response.data });
   } catch (error) {
     dispatch({ type: FETCH_API_GAMES_FAILURE, payload: error.message });
-    alert("Error al obtener el juego");
   }
 };
 
@@ -54,7 +52,7 @@ export const deleteGame = (id) => async (dispatch, getState) => {
     dispatch(setPageAllGames(getState().apiGames.games));
   } catch (error) {
     dispatch({ type: FETCH_API_GAMES_FAILURE, payload: error.message });
-    alert("Error al eliminar el juego");
+    return alert("Error al eliminar el juego");
   }
 };
 
@@ -73,6 +71,6 @@ export const addGame = (game) => async (dispatch) => {
     alert("Juego agregado con éxito!");
   } catch (error) {
     dispatch({ type: ADD_GAME_FAILURE, payload: error.message });
-    alert("Error al agregar el juego:", error.message);
+    return alert("Error al agregar el juego:", error.message);
   }
 };

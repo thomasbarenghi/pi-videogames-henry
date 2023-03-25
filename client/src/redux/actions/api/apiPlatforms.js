@@ -15,6 +15,6 @@ export const getPlatforms = () => async (dispatch) => {
         dispatch({ type: FETCH_API_PLATFORMS_SUCCESS, payload: response.data.result });
     } catch (error) {
         dispatch({ type: FETCH_API_PLATFORMS_FAILURE, payload: error.message });
-        alert("Error al cargar las plataformas")
+        return alert("Error al cargar las plataformas")
     }
 };

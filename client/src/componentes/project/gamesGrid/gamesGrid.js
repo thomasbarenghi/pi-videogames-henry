@@ -6,6 +6,7 @@ import PaginationComponent from '../../general/pagination/pagination';
 import GameCard from '../gameCard/gameCard';
 import FiltrosComponent from './filtros/filtros';
 import LoaderWhite from '../../general/loader/loaderWhite';
+import ErrorWhite from '../../general/error/errorWhite';
 //Redux
 
 import { setCurrentPage } from '../../../redux/actions/frontend/pagination';
@@ -29,7 +30,7 @@ const GamesGrid = () => {
   useEffect(() => { setPaginados(paginate(allGames, gamesPerPage, currentPage)) }, [currentPage, allGames, gamesPerPage]);
 
   if (isLoading) { return <LoaderWhite />; }
-  if (error) { return <div>Error: {error}</div>; }
+  if (error) { return <ErrorWhite error={error} />; }
 
   return (
     <main>

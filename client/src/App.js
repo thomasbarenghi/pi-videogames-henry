@@ -29,7 +29,7 @@ function App() {
     if (games.length < 1) { dispatch(fetchApiGames()); }
     dispatch(getGenres())
     dispatch(getPlatforms())
-  }, [dispatch, games]);
+  }, []);
 
   return (
     <>
