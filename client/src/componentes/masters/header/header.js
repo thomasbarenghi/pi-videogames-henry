@@ -41,7 +41,7 @@ export default function Header() {
                 <Nav style={headerType === "alternative" ? { color: "#fff" } : {}} />
             </ul>
             <div>
-                <img id={styles["openMenu"]} src="img/fi-br-apps.svg" alt="menu" onClick={() => handleHamburguer(true)} />
+                <img id={styles["openMenu"]} src="/img/fi-br-apps.svg" alt="menu" onClick={() => handleHamburguer(true)} />
             </div>
             <Button text="Conocenos" id={styles["header_btn"]} type="button" className="btn1 btn1-t2" link={"/about"} ></Button>
 

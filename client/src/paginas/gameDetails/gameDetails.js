@@ -15,7 +15,7 @@ export default function GameDetails() {
     useEffect(() => { dispatch(getGameById(slug.id)); }, [dispatch, slug.id]);
 
     useEffect(() => {
-        document.title = `PI Videogames | ${currentGame.name}`;
+        document.title = `PI Videogames | Thomas Barenghi`;
         const metaThemeColor = document.createElement('meta');
         metaThemeColor.setAttribute('name', 'theme-color');
         metaThemeColor.setAttribute('content', '#000');
