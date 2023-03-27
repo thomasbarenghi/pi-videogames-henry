@@ -2,6 +2,9 @@ const axios = require('axios');
 const Game = require("../models").videogamesModels;
 const Genre = require("../models").genreModels;
 const Platform = require("../models").platformsModels;
+const quitarDuplicados = require('../utils/esDuplicado');
+
+
 require('dotenv').config();
 
 const { API_KEY, TOKEN } = process.env;
@@ -39,9 +42,18 @@ const getVideogames = async (req, res) => {
 
         console.log(localGames);
         localGames = localGames.map(game => { return { id: game.id, name: game.name, source: "own", genres: game.genres, rating: game.rating, background_image: game.background_image, platforms: game.platforms } });
-
         games = [...games, ...localGames];
 
+        //Cargar las platforms
+        const platformsModel = await Platform.findAll();
+        if (platformsModel.length > 0) { console.log("Hay platforms en la DB"); }
+        else {
+            let platforms = games.map(game => game.platforms).flat();
+            let platformsUnicos = quitarDuplicados(platforms);
+            await Platform.bulkCreate(platformsUnicos);
+           // console.log("paltforms", platforms);
+        }
+    
 
         let filteredGames = searchValue ? games.filter(game => game.name.toLowerCase().includes(searchValue)).slice(0, 15) : games;
         filteredGames = filteredGames.sort((a, b) => a.id - b.id);

@@ -35,7 +35,7 @@ const GamesGrid = () => {
   return (
     <main>
       <FiltrosComponent />
-      {Array.isArray(paginados) && paginados.length < 1 ? <h3>No hay juegos</h3> :
+      {Array.isArray(paginados) && paginados.length < 1 ? <h3 className='titulo3-bold padding-tb-t1' style={{textAlign: "center"}}>Hey, parece que no hay nada por aqui.</h3> :
         <div id={styles["componente_gridGames"]}>
           {Array.isArray(paginados) &&
             paginados.map((game) => (
