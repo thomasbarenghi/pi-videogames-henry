@@ -18,13 +18,10 @@ export default function Header() {
 
     useEffect(() => {
         const handleScroll = () => {
-            // console.log(headerType)
             if (window.scrollY > 100) {
                 setHeaderType("alternative");
-                //   console.log("headerType")
             } else {
                 setHeaderType("default");
-                // console.log(headerType)
             }
         };
         window.addEventListener("scroll", handleScroll);
@@ -33,10 +30,6 @@ export default function Header() {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
-
-    // useEffect(() => {
-    //     console.log(headerType)
-    // }, [headerType])
 
 
     return (

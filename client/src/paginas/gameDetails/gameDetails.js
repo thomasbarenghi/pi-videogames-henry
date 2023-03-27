@@ -13,7 +13,6 @@ export default function GameDetails() {
     const { isLoading, error, currentGame } = useSelector((state) => state?.apiGames ?? {});
 
     useEffect(() => { dispatch(getGameById(slug.id)); }, [dispatch, slug.id]);
-    //  useEffect(() => { if (currentGame?.description) { setDescription(parse(currentGame.description)); } }, [currentGame.description]);
 
     useEffect(() => {
         document.title = `PI Videogames | ${currentGame.name}`;

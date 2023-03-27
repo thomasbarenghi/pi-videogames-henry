@@ -65,12 +65,10 @@ export const addGame = (game) => async (dispatch) => {
   };
 
   try {
-    console.log("gameToPost", gameToPost);
     const response = await axios.post(`${SERVER_URL}videogames`, gameToPost, { headers });
     dispatch(fetchApiGames());
     alert("Juego agregado con éxito!");
   } catch (error) {
     dispatch({ type: ADD_GAME_FAILURE, payload: error.message });
-    return alert("Error al agregar el juego:", error.message);
   }
 };

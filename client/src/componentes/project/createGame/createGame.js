@@ -66,7 +66,6 @@ function Form({ setVisible, errorOnAdd, isLoadingOnAdd }) {
     }, [selected])
 
     useEffect(() => {
-        console.log("selectedPlatforms =>", selectedPlatforms)
         setForm({ ...form, platforms: selectedPlatforms })
         if (!fieldsToValidate.includes("platforms") && selectedPlatforms.length > 0) { setFieldsToValidate([...fieldsToValidate, "platforms"]); }
     }, [selectedPlatforms])
@@ -75,14 +74,11 @@ function Form({ setVisible, errorOnAdd, isLoadingOnAdd }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Asi sale =>", form);
         const formErrors = validateForm(form, "*")
         if (Object.keys(formErrors).length === 0) {
             dispatch(addGame(form));
-            console.log("no hay errores")
         } else {
             setErrors(formErrors);
-            console.log("hay errores")
         }
     }
 

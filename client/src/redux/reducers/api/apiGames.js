@@ -57,7 +57,6 @@ const apiGamesReducer = (state = initialState, action) => {
             };
 
         case ADD_GAME_SUCCESS:
-            console.log("ADD_GAME_SUCCESS", action.payload, state)
             return {
                 ...state,
                 isLoadingOnAdd: false,
@@ -66,7 +65,6 @@ const apiGamesReducer = (state = initialState, action) => {
             };
 
             case DELETE_GAME_SUCCESS:
-                console.log("DELETE_GAME_SUCCESS", action.payload, state.games)
             return {
                 ...state,
                 isLoading: false,

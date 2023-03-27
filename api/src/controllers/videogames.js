@@ -40,7 +40,6 @@ const getVideogames = async (req, res) => {
             include: [{ model: Genre, attributes: ['id', 'name'], through: { attributes: [] } }, { model: Platform, attributes: ['id', 'name'], through: { attributes: [] } }]
         });
 
-        console.log(localGames);
         localGames = localGames.map(game => { return { id: game.id, name: game.name, source: "own", genres: game.genres, rating: game.rating, background_image: game.background_image, platforms: game.platforms } });
         games = [...games, ...localGames];
 
@@ -51,9 +50,8 @@ const getVideogames = async (req, res) => {
             let platforms = games.map(game => game.platforms).flat();
             let platformsUnicos = quitarDuplicados(platforms);
             await Platform.bulkCreate(platformsUnicos);
-           // console.log("paltforms", platforms);
         }
-    
+
 
         let filteredGames = searchValue ? games.filter(game => game.name.toLowerCase().includes(searchValue)).slice(0, 15) : games;
         filteredGames = filteredGames.sort((a, b) => a.id - b.id);
@@ -75,23 +73,6 @@ function filterObjectProperties(obj, allowedProperties) {
         return newObj;
     }, {});
 }
-
-
-// function getGenres(gameId) {
-
-//     console.log(gameId);
-//     const related = videogameGenreModels.findAll({
-//         where: {
-//             videogameId: gameId
-//         }
-//     });
-
-//     return related;
-
-// }
-
-
-
 
 
 const getVideogameById = async (req, res) => {
@@ -156,7 +137,6 @@ const addVideogame = async (req, res) => {
     try {
         const game = await Game.create({ name, description, released, rating, background_image, platforms: [], genres: [] });
         cachedGames = [...cachedGames, game];
-        console.log("platforms", platforms);
         if (genres && genres.length > 0) {
             const genresFn = await Genre.findAll({ where: { id: genres } });
             await game.addGenres(genresFn);

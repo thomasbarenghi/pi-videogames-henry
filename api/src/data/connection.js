@@ -14,13 +14,4 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
   logging: false
 });
 
-(async () => {
-  try {
-    await sequelize.authenticate();
-    console.log('Conexión exitosa');
-    const tableNames = await sequelize.getQueryInterface().showAllTables();
-    console.log('Tablas disponibles:', tableNames);
-  } catch (error) { console.error('Imposible conectar:', error); }
-})();
-
 module.exports = sequelize;

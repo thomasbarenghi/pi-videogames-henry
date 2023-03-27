@@ -8,11 +8,10 @@ function Dropdown({ valores, setSeleccionados, seleccionados, label }) {
     useEffect(() => {
         function handleClickOutside(event) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                console.log('click outside', event.target);
                 setIsDropdownOpen(false);
             }
             else {
-                console.log('click inside', event.target);
+
             }
         }
 
@@ -25,7 +24,7 @@ function Dropdown({ valores, setSeleccionados, seleccionados, label }) {
         };
     }, [dropdownRef]);
 
-    function handleDropdownClick() {setIsDropdownOpen(!isDropdownOpen);}
+    function handleDropdownClick() { setIsDropdownOpen(!isDropdownOpen); }
 
     return (
         <div className={`${styles["dropdown"]}`} ref={dropdownRef} type="button" id='dropdown'>
@@ -51,10 +50,10 @@ function Dropdown({ valores, setSeleccionados, seleccionados, label }) {
                                             onChange={(e) => {
                                                 if (e.target.checked) {
                                                     setSeleccionados([...seleccionados, { label: valor.label, value: valor.value }])
-                                                    console.log("seleccionadoo", { "label": valor.label, "value": valor.value })
+
                                                 } else {
                                                     setSeleccionados(seleccionados.filter((v) => v.value !== valor.value))
-                                                    console.log("no seleccionadoo", { "label": valor.label, "value": valor.value })
+
                                                 }
                                             }} />
                                         <label>{valor.label}</label>
