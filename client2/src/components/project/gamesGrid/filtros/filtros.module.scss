@@ -1,0 +1,113 @@
+@media (max-width: 575px) {
+  #searchBtn {
+    width: max-content;
+    aspect-ratio: 1/1;
+    padding: 11px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  #filtrosBtn {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  #filtros_boxDesktop {
+    display: flex;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 1200px) {
+  #filtros_boxDesktop {
+    display: none;
+  }
+}
+
+
+
+#searchModalBox {
+  position: fixed;
+  background: rgba(116, 0, 0, 0.4);
+  width: 100%;
+  left: 0;
+  height: 200px;
+  backdrop-filter: blur(26px);
+  color: #ffffff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  bottom: 0;
+  border-radius: 40px 40px 00px 0px;
+}
+
+
+
+#closeModalSearch {
+  position: absolute;
+  z-index: 5;
+  top: 30px;
+  right: 29px;
+  width: 18px;
+  height: 18px;
+}
+
+#componente_filtros {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+
+}
+
+@media (max-width: 1300px) {
+  #componente_filtros {
+    overflow-x: scroll;
+  }
+}
+
+@media (max-width: 576px) {
+  #filtrosBtn {
+    width: 100%;
+  }
+}
+
+@media (min-width: 576px) {
+  #searchBtn {
+    display: none;
+  }
+}
+
+#filtersModalBox {
+  position: fixed;
+  background: rgba(116, 0, 0, 0.4);
+  width: 100%;
+  left: 0;
+  padding-top: 40px;
+  /*height: 400px;*/
+  backdrop-filter: blur(26px);
+  color: #ffffff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  bottom: 0;
+  border-radius: 40px 40px 00px 0px;
+  padding-bottom: 60px;
+}
+
+.select-bold {
+  padding: 12px;
+  /*border-style: none !important;*/
+  border-radius: 10px;
+  background: #b90000;
+  font-family: "outfit", sans-serif;
+  font-size: 16px;
+  border-style: solid;
+  border-color: #b90000;
+  color: #ffffff;
+  border-width: 0px 12px 0px 0px;
+}
+
+#crearJuegoBtn {
+  white-space: nowrap;
+}

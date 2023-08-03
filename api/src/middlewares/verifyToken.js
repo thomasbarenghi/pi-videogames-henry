@@ -7,7 +7,7 @@ function authMiddleware(req, res, next) {
     console.log("authHeader", authHeader, SERVER_TOKEN);
 
     try {
-        if (!authHeader) { return res.status(404).json({ message: 'No se proporcionó una palabra secreta' }); }
+        if (!authHeader) { return res.status(401).json({ message: 'No se proporcionó una palabra secreta' }); }
         if (authHeader !== SERVER_TOKEN) { return res.status(401).json({ message: 'No se proporcionó una palabra secreta válida' }); }
         next();
     } catch (error) {

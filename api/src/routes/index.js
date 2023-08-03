@@ -8,7 +8,7 @@ const router = Router();
 
 // Ruta principal
 router.get('/', (req, res) => { res.json({ message: 'Bienvenido a mi API' }); });
-router.use("/videogames", videogamesRoutes);
+router.use("/games", videogamesRoutes);
 router.use("/genre", genreRoutes);
 router.use("/videogameGenre", videogameGenreRoutes);
 router.use("/platforms", require('./platforms'));
