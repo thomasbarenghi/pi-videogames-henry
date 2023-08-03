@@ -1,15 +1,21 @@
 import styles from "./page.module.scss";
 import { Tecnologias } from "@/data";
 import Head from "next/head";
+import { Metadata } from 'next'
+import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: 'PI Videogames | About',
+  description: 'PI Videogames | About',
+
+}
+
 
 export default function About() {
+
+
   return (
     <>
-      <Head>
-        <meta name="description" content="PI Videogames | Home" />
-        <meta name="theme-color" content="#000" />
-        <title>PI Videogames | About</title>
-      </Head>
       <section id={styles["seccion-hero"]} className="padding-t1">
         <div id={styles["div_hero"]}>
           <h1 className="titulo1-regular margin-b-0" style={{ paddingTop: 15 }}>
@@ -79,7 +85,7 @@ export default function About() {
           {Tecnologias.map((tecnologia, index) => (
             <div id={styles["item_tecnologias"]} key={index}>
               <div id={styles["titulo_icono"]}>
-                <img
+                <Image
                   src={tecnologia.imagen}
                   style={{ width: 50, height: 50 }}
                   width={50}

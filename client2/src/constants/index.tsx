@@ -2,7 +2,7 @@ export const DEFAULT = "Default";
 
 export const Routes = {
   HOME: "/",
-  GAMES: "/login",
+  GAMES: "/games",
   ABOUT: "/about",
 };
 

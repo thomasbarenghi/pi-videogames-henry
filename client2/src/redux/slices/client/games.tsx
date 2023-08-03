@@ -6,7 +6,7 @@ import { toast } from "sonner";
 
 const initialState = {
   games: [],
-  currentGame: {},
+  currentGame: {} as any,
   currentPage: 1,
   error: null,
   isError: false,
@@ -49,6 +49,18 @@ export const deleteGame = createAsyncThunk(
     try {
       const res = await axiosDeleter(`/games/${gameId}`);
       return res;
+    } catch (err: any) {
+      throw new Error("Error al loguear el usuario", err);
+    }
+  }
+);
+
+export const getGameById = createAsyncThunk(
+  "games/getGameById",
+  async (gameId: string) => {
+    try {
+      const res = await axiosGetter(`/games/${gameId}`);
+      return res
     } catch (err: any) {
       throw new Error("Error al loguear el usuario", err);
     }
@@ -100,7 +112,23 @@ const postsSlice = createSlice({
       })
       .addCase(deleteGame.rejected, (state, action) => {
         toast.error("Error al eliminar el juego");
-      });
+      })
+      //Get game by id
+       .addCase(getGameById.fulfilled, (state, action) => {
+        console.log("getGameById.fulfilled", action.payload);
+        state.currentGame = action.payload;
+        state.isLoading = false;
+        toast.success("Juego obtenido correctamente");
+      })
+      .addCase(getGameById.pending, (state, action) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(getGameById.rejected, (state, action) => {
+        toast.error("Error al obtener el juego");
+        state.isLoading = false;
+        state.isError = true;
+      })
   },
 });
 

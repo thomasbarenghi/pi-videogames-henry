@@ -48,7 +48,7 @@ const GamesGrid = () => {
             paginados.map((game, index) => <GameCard key={index} game={game} />)}
         </div>
       )}
-    {/* <Pagination totalItems={games.length} itemsPerPage={15} /> */}
+    <Pagination totalItems={games.length} itemsPerPage={15} />
       <CreateGame />
     </main>
   );

@@ -1,5 +1,6 @@
 import { Nav } from "@/components";
 import styles from "./hamburguer.module.scss";
+import Image from "next/image";
 
 type HamburguerProps = {
     manageHamburguer: (data: boolean) => void;
@@ -12,7 +13,7 @@ export default function Hamburguer({ manageHamburguer }: HamburguerProps) {
       className="padding-lr-t1"
       style={{ backdropFilter: "blur(26px)" }}
     >
-      <img
+      <Image
         id={styles["closeMenu"]}
         src="/img/fi-br-cross.svg"
         width={24}

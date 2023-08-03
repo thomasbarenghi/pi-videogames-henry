@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./gameCard.module.scss";
 import { deleteGame } from "@/redux/slices/client/games";
 import { useAppDispatch } from "@/redux/hooks";
+import Image from "next/image";
 
 export default function GameCard({ game }: any) {
   const dispatch = useAppDispatch();
@@ -19,11 +20,14 @@ export default function GameCard({ game }: any) {
       )}
       <Link href={`/games/${game.id}`}>
         <div id={styles["componente_cardGames"]}>
-          <img
+          <div id={styles["cardGames_image_div"]}>
+          <Image
             id={styles["cardGames_img"]}
             src={game.background_image}
             alt="imagen"
+           fill
           />
+          </div>
           <div id={styles["cardGames_contents"]}>
             <h1
               id={styles["contents_titulo"]}

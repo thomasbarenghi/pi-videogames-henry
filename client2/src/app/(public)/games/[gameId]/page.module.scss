@@ -1,0 +1,119 @@
+#hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.55);
+  z-index: -2;
+  box-shadow: inset 0px 4px 18.38vw 11vw rgba(0, 0, 0, 0.7);
+}
+
+@media (min-width: 992px) {
+  #hero {
+    position: relative;
+    z-index: -1;
+    object-fit: cover;
+    display: grid;
+    grid-template-columns: 60% auto;
+    gap: 40px;
+    padding-top: 111px;
+    min-height: 100vh;
+    padding-bottom: 80px;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 992px) {
+  #hero {
+    position: relative;
+    z-index: 0;
+    object-fit: cover;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 30px;
+    padding-top: 111px;
+    min-height: 100vh;
+    padding-bottom: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    z-index: 1;
+  }
+}
+
+#hero_col1 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 992px) {
+  #col1_card1 {}
+}
+
+@media (max-width: 992px) {
+  #col1_card1 {
+    color: #ffffff;
+    background: rgba(255, 0, 0, 0.2);
+    backdrop-filter: blur(11px);
+    border-radius: 20px;
+    padding: 25px;
+  }
+}
+
+#col1_card2 {
+  /*color: #ffffff;*/
+  /*background: rgba(255, 0, 0, 0.2);*/
+  /*backdrop-filter: blur(11px);*/
+  /*border-radius: 20px;*/
+  /*padding: 40px;*/
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#col2_card_inner {
+  padding: 10px;
+  border-radius: 20px;
+  background: rgba(255, 0, 0, 0.2);
+  backdrop-filter: blur(11px);
+}
+
+@media (max-width: 992px) {
+  #inner_img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+}
+
+@media (min-width: 992px) {
+  #inner_img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  .blured-red-box {
+    color: #ffffff;
+    background: rgba(255, 0, 0, 0.2);
+    backdrop-filter: blur(11px);
+    border-radius: 20px;
+    padding: 25px;
+  }
+}
+
+@media (min-width: 992px) {
+  .blured-red-box {
+    color: #ffffff;
+    background: rgba(255, 0, 0, 0.2);
+    backdrop-filter: blur(11px);
+    border-radius: 20px;
+    padding: 40px;
+  }
+}
