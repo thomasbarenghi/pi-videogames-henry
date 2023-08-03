@@ -15,9 +15,11 @@ const GamesGrid = () => {
   const dispatch = useAppDispatch();
   const [paginados, setPaginados] = useState([]);
   const [error, setError] = useState(null);
-  const { games:games2, isError, isLoading } = useAppSelector(
-    (state) => state?.client.games
-  );
+  const {
+    games: games2,
+    isError,
+    isLoading,
+  } = useAppSelector((state) => state?.client.games);
   const games = useAppSelector(selectorFilteredGames);
   const { currentPage } = useAppSelector((state) => state?.client.games);
 
@@ -45,10 +47,12 @@ const GamesGrid = () => {
       ) : (
         <div id={styles["componente_gridGames"]}>
           {Array.isArray(paginados) &&
-            paginados.map((game, index) => <GameCard key={index} game={game} />)}
+            paginados.map((game, index) => (
+              <GameCard key={index} game={game} />
+            ))}
         </div>
       )}
-    <Pagination totalItems={games.length} itemsPerPage={15} />
+      <Pagination totalItems={games.length} itemsPerPage={15} />
       <CreateGame />
     </main>
   );

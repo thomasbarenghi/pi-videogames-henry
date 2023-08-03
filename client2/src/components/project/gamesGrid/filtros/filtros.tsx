@@ -36,7 +36,7 @@ export default function FiltrosComponent() {
         values: ratingValues,
         title: ratingTitle,
       },
-      search: { active: activeSearch}
+      search: { active: activeSearch },
     },
   } = useAppSelector((state) => state?.client.filters);
 
@@ -58,11 +58,15 @@ export default function FiltrosComponent() {
   const handleOnSearch = (e: any) => {
     dispatch(setFilterSearch(e.target.value));
   };
-console.log("genres xxx", genres)
+  console.log("genres xxx", genres);
   return (
     <div>
       <div id={styles["componente_filtros"]} className="margin-b-40">
-        <Search handleOnSearch={handleOnSearch} mode="light" activeSearch={activeSearch} />
+        <Search
+          handleOnSearch={handleOnSearch}
+          mode="light"
+          activeSearch={activeSearch}
+        />
         <div id={styles["filtros_boxDesktop"]}>
           <Select
             name={"Ordering"}

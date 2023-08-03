@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addGame } from "@/redux/slices/client/games";
 import { validateForm } from "@/utils/validateCreateGame";
-import {MultiSelect} from "@/components";
+import { MultiSelect } from "@/components";
 
 //export const manageCreateGame = (status:any) => { CreateGame.toggle(status); };
 
@@ -91,7 +91,6 @@ import {MultiSelect} from "@/components";
 //     const options = generos.filter(genero => genero.name !== "Default").map((genero) => { return { label: genero.name, value: genero.id } })
 //     const optionsPlatforms = plataformas.filter(genero => genero.name !== "Default").map((genero) => { return { label: genero.name, value: genero.id } })
 
-
 //     return (
 //         <form id="form" onSubmit={handleSubmit}>
 //             <div className={styles["inputs-row"]} style={{ gap: 8 }}>
@@ -173,7 +172,5 @@ import {MultiSelect} from "@/components";
 // }
 
 export default function CreateGame() {
-    return(
-        <></>
-    )
+  return <></>;
 }

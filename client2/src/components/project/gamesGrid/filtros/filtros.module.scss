@@ -25,8 +25,6 @@
   }
 }
 
-
-
 #searchModalBox {
   position: fixed;
   background: rgba(116, 0, 0, 0.4);
@@ -42,8 +40,6 @@
   border-radius: 40px 40px 00px 0px;
 }
 
-
-
 #closeModalSearch {
   position: absolute;
   z-index: 5;
@@ -57,7 +53,6 @@
   display: flex;
   align-items: flex-end;
   gap: 12px;
-
 }
 
 @media (max-width: 1300px) {

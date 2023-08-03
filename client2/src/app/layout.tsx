@@ -8,8 +8,7 @@ export default function RootLayout(props: any) {
   return (
     <html lang="es">
       <body className="">
-
-    <Provider>{props.children}</Provider> 
+        <Provider>{props.children}</Provider>
       </body>
     </html>
   );

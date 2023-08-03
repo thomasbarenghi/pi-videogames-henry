@@ -7,7 +7,7 @@ import { Routes } from "@/constants";
 export default function Header() {
   const [hamburguer, setHamburguer] = useState(false);
   const [headerType, setHeaderType] = useState("default");
-  
+
   const handleHamburguer = (data: any) => {
     setHamburguer(data);
   };

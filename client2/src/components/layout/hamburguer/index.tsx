@@ -3,8 +3,8 @@ import styles from "./hamburguer.module.scss";
 import Image from "next/image";
 
 type HamburguerProps = {
-    manageHamburguer: (data: boolean) => void;
-}
+  manageHamburguer: (data: boolean) => void;
+};
 
 export default function Hamburguer({ manageHamburguer }: HamburguerProps) {
   return (

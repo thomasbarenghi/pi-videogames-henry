@@ -1,4 +1,3 @@
-
 // import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 // import { toast } from "sonner";
 // import { GET_USER_BY_ID } from "@/graphql/queries";
@@ -10,9 +9,6 @@
 // import { sessionBuilder, authBuilder } from "@/utils/state";
 // import Routes from "@/constants/routes";
 // import { setCurrentRoute } from "./system";
-
-
-
 
 // const initialState = {
 //   auth: {} as AuthClass,
@@ -138,7 +134,7 @@
 //       //Login
 //       .addCase(login.fulfilled, (state, action) => {
 //         console.log("fulfilled", action.payload);
-        
+
 //         // console.log("fulfilled");
 //         // state.session.current = sessionBuilder(
 //         //   action.payload.User as UserClass
@@ -148,7 +144,7 @@
 //         //   loginMethod: "local",
 //         //   sessionId: action.payload.SessionID,
 //         // } as AuthClass);
-     
+
 //         // toast.success("Login exitoso", toastSuccess);
 
 //       })
@@ -157,7 +153,7 @@
 //         toast.error("Verifica las credenciales");
 //       })
 //       .addCase(register.fulfilled, (state, action) => {
-      
+
 //         toast.success("Registro exitoso", toastSuccess);
 //        // redirect(Routes.LOGIN);
 //       })

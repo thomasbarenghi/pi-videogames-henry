@@ -1,5 +1,6 @@
 #seccion-hero {
-  background: url("../../../../public/img/image 3.webp") center / cover no-repeat;
+  background: url("../../../../public/img/image 3.webp") center / cover
+    no-repeat;
   min-height: 70vh;
   color: #ffffff;
   display: flex;
@@ -12,15 +13,12 @@
     flex-direction: column;
     text-align: center;
   }
-
 }
-
 
 #seccion-descripcion-autor {
   padding-left: var(--padding-lr-t4);
   padding-right: var(--padding-lr-t4);
 }
-
 
 #section_proyecto {
   & #seccion-descripcion-proyecto {
@@ -49,7 +47,6 @@
       background-size: cover;
     }
   }
-
 }
 
 @media (max-width: 1200px) {
@@ -65,7 +62,6 @@
     grid-template-columns: 60% auto;
   }
 }
-
 
 #seccion-tecnologias {
   padding-left: var(--padding-lr-t4);

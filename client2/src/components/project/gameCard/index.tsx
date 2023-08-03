@@ -21,12 +21,12 @@ export default function GameCard({ game }: any) {
       <Link href={`/games/${game.id}`}>
         <div id={styles["componente_cardGames"]}>
           <div id={styles["cardGames_image_div"]}>
-          <Image
-            id={styles["cardGames_img"]}
-            src={game.background_image}
-            alt="imagen"
-           fill
-          />
+            <Image
+              id={styles["cardGames_img"]}
+              src={game.background_image}
+              alt="imagen"
+              fill
+            />
           </div>
           <div id={styles["cardGames_contents"]}>
             <h1

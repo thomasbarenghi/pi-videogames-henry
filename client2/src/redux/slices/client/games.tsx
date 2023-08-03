@@ -22,11 +22,11 @@ export const getGames = createAsyncThunk(
       console.log("getGames res", res);
       dispatch(setGenres(res.genres));
       dispatch(setPlatforms(res.platforms));
-      return res.results
+      return res.results;
     } catch (err: any) {
       throw new Error("Error al loguear el usuario", err);
     }
-  }
+  },
 );
 
 export const addGame = createAsyncThunk("games/addGame", async (game: any) => {
@@ -52,7 +52,7 @@ export const deleteGame = createAsyncThunk(
     } catch (err: any) {
       throw new Error("Error al loguear el usuario", err);
     }
-  }
+  },
 );
 
 export const getGameById = createAsyncThunk(
@@ -60,11 +60,11 @@ export const getGameById = createAsyncThunk(
   async (gameId: string) => {
     try {
       const res = await axiosGetter(`/games/${gameId}`);
-      return res
+      return res;
     } catch (err: any) {
       throw new Error("Error al loguear el usuario", err);
     }
-  }
+  },
 );
 
 const postsSlice = createSlice({
@@ -106,7 +106,7 @@ const postsSlice = createSlice({
       //Delete game
       .addCase(deleteGame.fulfilled, (state, action) => {
         state.games = state.games.filter(
-          (game: any) => game._id !== action.payload
+          (game: any) => game._id !== action.payload,
         );
         toast.success("Juego eliminado correctamente");
       })
@@ -114,7 +114,7 @@ const postsSlice = createSlice({
         toast.error("Error al eliminar el juego");
       })
       //Get game by id
-       .addCase(getGameById.fulfilled, (state, action) => {
+      .addCase(getGameById.fulfilled, (state, action) => {
         console.log("getGameById.fulfilled", action.payload);
         state.currentGame = action.payload;
         state.isLoading = false;
@@ -128,7 +128,7 @@ const postsSlice = createSlice({
         toast.error("Error al obtener el juego");
         state.isLoading = false;
         state.isError = true;
-      })
+      });
   },
 });
 

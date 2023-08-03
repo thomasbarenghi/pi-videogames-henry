@@ -2,13 +2,12 @@ import { GamesGrid } from "@/components";
 import styles from "./page.module.scss";
 import Head from "next/head";
 
-import { Metadata } from 'next'
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'PI Videogames | Games',
-  description: 'PI Videogames | Games',
-
-}
+  title: "PI Videogames | Games",
+  description: "PI Videogames | Games",
+};
 
 export default function Games() {
   return (

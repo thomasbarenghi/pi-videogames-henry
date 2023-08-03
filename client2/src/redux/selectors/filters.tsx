@@ -27,7 +27,7 @@ export const filtersCurrent = createSelector(
   (filters) => {
     // Hacemos map de los filtros para obtener los valores actuales
     return getCurrentFilters(filters);
-  }
+  },
 );
 
 const getCurrentFilters = (filters: any) => {
@@ -70,7 +70,7 @@ export const selectorFilteredGames = createSelector(
       const isGenre =
         selectedGenre === DEFAULT ||
         genres.filter((genre: any) =>
-          genre.name.toLowerCase().includes(selectedGenre.toLowerCase())
+          genre.name.toLowerCase().includes(selectedGenre.toLowerCase()),
         ).length > 0;
       const isSearch =
         search === "" || name.toLowerCase().includes(search.toLowerCase());
@@ -112,5 +112,5 @@ export const selectorFilteredGames = createSelector(
     });
 
     return sortedGames;
-  }
+  },
 );

@@ -33,4 +33,4 @@ export const axiosDeleter = async (url: string) => {
   });
 
   return res;
-}
+};

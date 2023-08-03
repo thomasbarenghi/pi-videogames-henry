@@ -7,12 +7,12 @@ import Querier from "@/services/querier";
 export default function RootLayout(props: any) {
   return (
     <>
-         <Querier >
-      <Header />
- 
-      <main>{props.children}</main>
+      <Querier>
+        <Header />
 
-      <Footer />
+        <main>{props.children}</main>
+
+        <Footer />
       </Querier>
     </>
   );

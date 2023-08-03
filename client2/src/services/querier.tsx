@@ -1,6 +1,6 @@
-"use client"
+"use client";
 import { ReactNode, useEffect } from "react";
-import {  usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useAppDispatch } from "@/redux/hooks";
 import { getGames } from "@/redux/slices/client/games";
 type Props = {

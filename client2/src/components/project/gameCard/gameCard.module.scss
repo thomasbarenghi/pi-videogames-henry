@@ -1,56 +1,56 @@
 #componente_cardGames {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    position: relative;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
 
-  #cardGames_image_div {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    aspect-ratio: 4/3;
-    width: 100%;
-  }
-  
-  #cardGames_img {
-    aspect-ratio: 4/3;
-    width: 100%;
-    border-radius: 20px;
-    object-fit: cover;
-    height: auto;
-  }
-  
-  #generos_icon {
-    width: 24px;
-    margin-top: 3px;
-    height: 24px;
-  }
-  
-  #cardGames_contents {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  #contents_generos {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-  }
+#cardGames_image_div {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  width: 100%;
+}
 
-  #contents_titulo{
-    color: black;
-  }
+#cardGames_img {
+  aspect-ratio: 4/3;
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  height: auto;
+}
 
-  #generos_text{
-    color: black;
-  }
+#generos_icon {
+  width: 24px;
+  margin-top: 3px;
+  height: 24px;
+}
 
-  #quitBtn{
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-radius: 0px 20px !important;
-    z-index: 1;
-  }
+#cardGames_contents {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#contents_generos {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+#contents_titulo {
+  color: black;
+}
+
+#generos_text {
+  color: black;
+}
+
+#quitBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0px 20px !important;
+  z-index: 1;
+}

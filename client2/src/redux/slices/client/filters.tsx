@@ -76,7 +76,7 @@ export const {
   setFilterGenres,
   setFilterSearch,
   setFilterRating,
-  restoreFilters  
+  restoreFilters,
 } = postsSlice.actions;
 
 export default postsSlice.reducer;

@@ -1,19 +1,15 @@
 import styles from "./page.module.scss";
 import { Tecnologias } from "@/data";
 import Head from "next/head";
-import { Metadata } from 'next'
+import { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: 'PI Videogames | About',
-  description: 'PI Videogames | About',
-
-}
-
+  title: "PI Videogames | About",
+  description: "PI Videogames | About",
+};
 
 export default function About() {
-
-
   return (
     <>
       <section id={styles["seccion-hero"]} className="padding-t1">

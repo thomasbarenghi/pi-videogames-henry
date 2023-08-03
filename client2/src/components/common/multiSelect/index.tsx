@@ -52,7 +52,7 @@ function Dropdown({ valores, setSeleccionados, seleccionados, label }: any) {
                     type="checkbox"
                     value={valor.value}
                     checked={seleccionados.some(
-                      (v: any) => v.value === valor.value
+                      (v: any) => v.value === valor.value,
                     )}
                     onChange={(e) => {
                       if (e.target.checked) {
@@ -63,8 +63,8 @@ function Dropdown({ valores, setSeleccionados, seleccionados, label }: any) {
                       } else {
                         setSeleccionados(
                           seleccionados.filter(
-                            (v: any) => v.value !== valor.value
-                          )
+                            (v: any) => v.value !== valor.value,
+                          ),
                         );
                       }
                     }}
