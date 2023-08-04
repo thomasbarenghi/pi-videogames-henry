@@ -15,7 +15,7 @@ import rootReducer from "../rootReducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["authSession", "client"],
+  whitelist: ["authSession", "client", "system"],
   debug: true,
 };
 const persistMiddleware = getDefaultMiddleware({
@@ -31,7 +31,7 @@ const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        ignoredPaths: ["client", "authSession"],
+        ignoredPaths: ["client", "authSession", "system"],
       },
     }),
 });

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Games() {
   return (
     <>
-      <section id={styles["hero"]} className="padding-lr-t2">
+      <section id={styles["hero"]} className="padding-lr-t2 py-14">
         <div id={styles["hero_contents"]}>
           <div>
             <h1
@@ -33,7 +33,7 @@ export default function Games() {
           </div>
         </div>
       </section>
-      <section className="padding-t1">
+      <section className="padding-t1 !py-[75px] ">
         <GamesGrid />
       </section>
     </>

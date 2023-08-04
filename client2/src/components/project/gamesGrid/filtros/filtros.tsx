@@ -10,47 +10,42 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useState } from "react";
 import styles from "./filtros.module.scss";
-import { Select, Search, Button, Modal, CreateGame } from "@/components";
+import { Input, Search, Button, Modal, CreateGame } from "@/components";
+import { FilterSelect, FilterSelectItem, GenresClass } from "@/types";
 
 export default function FiltrosComponent() {
   const dispatch = useAppDispatch();
   const [SearchModalVisible, setSearchModalVisible] = useState(false);
   const [FiltersModalVisible, setFiltersModalVisible] = useState(false);
-  const ordering = useAppSelector((state) => state?.client.filters.ordering);
-  const genres = useAppSelector((state) => state?.client.genres);
-  const {
-    ordering: {
-      active: orderingActive,
-      values: orderingValues,
-      title: orderingTitle,
-    },
-    filtering: {
-      origen: {
-        active: origenActive,
-        values: origenValues,
-        title: origenTitle,
-      },
-      genres: { active: genresActive, title: genresTitle },
-      rating: {
-        active: ratingActive,
-        values: ratingValues,
-        title: ratingTitle,
-      },
-      search: { active: activeSearch },
-    },
-  } = useAppSelector((state) => state?.client.filters);
+  const { ordering, filtering } = useAppSelector(
+    (state) => state?.client.filters
+  );
+
+  const { genres: sGenres } = useAppSelector((state) => state?.client.genres);
+
+  const genres = GenresClass.deserializeList(sGenres);
+  const formatGenres = genres?.map((genre) => {
+    return { value: genre?.id, label: genre?.name };
+  });
+  const rating = FilterSelect.deserialize(filtering.rating);
+  const genresFilter = FilterSelect.deserialize(filtering.genres);
+  const search = FilterSelect.deserialize(filtering.search);
+  const origen = FilterSelect.deserialize(filtering.origen);
+  const titleOrdering = FilterSelect.deserialize(ordering);
+
+  console.log("genresclass", GenresClass, FilterSelect);
 
   const handleFilters = (e: any) => {
     const { name, value } = e.target;
-    console.log("name", name, orderingTitle);
+    console.log("name", name, titleOrdering.getTitle(), value);
 
-    name === orderingTitle
+    name === titleOrdering.getTitle()
       ? dispatch(setOrdering(value))
-      : name === origenTitle
+      : name === origen.getTitle()
       ? dispatch(setFilterOrigen(value))
-      : name === genresTitle
+      : name === genresFilter.getTitle()
       ? dispatch(setFilterGenres(value))
-      : name === ratingTitle
+      : name === rating.getTitle()
       ? dispatch(setFilterRating(value))
       : null;
   };
@@ -58,47 +53,55 @@ export default function FiltrosComponent() {
   const handleOnSearch = (e: any) => {
     dispatch(setFilterSearch(e.target.value));
   };
-  console.log("genres xxx", genres);
+
   return (
     <div>
       <div id={styles["componente_filtros"]} className="margin-b-40">
         <Search
           handleOnSearch={handleOnSearch}
           mode="light"
-          activeSearch={activeSearch}
+          activeSearch={search.getActive()}
         />
         <div id={styles["filtros_boxDesktop"]}>
-          <Select
+          <Input
+            type="select"
             name={"Ordering"}
-            active={ordering?.active}
-            values={ordering?.values}
+            value={ordering?.active}
+            selectOptions={titleOrdering?.getValuesFormatted()}
             onChange={handleFilters}
-            selectClass="select"
-            labelClass="label_select"
+            handleSelectChange={handleFilters}
+            selectLabel="Ordering"
+            placeholder="Ordering"
           />
-          <Select
-            name={origenTitle}
-            active={origenActive}
-            values={origenValues}
+          <Input
+            name={origen.getTitle()}
+            value={origen.getActive()}
+            selectOptions={origen.getValuesFormatted()}
             onChange={handleFilters}
-            selectClass="select"
-            labelClass="label_select"
+            handleSelectChange={handleFilters}
+            selectLabel="Origen"
+            placeholder="Origen"
+            type="select"
           />
-          <Select
-            name={genresTitle}
-            active={genresActive}
-            values={genres?.genres?.map((genre: any) => genre.name)}
+          <Input
+            type="select"
+            name={genresFilter.getTitle()}
+            value={genresFilter.getActive()}
+            selectOptions={formatGenres}
             onChange={handleFilters}
-            selectClass="select"
-            labelClass="label_select"
+            handleSelectChange={handleFilters}
+            selectLabel="Genres"
+            placeholder="Genres"
           />
-          <Select
-            name={ratingTitle}
-            active={ratingActive}
-            values={ratingValues}
+          <Input
+            type="select"
+            name={rating.getTitle()}
+            value={rating.getActive()}
+            selectOptions={rating.getValuesFormatted()}
             onChange={handleFilters}
-            selectClass="select"
-            labelClass="label_select"
+            handleSelectChange={handleFilters}
+            selectLabel="Rating"
+            placeholder="Rating"
           />
         </div>
         <Button
@@ -127,7 +130,7 @@ export default function FiltrosComponent() {
         />
         <CreateGame />
 
-        <Modal
+        {/* <Modal
           openModal={SearchModalVisible}
           setOpenModal={setSearchModalVisible}
         >
@@ -137,13 +140,13 @@ export default function FiltrosComponent() {
           openModal={FiltersModalVisible}
           setOpenModal={setFiltersModalVisible}
         >
-          {/* <FiltersInner
+          <FiltersInner
             handleFilters={handleFilters}
             filtering={f}
             genres={genres}
             ordering={ordering}
-          /> */}
-        </Modal>
+          />
+        </Modal> */}
       </div>
     </div>
   );
@@ -219,7 +222,7 @@ function SearchInner({ handleOnSearch }: any) {
           <h1 className="titulo3-bold" style={{ color: "#ffffff" }}>
             Busca a tu juego favorito
           </h1>
-          <Search handleOnSearch={handleOnSearch} mode="dark" />
+          <Search handleOnSearch={handleOnSearch} mode="dark" activeSearch="" />
         </div>
       </div>
       <img

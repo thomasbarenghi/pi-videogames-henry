@@ -31,7 +31,7 @@ export default function PaginationComponent({
     if (currentPage <= 1) {
       dispatch(setCurrentPage(1));
     }
-  }, [totalPages]);
+  }, [currentPage, dispatch, startPage, totalPages]);
 
   return (
     <div className={styles["pagination"]}>

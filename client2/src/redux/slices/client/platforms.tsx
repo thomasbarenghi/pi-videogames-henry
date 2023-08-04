@@ -1,21 +1,21 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
+import { PlatformsClass } from "@/types";
 
 const initialState = {
-  platforms: [],
+  platforms: [] as PlatformsClass[],
 };
 
-const postsSlice = createSlice({
+const platformsSlice = createSlice({
   name: "platforms",
   initialState,
   reducers: {
-    setPlatforms: (state, action: PayloadAction<[]>) => {
-      console.log("setGenres", action.payload);
-      state.platforms = action.payload;
+    setPlatforms: (state, action: PayloadAction<PlatformsClass[]>) => {
+      state.platforms = action.payload as PlatformsClass[];
     },
   },
   extraReducers: (builder) => {},
 });
 
-export const { setPlatforms } = postsSlice.actions;
+export const { setPlatforms } = platformsSlice.actions;
 
-export default postsSlice.reducer;
+export default platformsSlice.reducer;

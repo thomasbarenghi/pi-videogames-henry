@@ -2,7 +2,8 @@
 type InputProps = {
   type: string;
   name: string;
-  label: string;
+  label?: string;
+  selectLabel?: string;
   placeholder: string;
   className?: string;
   labelClass?: string;
@@ -21,14 +22,8 @@ type InputProps = {
 };
 
 export default function Input(props: InputProps) {
-  
-
-
   return (
-    <label
-      htmlFor={props.name}
-      className={`label`}
-    >
+    <label htmlFor={props.name} className={`label`}>
       {props.label}
       {props.type !== "textarea" && props.type !== "select" ? (
         <input
@@ -48,13 +43,17 @@ export default function Input(props: InputProps) {
       ) : props.type === "select" ? (
         <select
           className="select "
-          name="status"
+          name={props.name}
           onChange={props.handleSelectChange}
           defaultValue={1}
           style={{ borderWidth: "1px" }}
           value={props.selectSelected?.value}
           placeholder="Selecciona una opción"
         >
+          <option value={1} disabled>
+            {props.selectLabel}
+          </option>
+          <option value={"Default"}>Default</option>
           {props?.selectOptions?.map((option) => (
             <option value={option?.value} key={option?.value}>
               {option?.label}{" "}

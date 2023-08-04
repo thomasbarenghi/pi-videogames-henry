@@ -35,10 +35,12 @@ export default function GameCard({ game }: any) {
               {game.name}
             </h1>
             <div id={styles["contents_generos"]}>
-              <img
-                id={styles["generos_icon"]}
+              <Image
+                className="mt-1"
                 src="img/fi-br-playing-cards.svg"
                 alt="icono"
+                width={20}
+                height={20}
               />
               <p id={styles["generos_text"]} className="body-regular">
                 {Array.isArray(game?.genres) &&

@@ -1,20 +1,21 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
+import { GenresClass } from "@/types";
 
 const initialState = {
-  genres: [] as any,
+  genres: [] as GenresClass[],
 };
 
-const postsSlice = createSlice({
+const genresSlice = createSlice({
   name: "genres",
   initialState,
   reducers: {
-    setGenres: (state, action: PayloadAction<[]>) => {
-      state.genres = action.payload
+    setGenres: (state, action: PayloadAction<GenresClass[]>) => {
+      state.genres = action.payload as GenresClass[];
     },
   },
   extraReducers: (builder) => {},
 });
 
-export const { setGenres } = postsSlice.actions;
+export const { setGenres } = genresSlice.actions;
 
-export default postsSlice.reducer;
+export default genresSlice.reducer;

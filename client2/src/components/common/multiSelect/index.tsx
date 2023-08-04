@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import styles from "./index.module.scss";
 
 type DropdownProps = {
   valores: any;
@@ -30,10 +29,10 @@ function Dropdown({ valores, setSeleccionados, seleccionados }: DropdownProps) {
   }
 
   return (
-    <div className={`${styles["dropdown"]}`} ref={dropdownRef} id="dropdown">
+    <div  ref={dropdownRef} id="dropdown">
       <div id="dropdown-content">
         <button
-          className={`${styles["dropbtn"]} smallText-regular`}
+          className={` smallText-regular`}
           onClick={() => handleDropdownClick()}
           type="button"
         >
@@ -47,11 +46,11 @@ function Dropdown({ valores, setSeleccionados, seleccionados }: DropdownProps) {
         <>
           {isDropdownOpen && (
             <div
-              className={`${styles["dropdown-content"]}`}
+              className={``}
               id="dropdown-content"
             >
               {valores.map((valor: any, index: number) => (
-                <div key={index} className={`${styles["dropdown"]}`}>
+                <div key={index} className={``}>
                   <input
                     type="checkbox"
                     value={valor.value}
