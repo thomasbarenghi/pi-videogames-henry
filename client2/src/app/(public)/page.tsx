@@ -93,18 +93,17 @@ export default function Home() {
             mejores títulos para todas las plataformas y géneros.
             <br />
           </p>
-          <div id={styles["hero_botonera"]}>
+          <div className="flex gap-3">
             <Button
-              className="btn1 btn1-t1"
+              className="primaryButton"
               type="button"
               text="Ingresa ahora"
               link={"/games"}
             />
             <Button
-              className="btn1 btn1-t2"
+              className="secondaryButton"
               type="button"
               text="Conocenos"
-              id={styles["botonera_btn2"]}
               link={"/about"}
             />
           </div>

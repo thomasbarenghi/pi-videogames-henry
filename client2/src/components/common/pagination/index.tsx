@@ -3,7 +3,15 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setCurrentPage } from "@/redux/slices/client/games";
 import styles from "./pagination.module.scss";
 
-export default function PaginationComponent({ totalItems, itemsPerPage }: any) {
+type PaginationProps = {
+  totalItems: number;
+  itemsPerPage: number;
+};
+
+export default function PaginationComponent({
+  totalItems,
+  itemsPerPage,
+}: PaginationProps) {
   const { currentPage } = useAppSelector((state) => state?.client.games);
   const dispatch = useAppDispatch();
   const totalPages = Math.ceil(totalItems / itemsPerPage);

@@ -10,7 +10,7 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useState } from "react";
 import styles from "./filtros.module.scss";
-import { Select, Search, Button, Modal } from "@/components";
+import { Select, Search, Button, Modal, CreateGame } from "@/components";
 
 export default function FiltrosComponent() {
   const dispatch = useAppDispatch();
@@ -105,7 +105,7 @@ export default function FiltrosComponent() {
           text=""
           type="button"
           onClick={() => setSearchModalVisible(true)}
-          className="btn1 btn1-t1"
+          className="primaryButton"
           id={styles["searchBtn"]}
           image="/img/fi-br-searchClear.svg"
           imageWidth={24}
@@ -115,23 +115,18 @@ export default function FiltrosComponent() {
           text="Filtros"
           type="button"
           onClick={() => setFiltersModalVisible(true)}
-          className="btn1 btn1-t1"
+          className="primaryButton"
           id={styles["filtrosBtn"]}
         />
         <Button
           text="Restaurar"
           type="button"
           onClick={() => dispatch(restoreFilters())}
-          className="btn1 btn1-t1"
+          className="primaryButton"
           id={styles["crearJuegoBtn"]}
         />
-        <Button
-          text="Crear juego"
-          type="button"
-          onClick={() => {}}
-          className="btn1 btn1-t1"
-          id={styles["crearJuegoBtn"]}
-        />
+        <CreateGame />
+
         <Modal
           openModal={SearchModalVisible}
           setOpenModal={setSearchModalVisible}

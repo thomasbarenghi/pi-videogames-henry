@@ -1,176 +1,184 @@
-import styles from "./createGame.module.scss";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addGame } from "@/redux/slices/client/games";
 import { validateForm } from "@/utils/validateCreateGame";
-import { MultiSelect } from "@/components";
-
-//export const manageCreateGame = (status:any) => { CreateGame.toggle(status); };
-
-// export default function CreateGame() {
-
-//     const [visible, setVisible] = useState(false);
-//     const toggle = (status) => { setVisible(status); };
-//     CreateGame.toggle = toggle;
-
-//     const { errorOnAdd, isLoadingOnAdd } = useSelector(state => state.apiGames);
-
-//     return (
-//         <>
-//             {visible &&
-//                 <section id={styles["crear_juego"]} className="padding-lr-t1 padding-tb-t1">
-//                     <div id={styles["crear_juego_inner"]} className="item-t1">
-//                         <div id={styles["inner"]} className="d-xl-grid d-xxl-grid flex-row align-items-start">
-//                             <div id={styles["grid_col1"]}>
-//                                 <h1 className="titulo3-bold margin-b-24">Creemos un juego 🚀</h1>
-//                                 {
-//                                     errorOnAdd ? <p className="smallText-regular margin-b-24">Algo salió mal, intenta recargar la pagina. {errorOnAdd}</p>
-//                                         : isLoadingOnAdd ? <p className="smallText-regular margin-b-24">Cargando...</p>
-//                                             : <Form setVisible={setVisible} errorOnAdd={errorOnAdd} isLoadingOnAdd={isLoadingOnAdd} />
-//                                 }
-
-//                             </div>
-//                         </div>
-//                         <img id={styles["closeMenu"]} src="img/fi-rr-cross.svg" width={15} height={15} onClick={() => setVisible(false)} alt="close" />
-//                     </div>
-//                 </section>
-//             }
-//         </>
-//     )
-// }
-
-// function Form({ setVisible, errorOnAdd, isLoadingOnAdd }) {
-
-//     const dispatch = useDispatch();
-//     const generos = useSelector(state => state.apiGenres.genres)
-//     const plataformas = useSelector(state => state.apiPlatforms.platforms)
-//     const [fieldsToValidate, setFieldsToValidate] = useState([]);
-//     const [selected, setSelected] = useState([]);
-//     const [selectedPlatforms, setSelectedPlatforms] = useState([]);
-//     const [errors, setErrors] = useState({});
-//     const [form, setForm] = useState({
-//         name: "",
-//         description: "",
-//         released: "",
-//         rating: "",
-//         platforms: "",
-//         genres: "",
-//         background_image: "",
-//         token: "",
-//         source: "own"
-//     });
-
-//     useEffect(() => {
-//         setForm({ ...form, genres: selected })
-//         if (!fieldsToValidate.includes("genres") && selected.length > 0) { setFieldsToValidate([...fieldsToValidate, "genres"]); }
-//     }, [selected])
-
-//     useEffect(() => {
-//         setForm({ ...form, platforms: selectedPlatforms })
-//         if (!fieldsToValidate.includes("platforms") && selectedPlatforms.length > 0) { setFieldsToValidate([...fieldsToValidate, "platforms"]); }
-//     }, [selectedPlatforms])
-
-//     useEffect(() => { setErrors(validateForm(form, fieldsToValidate)); }, [form, fieldsToValidate]);
-
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         const formErrors = validateForm(form, "*")
-//         if (Object.keys(formErrors).length === 0) {
-//             dispatch(addGame(form));
-//         } else {
-//             setErrors(formErrors);
-//         }
-//     }
-
-//     const handleChange = (e) => {
-//         setForm(prevForm => ({ ...prevForm, [e.target.name]: e.target.value }));
-//         const { name } = e.target;
-//         if (!fieldsToValidate.includes(name)) { setFieldsToValidate([...fieldsToValidate, name]); }
-//     }
-
-//     const options = generos.filter(genero => genero.name !== "Default").map((genero) => { return { label: genero.name, value: genero.id } })
-//     const optionsPlatforms = plataformas.filter(genero => genero.name !== "Default").map((genero) => { return { label: genero.name, value: genero.id } })
-
-//     return (
-//         <form id="form" onSubmit={handleSubmit}>
-//             <div className={styles["inputs-row"]} style={{ gap: 8 }}>
-//                 <label id="label" className="form-label smallText-regular">
-//                     Nombre del juego
-//                     <input id="input" name="name" className="smallText-regular" type="text" required maxLength="80" onChange={handleChange} />
-//                     {errors.name && <p className="smallText-regular" style={{ color: "red" }}>{errors.name}</p>}
-//                 </label>
-
-//                 <label id="label" className="form-label smallText-regular">
-//                     Descripción del juego
-//                     <textarea id="input" className="smallText-regular" type="textarea" required onChange={handleChange} rows="2" maxLength={1000} name="description" />
-//                     {errors.description && <p className="smallText-regular" style={{ color: "red" }}>{errors.description}</p>}
-//                 </label>
-//             </div>
-
-//             <div className={styles["inputs-row"]} style={{ gap: 8 }}>
-//                 <label id="label" className="form-label smallText-regular">
-//                     Fecha de lanzamiento
-//                     <input id="input" className="smallText-regular" type="date" required onChange={handleChange} name="released" />
-//                     {errors.released && <p className="smallText-regular" style={{ color: "red" }}>{errors.released}</p>}
-//                 </label>
-
-//                 <label id="label" className="form-label smallText-regular">
-//                     Rating
-//                     <input id="input" className="smallText-regular" type="number" required onChange={handleChange} min="1" max="5" step={0.1} name="rating" />
-//                     {errors.rating && <p className="smallText-regular" style={{ color: "red" }}>{errors.rating}</p>}
-//                 </label>
-//             </div>
-
-//             <div className={styles["inputs-row"]} style={{ gap: 8 }}>
-//                 <label id="label" className="form-label smallText-regular">
-//                     Plataformas
-//                     {/* <MultiSelect
-//                         options={optionsPlatforms}
-//                         value={selectedPlatforms}
-//                         onChange={setSelectedPlatforms}
-//                     /> */}
-//                     <MultiSelect valores={optionsPlatforms} setSeleccionados={setSelectedPlatforms} seleccionados={selectedPlatforms} label="Plataformas" />
-
-//                     {errors.platforms && <p className="smallText-regular" style={{ color: "red" }}>{errors.platforms}</p>}
-//                 </label>
-
-//                 <label id="label" className="form-label smallText-regular">
-//                     Generos
-//                     {/* <MultiSelect
-//                         options={options}
-//                         value={selected}
-//                         onChange={setSelected}
-//                     /> */}
-//                     <MultiSelect valores={options} setSeleccionados={setSelected} seleccionados={selected} label="Generos" />
-//                     {errors.genres && <p className="smallText-regular" style={{ color: "red" }}>{errors.genres}</p>}
-//                 </label>
-//             </div>
-
-//             <div className={styles["inputs-row"]} style={{ gap: 8 }}>
-//                 <label id="label" className="form-label smallText-regular">
-//                     Link imagen
-//                     <input id="input" className="smallText-regular" type="text" required onChange={handleChange} name="background_image" />
-//                     {errors.background_image && <p className="smallText-regular" style={{ color: "red" }}>{errors.background_image}</p>}
-//                 </label>
-
-//                 <label id="label" className="form-label smallText-regular">
-//                     Token
-//                     <input id="input" className="smallText-regular" type="password" required onChange={handleChange} name="token" />
-//                     {errors.token && <p className="smallText-regular" style={{ color: "red" }}>{errors.token}</p>}
-//                 </label>
-//             </div>
-
-//             <button
-//                 id={styles["submit"]}
-//                 className="btn btn-primary btn1-t1 btn1"
-//                 type="submit"
-//             >
-//                 Crear personaje
-//             </button>
-//         </form>
-//     )
-// }
+import { MultiSelect, Input, Modal, Button } from "@/components";
+import { useEffect, useState } from "react";
+import { GenresClass, PlatformsClass } from "@/types";
 
 export default function CreateGame() {
-  return <></>;
+  const [visible, setVisible] = useState(false);
+
+  return (
+    <>
+      <Button
+        text="Crear juego"
+        type="button"
+        onClick={() => setVisible(true)}
+        className="primaryButton"
+      />
+      <Modal visible={visible} setVisible={setVisible}>
+        <Form />
+      </Modal>
+    </>
+  );
+}
+
+function Form() {
+  const dispatch = useAppDispatch();
+  const { isErrorAdd, isLoadingAdd } = useAppSelector(
+    (state) => state.client.games
+  );
+  const { genres: sGenres } = useAppSelector((state) => state.client.genres);
+  const { platforms: sPlatforms } = useAppSelector(
+    (state) => state.client.platforms
+  );
+  const genres = GenresClass.deserializeList(sGenres);
+  const platforms = PlatformsClass.deserializeList(sPlatforms);
+  console.log("genres deserializeList", genres, "platforms", platforms);
+  const [selected, setSelected] = useState([] as any);
+  const [selectedPlatforms, setSelectedPlatforms] = useState([] as any);
+  const [errors, setErrors] = useState({} as any);
+  const [form, setForm] = useState({
+    name: "",
+    description: "",
+    released: "",
+    rating: "",
+    platforms: "",
+    genres: "",
+    background_image: "",
+    token: "",
+    source: "own",
+  } as any);
+
+  const handleSubmit = (e: any) => {};
+
+  const handleChange = (e: any) => {};
+
+  // const options = generos
+  //   .filter((genero) => genero.name !== "Default")
+  //   .map((genero) => {
+  //     return { label: genero.name, value: genero.id };
+  //   });
+  // const optionsPlatforms = plataformas
+  //   .filter((genero) => genero.name !== "Default")
+  //   .map((genero) => {
+  //     return { label: genero.name, value: genero.id };
+  //   });
+
+  return (
+    <div className="flex flex-col gap-5">
+      <h1 className="titulo3-bold">Creemos un juego 🚀</h1>
+      {isErrorAdd ? (
+        <p className="smallText-regular margin-b-24">
+          Algo salió mal, intenta recargar la pagina. {isErrorAdd}
+        </p>
+      ) : isLoadingAdd ? (
+        <p className="smallText-regular margin-b-24">Cargando...</p>
+      ) : (
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="inputs-row" style={{ gap: 8 }}>
+            <Input
+              label="Nombre del juego"
+              type="text"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              placeholder="Nombre del juego"
+              required
+              error={errors.name}
+            />
+            <Input
+              label="Descripción del juego"
+              type="textarea"
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+              placeholder="Descripción del juego"
+              required
+              rows={1}
+              error={errors.description}
+            />
+          </div>
+          <div className="inputs-row" style={{ gap: 8 }}>
+            <Input
+              label="Fecha de lanzamiento"
+              type="date"
+              name="released"
+              value={form.released}
+              onChange={handleChange}
+              placeholder="Fecha de lanzamiento"
+              required
+              error={errors.released}
+            />
+            <Input
+              label="Rating"
+              type="number"
+              name="rating"
+              value={form.rating}
+              onChange={handleChange}
+              placeholder="Rating"
+              required
+              error={errors.rating}
+            />
+          </div>
+          <div className="inputs-row" style={{ gap: 8 }}>
+            <label id="label" className="form-label smallText-regular">
+              Plataformas
+              <MultiSelect
+                valores={platforms}
+                setSeleccionados={setSelectedPlatforms}
+                seleccionados={selectedPlatforms}
+                label="Plataformas"
+              />
+              {errors.platforms && (
+                <p className="smallText-regular" style={{ color: "red" }}>
+                  {errors.platforms}
+                </p>
+              )}
+            </label>
+            <label id="label" className="form-label smallText-regular">
+              Generos
+              <MultiSelect
+                valores={genres}
+                setSeleccionados={setSelected}
+                seleccionados={selected}
+                label="Generos"
+              />
+              {errors.genres && (
+                <p className="smallText-regular" style={{ color: "red" }}>
+                  {errors.genres}
+                </p>
+              )}
+            </label>
+          </div>
+          <div className="inputs-row" style={{ gap: 8 }}>
+            <Input
+              label="Link imagen"
+              type="text"
+              name="background_image"
+              value={form.background_image}
+              onChange={handleChange}
+              placeholder="Link imagen"
+              required
+              error={errors.background_image}
+            />
+            <Input
+              label="Token"
+              type="password"
+              name="token"
+              value={form.token}
+              onChange={handleChange}
+              placeholder="Token"
+              required
+              error={errors.token}
+            />
+          </div>
+
+          <button className="submitButton" type="submit">
+            Crear personaje
+          </button>
+        </form>
+      )}
+    </div>
+  );
 }

@@ -1,36 +1,27 @@
-import styles from "./modal.module.scss";
-import { useEffect, useRef, useState } from "react";
+import { ReactSVG } from "react-svg";
 
-export default function Modal({ children, openModal, setOpenModal }: any) {
-  const modalRef = useRef<HTMLDivElement>(null); // Add type annotation to specify the type of the ref
-  const [modalManager, setModalManager] = useState(false);
+type ModalProps = {
+  children: React.ReactNode;
+  setVisible: (status: boolean) => void;
+  visible: boolean;
+};
 
-  useEffect(() => {
-    if (openModal) {
-      setModalManager(true);
-    }
-  }, [openModal]);
-
-  const handleOutsideClick = (event: any) => {
-    if (modalRef.current && !modalRef.current.contains(event.target)) {
-      setModalManager(false);
-      setOpenModal(false);
-    }
-  };
-
-  useEffect(() => {
-    document.body.addEventListener("click", handleOutsideClick);
-    return () => {
-      document.body.removeEventListener("click", handleOutsideClick);
-    };
-  }, [modalRef, setOpenModal]);
-
+export default function Modal({ children, setVisible, visible }: ModalProps) {
   return (
     <>
-      {modalManager && (
-        <div id={styles["filtersModalBox"]} ref={modalRef}>
-          {children}
-        </div>
+      {visible && (
+        <section className="modalContainerBase">
+          <div className="item-t1">
+            <div className="modalInner">{children}</div>
+            <ReactSVG
+              className="modalCloseBtn"
+              src="img/fi-rr-cross.svg"
+              width={15}
+              height={15}
+              onClick={() => setVisible(false)}
+            />
+          </div>
+        </section>
       )}
     </>
   );

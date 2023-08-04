@@ -1,4 +1,9 @@
-export default function errorBlack({ error, theme }: any) {
+type Props = {
+  error: string;
+  theme: "dark" | "light";
+};
+
+export default function errorBlack({ error, theme }: Props) {
   return (
     <section
       style={{

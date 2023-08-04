@@ -1,5 +1,4 @@
 import { Nav } from "@/components";
-import styles from "./hamburguer.module.scss";
 import Image from "next/image";
 
 type HamburguerProps = {
@@ -9,31 +8,27 @@ type HamburguerProps = {
 export default function Hamburguer({ manageHamburguer }: HamburguerProps) {
   return (
     <div
-      id={styles["hamburguer-menu"]}
+      id="hamburguerMenu"
       className="padding-lr-t1"
       style={{ backdropFilter: "blur(26px)" }}
     >
       <Image
-        id={styles["closeMenu"]}
+        className="modalCloseBtn"
         src="/img/fi-br-cross.svg"
         width={24}
         height={24}
         onClick={() => manageHamburguer(false)}
         alt="close"
       />
-      <div id={styles["hamburguer-box"]}>
-        <p className="margin-b-16 body-regular">Menu</p>
-        <div className="margin-b-24" style={{ width: "100%" }}>
-          <ul
-            id={styles["nav-hamb"]}
-            className="titulo1-regular"
-            style={{ listStyle: "none", width: "100%" }}
-          >
-            <Nav />
-          </ul>
+      <div className="flex flex-col gap-4">
+        <p className="text-white font-light text-[18px] ">MENU</p>
+        <Nav classname="text-[24px] " mode="vertical" />
+        <div className="flex flex-col">
+        <p className="text-white font-medium text-[16px] ">Ponte en contacto</p>
+        <span className="text-white font-light text-[16px] ">
+          thomasbarenghi@gmail.com
+        </span>
         </div>
-        <p className="body-regular">Ponte en contacto</p>
-        <span className="body-regular">thomasbarenghi@gmail.com</span>
       </div>
     </div>
   );

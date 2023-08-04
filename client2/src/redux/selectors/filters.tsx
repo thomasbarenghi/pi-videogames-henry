@@ -81,36 +81,21 @@ export const selectorFilteredGames = createSelector(
     //active sorting es el valor del select de ordenamiento
     //selectedRating es el valor del select de rating
     console.log(currentFilters.rating);
-    const sortedGames = filteredGames.sort((a: any, b: any) => {
-      let result = 0; // Variable para almacenar el resultado del ordenamiento
 
-      if (nameSorting !== DEFAULT) {
-        const nameA = a.name.toLowerCase();
-        const nameB = b.name.toLowerCase();
-
-        if (nameSorting === ASC) {
-          if (nameA < nameB) result = -1;
-          if (nameA > nameB) result = 1;
-        } else if (nameSorting === DESC) {
-          if (nameA > nameB) result = -1;
-          if (nameA < nameB) result = 1;
-        }
-      }
-
-      if (result === 0 && currentFilters.rating !== DEFAULT) {
-        const ratingA = a.rating;
-        const ratingB = b.rating;
-
-        if (currentFilters.rating === "0-5") {
-          result = ratingB - ratingA;
-        } else if (currentFilters.rating === "5-0") {
-          result = ratingA - ratingB;
-        }
-      }
-
-      return result; // Devolvemos el resultado del ordenamiento
+    filteredGames.sort((a:any, b:any) => {
+      return nameSorting === 'A-Z' ? a.name.localeCompare(b.name)
+        : nameSorting === 'Z-A' ? b.name.localeCompare(a.name)
+            : 0;
     });
+  
+    filteredGames.sort((a:any, b:any) => {
+      return currentFilters.rating === '0-5' ? a.rating - b.rating
+        : currentFilters.rating === '5-0' ? b.rating - a.rating
+          : 0;
+    })
 
-    return sortedGames;
+
+
+    return filteredGames;
   },
 );

@@ -1,6 +1,10 @@
 import Image from "next/image";
 
-export default function Loader({ theme }: any) {
+type Props = {
+  theme: "dark" | "light";
+};
+
+export default function Loader({ theme }: Props) {
   return (
     <section
       style={{

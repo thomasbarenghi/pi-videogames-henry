@@ -1,6 +1,5 @@
 import { GamesGrid } from "@/components";
 import styles from "./page.module.scss";
-import Head from "next/head";
 
 import { Metadata } from "next";
 
@@ -12,11 +11,6 @@ export const metadata: Metadata = {
 export default function Games() {
   return (
     <>
-      <Head>
-        <title>PI Videogames | Games</title>
-        <meta name="description" content="PI Videogames | Home" />
-        <meta name="theme-color" content="#000" />
-      </Head>
       <section id={styles["hero"]} className="padding-lr-t2">
         <div id={styles["hero_contents"]}>
           <div>

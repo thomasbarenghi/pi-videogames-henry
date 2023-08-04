@@ -5,13 +5,13 @@ const initialState = {
   search: "",
   ordering: {
     title: "Ordering",
-    values: ["Default", "A-Z", "Z-A"],
+    values: ["A-Z", "Z-A"],
     active: DEFAULT,
   },
   filtering: {
     origen: {
       title: "Origen",
-      values: [DEFAULT, "own", "public"],
+      values: ["own", "public"],
       active: DEFAULT,
     },
     genres: {
@@ -25,7 +25,7 @@ const initialState = {
     rating: {
       title: "Rating",
       active: DEFAULT,
-      values: [DEFAULT, "0-5", "5-0"],
+      values: ["0-5", "5-0"],
     },
   },
   created_by_me: false,

@@ -1,25 +1,13 @@
 "use client";
-import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { getGameById } from "@/redux/slices/client/games";
+import { useAppSelector } from "@/redux/hooks";
 import styles from "./page.module.scss";
-
 import { Error, Loader } from "@/components";
+import Image from "next/image";
 
-export default function GameDetails({
-  params,
-}: {
-  params: { gameId: string };
-}) {
-  const dispatch = useAppDispatch();
-
+export default function GameDetails() {
   const { isLoading, isError, currentGame } = useAppSelector(
-    (state) => state?.client.games,
+    (state) => state?.client.games
   );
-
-  useEffect(() => {
-    dispatch(getGameById(params.gameId));
-  }, [dispatch, params.gameId]);
 
   if (isLoading) {
     return <Loader theme={"dark"} />;
@@ -78,11 +66,14 @@ export default function GameDetails({
         </div>
         <div id={styles["hero_col2"]}>
           <div id={styles["col2_card_inner"]}>
-            <img
-              id={styles["inner_img"]}
-              src={currentGame?.background_image}
-              alt={currentGame?.name}
-            />
+            <div id={styles["col2_card_inner2"]}>
+              <Image
+                id={styles["inner_img"]}
+                src={currentGame?.background_image}
+                alt={currentGame?.name}
+                fill
+              />
+            </div>
           </div>
         </div>
       </section>

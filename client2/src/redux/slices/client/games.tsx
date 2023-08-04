@@ -11,6 +11,8 @@ const initialState = {
   error: null,
   isError: false,
   isLoading: false,
+  isErrorAdd: false,
+  isLoadingAdd: false,
 };
 
 export const getGames = createAsyncThunk(

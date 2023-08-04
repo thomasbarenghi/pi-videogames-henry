@@ -8,7 +8,14 @@ import FiltrosComponent from "./filtros/filtros";
 //Utils
 import { paginate } from "@/utils/paginateArray";
 //Estilos
-import { CreateGame, Error, GameCard, Loader, Pagination } from "@/components";
+import {
+  CreateGame,
+  Error,
+  GameCard,
+  Loader,
+  Pagination,
+  Modal,
+} from "@/components";
 import styles from "./gamesGrid.module.scss";
 
 const GamesGrid = () => {
@@ -53,7 +60,6 @@ const GamesGrid = () => {
         </div>
       )}
       <Pagination totalItems={games.length} itemsPerPage={15} />
-      <CreateGame />
     </main>
   );
 };

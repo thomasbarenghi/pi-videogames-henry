@@ -13,9 +13,9 @@ export { default as GamesGrid } from "./project/gamesGrid";
 //common
 export { default as Error } from "./common/error";
 export { default as Loader } from "./common/loader";
+export { default as BottomSheet } from "./common/bottomSheet";
 export { default as Modal } from "./common/modal";
 export { default as MultiSelect } from "./common/multiSelect";
 export { default as Pagination } from "./common/pagination";
-export { default as ScrollToTop } from "./common/scrollToTop";
 export { default as Search } from "./common/search";
-export { default as Select } from "./common/select";
+export { default as Input } from "./input";

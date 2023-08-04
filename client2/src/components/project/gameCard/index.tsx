@@ -11,8 +11,7 @@ export default function GameCard({ game }: any) {
     <div style={{ position: "relative" }}>
       {game.source === "own" && (
         <button
-          id={styles["quitBtn"]}
-          className="btn1 btn1-t1"
+          className="primaryButton"
           onClick={() => dispatch(deleteGame(game.id))}
         >
           Delete

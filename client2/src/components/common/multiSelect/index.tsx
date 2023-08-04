@@ -1,7 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./index.module.scss";
 
-function Dropdown({ valores, setSeleccionados, seleccionados, label }: any) {
+type DropdownProps = {
+  valores: any;
+  setSeleccionados: (status: any) => void;
+  seleccionados: any[];
+  label: string;
+};
+
+function Dropdown({ valores, setSeleccionados, seleccionados }: DropdownProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -11,11 +18,8 @@ function Dropdown({ valores, setSeleccionados, seleccionados, label }: any) {
         setIsDropdownOpen(false);
       }
     }
-
-    // Agregar evento de clic al elemento 'window'
     window.addEventListener("click", handleClickOutside);
 
-    // Eliminar evento de clic cuando se desmonta el componente
     return () => {
       window.removeEventListener("click", handleClickOutside);
     };
@@ -52,7 +56,7 @@ function Dropdown({ valores, setSeleccionados, seleccionados, label }: any) {
                     type="checkbox"
                     value={valor.value}
                     checked={seleccionados.some(
-                      (v: any) => v.value === valor.value,
+                      (v: any) => v.value === valor.value
                     )}
                     onChange={(e) => {
                       if (e.target.checked) {
@@ -63,8 +67,8 @@ function Dropdown({ valores, setSeleccionados, seleccionados, label }: any) {
                       } else {
                         setSeleccionados(
                           seleccionados.filter(
-                            (v: any) => v.value !== valor.value,
-                          ),
+                            (v: any) => v.value !== valor.value
+                          )
                         );
                       }
                     }}

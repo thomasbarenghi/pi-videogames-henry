@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import styles from "./header.module.scss";
-import Link from "next/link";
-import { Button, Nav, Hamburguer } from "@/components";
 import { Routes } from "@/constants";
+import { Button, Nav, Hamburguer } from "@/components";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
   const [hamburguer, setHamburguer] = useState(false);
@@ -29,7 +29,7 @@ export default function Header() {
 
   return (
     <header
-      id={styles["header"]}
+      id="header1"
       className="padding-lr-t1"
       style={
         headerType === "alternative" && !hamburguer
@@ -38,27 +38,31 @@ export default function Header() {
       }
     >
       <Link href="/">
-        <img id={styles["header_logo"]} src="/img/gamingXLogo.svg" alt="logo" />
+        <Image
+          id="headerLogo"
+          src="/img/gamingXLogo.svg"
+          alt="logo"
+          width={140}
+          height={40}
+        />
       </Link>
-      <ul id={styles["header_ul"]} className="margin-b-0 body-regular">
+      <div className="hidden lg:flex absolute left-[50%]  translate-x-[-50%]">
         <Nav style={headerType === "alternative" ? { color: "#fff" } : {}} />
-      </ul>
-      <div>
-        <img
-          id={styles["openMenu"]}
+      </div>
+      <div className="relative w-8 aspect-square cursor-pointer lg:hidden">
+        <Image
           src="/img/fi-br-apps.svg"
           alt="menu"
+          fill
           onClick={() => handleHamburguer(true)}
         />
       </div>
       <Button
         text="Conocenos"
-        id={styles["header_btn"]}
         type="button"
-        className="btn1 btn1-t2"
+        className="secondaryButton hidden lg:flex"
         link={Routes.ABOUT}
       ></Button>
-
       {hamburguer ? <Hamburguer manageHamburguer={setHamburguer} /> : null}
     </header>
   );

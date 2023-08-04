@@ -1,7 +1,13 @@
 import Image from "next/image";
 import styles from "./search.module.scss";
 
-export default function Search({ handleOnSearch, mode, activeSearch }: any) {
+type Props = {
+  handleOnSearch: (e: any) => void;
+  mode: "light" | "dark";
+  activeSearch: string;
+};
+
+export default function Search({ handleOnSearch, mode, activeSearch }: Props) {
   return (
     <div
       id={

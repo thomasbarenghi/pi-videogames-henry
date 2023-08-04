@@ -74,13 +74,24 @@
   gap: 8px;
 }
 
+
+
 #col2_card_inner {
   padding: 10px;
+  aspect-ratio: 4/3;
   border-radius: 20px;
   background: rgba(255, 0, 0, 0.2);
   backdrop-filter: blur(11px);
+  position: relative;;
 }
 
+#col2_card_inner2 {
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  position: relative;;
+}
 @media (max-width: 992px) {
   #inner_img {
     width: 100%;

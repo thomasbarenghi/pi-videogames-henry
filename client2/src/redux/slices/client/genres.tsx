@@ -9,10 +9,7 @@ const postsSlice = createSlice({
   initialState,
   reducers: {
     setGenres: (state, action: PayloadAction<[]>) => {
-      console.log("setGenres", action.payload);
-      //agrear el default
-
-      state.genres = action.payload;
+      state.genres = action.payload
     },
   },
   extraReducers: (builder) => {},
