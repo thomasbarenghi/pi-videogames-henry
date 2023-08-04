@@ -8,6 +8,8 @@ export class GamesClass {
   background_image: string;
   genres: GenresClass[];
   platforms: PlatformsClass[];
+  description?: string;
+  released?: string;
 
   constructor(
     id: string,
@@ -16,7 +18,9 @@ export class GamesClass {
     rating: number,
     background_image: string,
     genres: GenresClass[],
-    platforms: PlatformsClass[]
+    platforms: PlatformsClass[],
+    description: string,
+    released: string
   ) {
     this.id = id;
     this.name = name;
@@ -25,6 +29,8 @@ export class GamesClass {
     this.background_image = background_image;
     this.genres = genres;
     this.platforms = platforms;
+    this.description = description;
+    this.released = released;
   }
 
   static deserialize(data: any): GamesClass {
@@ -35,7 +41,9 @@ export class GamesClass {
       data.rating,
       data.background_image,
       data.genres,
-      data.platforms
+      data.platforms,
+      data.description || "",
+      data.released || ""
     );
   }
 
@@ -73,5 +81,19 @@ export class GamesClass {
 
   getPlatforms(): PlatformsClass[] {
     return this.platforms;
+  }
+
+  getDescription(): string {
+    if (this.description === undefined) {
+      return "";
+    }
+    return this.description;
+  }
+
+  getReleased(): string {
+    if (this.released === undefined) {
+      return "";
+    }
+    return this.released;
   }
 }

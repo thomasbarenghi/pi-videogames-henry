@@ -4,16 +4,24 @@ import styles from "./page.module.scss";
 import { Error, Loader } from "@/components";
 import Image from "next/image";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "PI Videogames | Ver juego",
+  description: "PI Videogames | Ver juego",
+  themeColor: "#000000",
+};
+
 export default function GameDetails() {
   const { isLoading, isError, currentGame } = useAppSelector(
-    (state) => state?.client.games,
+    (state) => state?.client?.games,
   );
 
   if (isLoading) {
     return <Loader theme={"dark"} />;
   }
   if (isError) {
-    return <Error theme={"dark"} />;
+    return <Error theme={"dark"} error="Error al cargar el juego" />;
   }
 
   return (
@@ -34,7 +42,7 @@ export default function GameDetails() {
             <div
               id={styles["card1_desc"]}
               className="body-regular"
-              dangerouslySetInnerHTML={{ __html: currentGame?.description }}
+              dangerouslySetInnerHTML={{ __html: currentGame?.description || "" }}
             ></div>
           </div>
           <div id={styles["col1_card2"]} className={styles["blured-red-box"]}>

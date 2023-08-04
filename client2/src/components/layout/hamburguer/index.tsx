@@ -22,7 +22,7 @@ export default function Hamburguer({ manageHamburguer }: HamburguerProps) {
       />
       <div className="flex flex-col gap-4">
         <p className="text-white font-light text-[18px] ">MENU</p>
-        <Nav classname="text-[24px] " mode="vertical" />
+        <Nav classname="text-[24px] " mode="vertical" actionClick={() => manageHamburguer(false)} />
         <div className="flex flex-col">
           <p className="text-white font-medium text-[16px] ">
             Ponte en contacto

@@ -23,12 +23,11 @@ const GamesGrid = () => {
   const [paginados, setPaginados] = useState([]);
   const [error, setError] = useState(null);
   const {
-    games: games2,
     isError,
     isLoading,
-  } = useAppSelector((state) => state?.client.games);
+  } = useAppSelector((state) => state?.client?.games);
   const games = useAppSelector(selectorFilteredGames);
-  const { currentPage } = useAppSelector((state) => state?.client.games);
+  const { currentPage } = useAppSelector((state) => state?.client?.games);
 
   useEffect(() => {
     setPaginados(paginate(games, 15, currentPage));

@@ -1,38 +1,24 @@
 export const Tecnologias = [
   {
     id: 1,
-    titulo: "React",
-    imagen: "/img/tecnologias/react.svg",
+    titulo: "NextJS 13",
+    imagen: "/img/tecnologias/next.svg",
     descripcion:
-      "React es una biblioteca de JavaScript para construir interfaces de usuario interactivas y escalables. Permite crear componentes reutilizables y manejar el estado de la aplicación de manera sencilla. Utiliza el DOM virtual para minimizar el tiempo de carga y mejorar el rendimiento de la aplicación.",
+      "Next.js es un framework de React que permite crear aplicaciones web y sitios web estáticos. Next.js proporciona una serie de características que facilitan el desarrollo de aplicaciones web y sitios web estáticos, como el enrutamiento automático, la generación de páginas estáticas y la renderización del lado del servidor.",
   },
   {
     id: 2,
-    titulo: "Javascript",
-    imagen: "/img/tecnologias/javascript.svg",
+    titulo: "Typescript",
+    imagen: "/img/tecnologias/typescript.svg",
     descripcion:
-      "JavaScript es un lenguaje de programación dinámico, orientado a objetos e interpretado que se utiliza principalmente en el desarrollo web para crear aplicaciones interactivas y dinámicas en el lado del cliente. Es uno de los lenguajes más populares del mundo y se ejecuta en todos los navegadores web modernos.",
-  },
-  {
-    id: 3,
-    titulo: "Css 3",
-    imagen: "/img/tecnologias/css.svg",
-    descripcion:
-      "CSS3 es una tecnología utilizada para dar estilo y presentación a las páginas web. Con CSS3, los desarrolladores web pueden controlar la apariencia de los elementos HTML, incluyendo el tamaño, color, fuente, espacio entre líneas, margen, bordes, efectos de sombra, animaciones y transiciones, entre otros.",
+      "TypeScript es un lenguaje de programación de código abierto desarrollado y mantenido por Microsoft. TypeScript es un lenguaje de programación de código abierto desarrollado y mantenido por Microsoft. TypeScript es un lenguaje de programación de código abierto desarrollado y mantenido por Microsoft. TypeScript es un lenguaje de programación de código abierto desarrollado y mantenido por Microsoft.",
   },
   {
     id: 4,
-    titulo: "Redux",
+    titulo: "Redux Toolkit",
     imagen: "/img/tecnologias/redux.svg",
     descripcion:
       "Redux es una librería de gestión de estado para aplicaciones JavaScript de una sola página (SPA). Se utiliza principalmente con React, pero también se puede utilizar con otras bibliotecas o marcos de trabajo de JavaScript. Redux se basa en la arquitectura Flux y se centra en la idea de que el estado de la aplicación debe ser centralizado y predecible.",
-  },
-  {
-    id: 5,
-    titulo: "Postman",
-    imagen: "/img/tecnologias/postman.svg",
-    descripcion:
-      "Postman es una herramienta de colaboración para diseñar, probar y documentar las API. Con Postman puedes enviar solicitudes HTTP a un servidor web y recibir respuestas. Puedes organizar tus solicitudes en colecciones y agregar tests automatizados a tus solicitudes para asegurarte de que tus API funcionan correctamente.",
   },
   {
     id: 6,

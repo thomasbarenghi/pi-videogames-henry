@@ -66,6 +66,18 @@ import styles from "./page.module.scss";
 import { Button } from "@/components";
 import Head from "next/head";
 
+import { Metadata } from "next";
+import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "PI Videogames | Inicio",
+  description: "PI Videogames | Inicio",
+  themeColor: "#000000",
+};
+
+
+
+
 export default function Home() {
   return (
     <>
@@ -85,8 +97,8 @@ export default function Home() {
             <br />
           </h1>
           <p
-            id={styles["contents_p"]}
-            className="margin-b-24 body-regular span-100"
+   
+            className="margin-b-24 body-regular w-full lg:max-w-[45%] "
           >
             ¿Listo para sumergirte en un mundo de videojuegos emocionante y
             diverso? En nuestra plataforma encontrarás una selección de los

@@ -10,8 +10,8 @@ type Props = {
 export default function Search({ handleOnSearch, mode, activeSearch }: Props) {
   return (
     <div
-      id={
-        mode === "light" ? styles["filtros_search"] : styles["filtros_search2"]
+      className={
+        mode === "light" ? "searchLight" : "searchDark"
       }
     >
       <Image

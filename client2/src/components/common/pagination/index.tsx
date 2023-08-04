@@ -12,7 +12,7 @@ export default function PaginationComponent({
   totalItems,
   itemsPerPage,
 }: PaginationProps) {
-  const { currentPage } = useAppSelector((state) => state?.client.games);
+  const { currentPage } = useAppSelector((state) => state?.client?.games);
   const dispatch = useAppDispatch();
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const visiblePageCount = 5;

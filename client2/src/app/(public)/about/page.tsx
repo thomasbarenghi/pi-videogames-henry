@@ -7,6 +7,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "PI Videogames | About",
   description: "PI Videogames | About",
+  themeColor: "#000000",
 };
 
 export default function About() {

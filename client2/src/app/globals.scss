@@ -20,6 +20,19 @@
   }
 }
 
+@media (max-width: 767.98px) {
+  .span-100 {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (min-width: 767.98px) and (max-width: 1024.98px) {
+  .span-100 {
+    width: 90% !important;
+  }
+}
+
 //Elementons comunes
 @layer base {
   .primaryButton {
@@ -28,6 +41,14 @@
 
   .secondaryButton {
     @apply border border-white font-medium text-base text-white rounded-3xl px-8 py-4 whitespace-nowrap;
+  }
+
+  .searchLight {
+    @apply rounded-3xl flex gap-2 items-center bg-red-200 border-red-200 border-solid px-4 font-medium text-base border-r-[15px]  py-3 text-red-700  p-4;
+  }
+
+  .searchDark {
+    @apply rounded-3xl flex gap-2 items-center bg-red-700 border-red-700 border-solid px-4 font-medium text-base border-r-[15px]  py-3 text-white  p-4;
   }
 }
 

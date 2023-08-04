@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useState } from "react";
 import styles from "./filtros.module.scss";
 import { Input, Search, Button, BottomSheet, CreateGame } from "@/components";
-import { FiltersInner, SearchInner } from "./mobile";
+import { FiltersInner } from "./mobile";
 import { FilterSelect, GenresClass } from "@/types";
 
 export default function FiltrosComponent() {
@@ -19,10 +19,10 @@ export default function FiltrosComponent() {
   const [SearchModalVisible, setSearchModalVisible] = useState(false);
   const [FiltersModalVisible, setFiltersModalVisible] = useState(false);
   const { ordering, filtering } = useAppSelector(
-    (state) => state?.client.filters
+    (state) => state?.client?.filters
   );
 
-  const { genres: sGenres } = useAppSelector((state) => state?.client.genres);
+  const { genres: sGenres } = useAppSelector((state) => state?.client?.genres);
 
   const genres = GenresClass.deserializeList(sGenres);
   const formatGenres = genres?.map((genre) => {
@@ -72,9 +72,11 @@ export default function FiltrosComponent() {
             rating={rating}
             origen={origen}
             titleOrdering={titleOrdering}
+         
+            generalClassName="rounded-3xl bg-red-200 border-red-200 border-solid px-4 font-medium text-base border-r-[15px] border-r-4 py-4 text-red-700  p-4"
           />
         </div>
-        <Button
+        {/* <Button
           text=""
           type="button"
           onClick={() => setSearchModalVisible(true)}
@@ -82,7 +84,7 @@ export default function FiltrosComponent() {
           image="/img/fi-br-searchClear.svg"
           imageWidth={40}
           imageHeight={40}
-        />
+        /> */}
         <Button
           text="Filtros"
           type="button"
@@ -99,12 +101,6 @@ export default function FiltrosComponent() {
         />
         <CreateGame />
         <BottomSheet
-          openModal={SearchModalVisible}
-          setOpenModal={setSearchModalVisible}
-        >
-          <SearchInner handleOnSearch={handleOnSearch} />
-        </BottomSheet>
-        <BottomSheet
           openModal={FiltersModalVisible}
           setOpenModal={setFiltersModalVisible}
         >
@@ -117,7 +113,8 @@ export default function FiltrosComponent() {
               rating={rating}
               origen={origen}
               titleOrdering={titleOrdering}
-            />
+              generalClassName="rounded-3xl bg-red-700 border-red-700 border-solid px-4 font-medium text-base border-r-[15px] border-r-4 py-4 text-white  p-4"
+              />
           </FiltersInner>
         </BottomSheet>
       </div>
@@ -133,6 +130,7 @@ type InputsGroupProps = {
   origen: any;
   titleOrdering: any;
   formatGenres: any;
+  generalClassName: string;
 };
 
 function InputsGroup({
@@ -143,6 +141,7 @@ function InputsGroup({
   rating,
   origen,
   titleOrdering,
+  generalClassName,
 }: InputsGroupProps) {
   return (
     <>
@@ -155,6 +154,7 @@ function InputsGroup({
         handleSelectChange={handleFilters}
         selectLabel="Ordering"
         placeholder="Ordering"
+        className={generalClassName}
       />
       <Input
         name={origen.getTitle()}
@@ -165,6 +165,7 @@ function InputsGroup({
         selectLabel="Origen"
         placeholder="Origen"
         type="select"
+        className={generalClassName}
       />
       <Input
         type="select"
@@ -175,6 +176,7 @@ function InputsGroup({
         handleSelectChange={handleFilters}
         selectLabel="Genres"
         placeholder="Genres"
+        className={generalClassName}
       />
       <Input
         type="select"
@@ -185,6 +187,7 @@ function InputsGroup({
         handleSelectChange={handleFilters}
         selectLabel="Rating"
         placeholder="Rating"
+        className={generalClassName}
       />
     </>
   );

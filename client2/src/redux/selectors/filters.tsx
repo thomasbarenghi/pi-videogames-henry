@@ -7,8 +7,8 @@ import { Filters } from "@/constants";
 import { FilterSelect, FilterSelectItem } from "@/types";
 import { getCurrentFilters } from "@/utils/project/getCurrentFilters";
 
-const games = (state: RootState) => state?.client.games.games;
-const filters = (state: RootState) => state?.client.filters;
+const games = (state: RootState) => state?.client?.games?.games;
+const filters = (state: RootState) => state?.client?.filters;
 
 interface FilterState {
   filters: {

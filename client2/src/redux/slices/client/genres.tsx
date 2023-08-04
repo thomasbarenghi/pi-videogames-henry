@@ -10,6 +10,9 @@ const genresSlice = createSlice({
   initialState,
   reducers: {
     setGenres: (state, action: PayloadAction<GenresClass[]>) => {
+      if (!Array.isArray(action.payload) || action.payload.length === 0) {
+        return;
+      }
       state.genres = action.payload as GenresClass[];
     },
   },

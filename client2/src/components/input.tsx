@@ -42,11 +42,11 @@ export default function Input(props: InputProps) {
         />
       ) : props.type === "select" ? (
         <select
-          className="select "
+          className={`select ${props.className} `}
           name={props.name}
           onChange={props.handleSelectChange}
           defaultValue={1}
-          style={{ borderWidth: "1px" }}
+        
           value={props.selectSelected?.value}
           placeholder="Selecciona una opción"
         >
