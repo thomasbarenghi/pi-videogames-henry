@@ -23,11 +23,11 @@
 //Elementons comunes
 @layer base {
   .primaryButton {
-    @apply bg-red-700 font-medium text-base text-white rounded-2xl px-8 py-4;
+    @apply bg-red-700 font-medium text-base text-white rounded-3xl px-8 py-4 whitespace-nowrap;
   }
 
   .secondaryButton {
-    @apply border border-white font-medium text-base text-white rounded-2xl px-8 py-4;
+    @apply border border-white font-medium text-base text-white rounded-3xl px-8 py-4 whitespace-nowrap;
   }
 }
 

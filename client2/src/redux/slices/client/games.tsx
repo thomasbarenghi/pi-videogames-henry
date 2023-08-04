@@ -3,10 +3,11 @@ import { axiosGetter, axiosPoster, axiosDeleter } from "@/utils/requests";
 import { setGenres } from "./genres";
 import { setPlatforms } from "./platforms";
 import { toast } from "sonner";
+import { GamesClass } from "@/types";
 
 const initialState = {
-  games: [],
-  currentGame: {} as any,
+  games: [] as GamesClass[],
+  currentGame: {} as GamesClass,
   currentPage: 1,
   error: null,
   isError: false,
@@ -28,7 +29,7 @@ export const getGames = createAsyncThunk(
     } catch (err: any) {
       throw new Error("Error al loguear el usuario", err);
     }
-  },
+  }
 );
 
 export const addGame = createAsyncThunk("games/addGame", async (game: any) => {
@@ -54,7 +55,7 @@ export const deleteGame = createAsyncThunk(
     } catch (err: any) {
       throw new Error("Error al loguear el usuario", err);
     }
-  },
+  }
 );
 
 export const getGameById = createAsyncThunk(
@@ -66,15 +67,15 @@ export const getGameById = createAsyncThunk(
     } catch (err: any) {
       throw new Error("Error al loguear el usuario", err);
     }
-  },
+  }
 );
 
 const postsSlice = createSlice({
   name: "games",
   initialState,
   reducers: {
-    setCurrentGame: (state, action: PayloadAction<string>) => {
-      state.currentGame = action.payload;
+    setCurrentGame: (state, action: PayloadAction<GamesClass>) => {
+      state.currentGame = action.payload as GamesClass;
     },
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
@@ -84,7 +85,7 @@ const postsSlice = createSlice({
     builder
       //Get games
       .addCase(getGames.fulfilled, (state, action) => {
-        state.games = action.payload;
+        state.games = action.payload as GamesClass[];
         state.isLoading = false;
         toast.success("Juegos obtenidos correctamente");
       })
@@ -99,7 +100,7 @@ const postsSlice = createSlice({
       })
       //Post game
       .addCase(addGame.fulfilled, (state, action) => {
-        state.games.push(action.payload as never);
+        state.games.push(action.payload as GamesClass);
         toast.success("Juego añadido correctamente");
       })
       .addCase(addGame.rejected, (state, action) => {
@@ -108,7 +109,7 @@ const postsSlice = createSlice({
       //Delete game
       .addCase(deleteGame.fulfilled, (state, action) => {
         state.games = state.games.filter(
-          (game: any) => game._id !== action.payload,
+          (game: any) => game._id !== action.payload
         );
         toast.success("Juego eliminado correctamente");
       })
@@ -118,7 +119,7 @@ const postsSlice = createSlice({
       //Get game by id
       .addCase(getGameById.fulfilled, (state, action) => {
         console.log("getGameById.fulfilled", action.payload);
-        state.currentGame = action.payload;
+        state.currentGame = action.payload as GamesClass;
         state.isLoading = false;
         toast.success("Juego obtenido correctamente");
       })

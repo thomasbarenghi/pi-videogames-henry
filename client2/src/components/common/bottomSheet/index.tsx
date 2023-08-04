@@ -1,7 +1,13 @@
 import styles from "./modal.module.scss";
 import { useEffect, useRef, useState } from "react";
 
-export default function Modal({ children, openModal, setOpenModal }: any) {
+type  ModalProps = {
+  children: React.ReactNode;
+  openModal: boolean;
+  setOpenModal: (openModal: boolean) => void;
+};
+ 
+export default function BottomSheet({ children, openModal, setOpenModal }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null); // Add type annotation to specify the type of the ref
   const [modalManager, setModalManager] = useState(false);
 

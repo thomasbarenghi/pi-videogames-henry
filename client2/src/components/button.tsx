@@ -41,9 +41,10 @@ export default function Button({
         {image && (
           <Image
             src={image}
-            alt=""
-            width={imageWidth ?? 40}
-            height={imageHeight}
+            className="min-w-[18px] min-h-[18px] h-full "
+            width={25}
+            height={25}
+            alt="image"
           />
         )}
         {text}
