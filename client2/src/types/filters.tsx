@@ -55,10 +55,10 @@ export class FilterSelect {
     if (!this?.values) {
       return [];
     }
-    return this?.values?.map((value:FilterSelectItem) => {
-        return { value: value?.id, label: value?.name };
-        });
-    }
+    return this?.values?.map((value: FilterSelectItem) => {
+      return { value: value?.id, label: value?.name };
+    });
+  }
 
   static deserialize(input: any): FilterSelect {
     return new FilterSelect(input.title, input.values, input.active);

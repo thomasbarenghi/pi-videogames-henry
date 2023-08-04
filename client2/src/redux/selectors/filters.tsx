@@ -25,7 +25,7 @@ export const filtersCurrent = createSelector(
   (state: FilterState) => state.filters,
   (filters) => {
     return getCurrentFilters(filters);
-  }
+  },
 );
 
 export const selectorFilteredGames = createSelector(
@@ -46,14 +46,14 @@ export const selectorFilteredGames = createSelector(
         "selectedGenre",
         selectedGenre,
         "genres",
-        genres
+        genres,
       );
 
       const isOrigen = origen === DEFAULT || game.source === origen;
-      
+
       const isGenre =
         selectedGenre === DEFAULT ||
-        genres?.some((genre: any) => genre?.id == selectedGenre)
+        genres?.some((genre: any) => genre?.id == selectedGenre);
 
       const isSearch =
         search === "" || name.toLowerCase().includes(search.toLowerCase());
@@ -82,5 +82,5 @@ export const selectorFilteredGames = createSelector(
     });
 
     return filteredGames;
-  }
+  },
 );

@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function GameDetails() {
   const { isLoading, isError, currentGame } = useAppSelector(
-    (state) => state?.client.games
+    (state) => state?.client.games,
   );
 
   if (isLoading) {

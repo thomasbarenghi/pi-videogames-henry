@@ -20,7 +20,7 @@ const orderingState = new FilterSelect(
     { id: ASC, name: "Asc" },
     { id: DESC, name: "Desc" },
   ] as FilterSelectItem[],
-  DEFAULT
+  DEFAULT,
 );
 
 const origenState = new FilterSelect(
@@ -29,7 +29,7 @@ const origenState = new FilterSelect(
     { id: "own", name: "own" },
     { id: "public", name: "public" },
   ] as FilterSelectItem[],
-  DEFAULT
+  DEFAULT,
 );
 
 const searchState = new FilterSelect("Search", [], "");
@@ -40,7 +40,7 @@ const ratingState = new FilterSelect(
     { id: "0-5", name: "0-5" },
     { id: "5-0", name: "5-0" },
   ] as FilterSelectItem[],
-  DEFAULT
+  DEFAULT,
 );
 
 const genresState = new FilterSelect("Genres", [], DEFAULT);

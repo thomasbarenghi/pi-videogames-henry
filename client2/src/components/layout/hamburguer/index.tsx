@@ -24,10 +24,12 @@ export default function Hamburguer({ manageHamburguer }: HamburguerProps) {
         <p className="text-white font-light text-[18px] ">MENU</p>
         <Nav classname="text-[24px] " mode="vertical" />
         <div className="flex flex-col">
-        <p className="text-white font-medium text-[16px] ">Ponte en contacto</p>
-        <span className="text-white font-light text-[16px] ">
-          thomasbarenghi@gmail.com
-        </span>
+          <p className="text-white font-medium text-[16px] ">
+            Ponte en contacto
+          </p>
+          <span className="text-white font-light text-[16px] ">
+            thomasbarenghi@gmail.com
+          </span>
         </div>
       </div>
     </div>

@@ -29,7 +29,7 @@ function Dropdown({ valores, setSeleccionados, seleccionados }: DropdownProps) {
   }
 
   return (
-    <div  ref={dropdownRef} id="dropdown">
+    <div ref={dropdownRef} id="dropdown">
       <div id="dropdown-content">
         <button
           className={` smallText-regular`}
@@ -45,17 +45,14 @@ function Dropdown({ valores, setSeleccionados, seleccionados }: DropdownProps) {
         </button>
         <>
           {isDropdownOpen && (
-            <div
-              className={``}
-              id="dropdown-content"
-            >
+            <div className={``} id="dropdown-content">
               {valores.map((valor: any, index: number) => (
                 <div key={index} className={``}>
                   <input
                     type="checkbox"
                     value={valor.value}
                     checked={seleccionados.some(
-                      (v: any) => v.value === valor.value
+                      (v: any) => v.value === valor.value,
                     )}
                     onChange={(e) => {
                       if (e.target.checked) {
@@ -66,8 +63,8 @@ function Dropdown({ valores, setSeleccionados, seleccionados }: DropdownProps) {
                       } else {
                         setSeleccionados(
                           seleccionados.filter(
-                            (v: any) => v.value !== valor.value
-                          )
+                            (v: any) => v.value !== valor.value,
+                          ),
                         );
                       }
                     }}

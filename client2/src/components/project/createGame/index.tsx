@@ -26,11 +26,11 @@ export default function CreateGame() {
 function Form() {
   const dispatch = useAppDispatch();
   const { isErrorAdd, isLoadingAdd } = useAppSelector(
-    (state) => state.client.games
+    (state) => state.client.games,
   );
   const { genres: sGenres } = useAppSelector((state) => state.client.genres);
   const { platforms: sPlatforms } = useAppSelector(
-    (state) => state.client.platforms
+    (state) => state.client.platforms,
   );
   const genres = GenresClass.deserializeList(sGenres);
   const platforms = PlatformsClass.deserializeList(sPlatforms);

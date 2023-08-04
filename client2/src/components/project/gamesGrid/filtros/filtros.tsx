@@ -18,7 +18,7 @@ export default function FiltrosComponent() {
   const [SearchModalVisible, setSearchModalVisible] = useState(false);
   const [FiltersModalVisible, setFiltersModalVisible] = useState(false);
   const { ordering, filtering } = useAppSelector(
-    (state) => state?.client.filters
+    (state) => state?.client.filters,
   );
 
   const { genres: sGenres } = useAppSelector((state) => state?.client.genres);
