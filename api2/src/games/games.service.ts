@@ -6,6 +6,9 @@ import { Game } from './entities/game.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { HttpService } from '@nestjs/axios/dist';
 import { ConfigService } from '@nestjs/config';
+import { GenresService } from 'src/genres/genres.service';
+import { gamesFormater } from 'src/utils/gamesFormater.utils';
+import { PlatformsService } from 'src/platforms/platforms.service';
 
 @Injectable()
 export class GamesService {
@@ -13,11 +16,9 @@ export class GamesService {
     @InjectRepository(Game) private gameRepository: Repository<Game>,
     private readonly httpService: HttpService,
     private configService: ConfigService,
+    private genresService: GenresService,
+    private platformsService: PlatformsService,
   ) {}
-
-  //   const dbUser = this.configService.get<string>('DATABASE_USER')
-  //   const rawgApi = process.env.RAWG_API_URL;
-  // const rawgApiKey = process.env.RAWG_API_KEY;
 
   create(createGameDto: CreateGameDto) {
     return 'This action adds a new game';
@@ -31,7 +32,6 @@ export class GamesService {
       const localGames = await this.gameRepository.find();
       let games = [];
       for (let currentPage = 1; games.length < 100; currentPage++) {
-   
         const rawgGamesObservable = this.httpService.get(
           `${rawgApi}?key=${rawgApiKey}&page=${currentPage}&page_size=50`,
         );
@@ -39,25 +39,51 @@ export class GamesService {
         const rawgGames = await rawgGamesObservable
           .toPromise()
           .then((response) => response.data.results);
-
-        games = games.concat(rawgGames).slice(0, 100);
+        const formatedGames = await gamesFormater(rawgGames);
+        games = games.concat(formatedGames).slice(0, 100);
       }
 
       games = games.concat(localGames);
-
+      const genres = await this.genresService.findAll();
+      const platforms = await this.platformsService.findAll();
       return {
-        count: games.length,
-        results: games,
-      }
+        gamesCount: games.length,
+        games: games,
+        genres: genres,
+        platforms: platforms,
+      };
     } catch (error) {
       Logger.error(error);
-      // En caso de error, deberías devolver una respuesta adecuada (p. ej., un objeto con el mensaje de error).
       return { error: 'Error al obtener los juegos.' };
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} game`;
+  async findOne(id: string) {
+    try {
+      const rawgApi = this.configService.get<string>('RAWG_API_URL');
+      const rawgApiKey = this.configService.get<string>('RAWG_API_KEY');
+      const hasLetter = /[a-zA-Z]/.test(id);
+
+      if (hasLetter) {
+        const localGame = await this.gameRepository.findOne({ where: { id } });
+        return localGame;
+      } else {
+        const rawgGameObservable = this.httpService.get(
+          `${rawgApi}/${id}?key=${rawgApiKey}`,
+        );
+
+        const rawgGame = await rawgGameObservable
+          .toPromise()
+          .then((response) => response.data);
+
+        const formatedGame = await gamesFormater([rawgGame]);
+
+        return formatedGame[0];
+      }
+    } catch (error) {
+      Logger.error(error);
+      return { error: 'Error al obtener el juego.' };
+    }
   }
 
   update(id: number, updateGameDto: UpdateGameDto) {

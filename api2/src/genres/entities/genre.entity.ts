@@ -7,10 +7,4 @@ export class Genre {
 
   @Column()
   name: string;
-
-  @Column()
-  createdAt: Date;
-
-  @Column()
-  updatedAt: Date;
 }
