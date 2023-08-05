@@ -5,11 +5,9 @@ import { GamesModule } from './games/games.module';
 import { PlatformsModule } from './platforms/platforms.module';
 import { GenresModule } from './genres/genres.module';
 
-
 @Module({
   imports: [
-
-    ConfigModule.forRoot( { isGlobal: true}),
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -26,5 +24,4 @@ import { GenresModule } from './genres/genres.module';
   controllers: [],
   providers: [],
 })
-
 export class AppModule {}
