@@ -38,7 +38,9 @@ export class PlatformsService {
 
   async findOne(id: string) {
     try {
-      const platform = await this.platformRepository.findOne({where: {id: id}});
+      const platform = await this.platformRepository.findOne({
+        where: { id: id },
+      });
       return platform;
     } catch (error) {
       Logger.error(error);

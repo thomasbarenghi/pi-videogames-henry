@@ -75,11 +75,11 @@ type FormProps = {
 function Form({ handleSubmit, handleChange, errors, formValues }: FormProps) {
   const dispatch = useAppDispatch();
   const { isErrorAdd, isLoadingAdd } = useAppSelector(
-    (state) => state?.client?.games
+    (state) => state?.client?.games,
   );
   const { genres: sGenres } = useAppSelector((state) => state?.client?.genres);
   const { platforms: sPlatforms } = useAppSelector(
-    (state) => state?.client?.platforms
+    (state) => state?.client?.platforms,
   );
   const genres = GenresClass.deserializeList(sGenres);
   const platforms = PlatformsClass.deserializeList(sPlatforms);
@@ -155,7 +155,13 @@ function Form({ handleSubmit, handleChange, errors, formValues }: FormProps) {
             <label id="label" className="form-label smallText-regular">
               Plataformas
               <MultiSelect
-                valores={platforms.map((platform) => ({ ...platform, value: platform.id, label: platform.name })) as any}
+                valores={
+                  platforms.map((platform) => ({
+                    ...platform,
+                    value: platform.id,
+                    label: platform.name,
+                  })) as any
+                }
                 setSeleccionados={setSelectedPlatforms}
                 seleccionados={selectedPlatforms}
                 label="Plataformas"
@@ -169,7 +175,13 @@ function Form({ handleSubmit, handleChange, errors, formValues }: FormProps) {
             <label id="label" className="form-label smallText-regular">
               Generos
               <MultiSelect
-                valores={genres.map((genre) => ({ ...genre, value: genre.id, label: genre.name })) as any}
+                valores={
+                  genres.map((genre) => ({
+                    ...genre,
+                    value: genre.id,
+                    label: genre.name,
+                  })) as any
+                }
                 setSeleccionados={setSelected}
                 seleccionados={selected}
                 label="Generos"

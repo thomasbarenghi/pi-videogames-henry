@@ -20,7 +20,7 @@ export class GamesClass {
     genres: GenresClass[],
     platforms: PlatformsClass[],
     description: string,
-    released: string
+    released: string,
   ) {
     this.id = id;
     this.name = name;
@@ -43,7 +43,7 @@ export class GamesClass {
       data.genres,
       data.platforms,
       data.description || "",
-      data.released || ""
+      data.released || "",
     );
   }
 

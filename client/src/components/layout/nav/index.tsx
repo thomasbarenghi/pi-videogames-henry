@@ -8,7 +8,12 @@ type Props = {
   actionClick?: () => void;
 };
 
-export default function Nav({ style, classname, mode = "horizontal", actionClick }: Props) {
+export default function Nav({
+  style,
+  classname,
+  mode = "horizontal",
+  actionClick,
+}: Props) {
   return (
     <>
       <div
@@ -16,13 +21,28 @@ export default function Nav({ style, classname, mode = "horizontal", actionClick
           mode === "horizontal" ? "gap-8" : "flex-col gap-3"
         }`}
       >
-        <Link href={Routes.HOME} style={style} className={classname} onClick={actionClick}>
+        <Link
+          href={Routes.HOME}
+          style={style}
+          className={classname}
+          onClick={actionClick}
+        >
           Inicio
         </Link>
-        <Link href={Routes.GAMES} style={style} className={classname} onClick={actionClick}>
+        <Link
+          href={Routes.GAMES}
+          style={style}
+          className={classname}
+          onClick={actionClick}
+        >
           Videojuegos
         </Link>
-        <Link href={Routes.ABOUT} style={style} className={classname} onClick={actionClick}>
+        <Link
+          href={Routes.ABOUT}
+          style={style}
+          className={classname}
+          onClick={actionClick}
+        >
           Nosotros
         </Link>
       </div>

@@ -5,7 +5,6 @@ import { Platform } from './entities/platform.entity';
 import { HttpModule } from '@nestjs/axios';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-
 @Module({
   imports: [TypeOrmModule.forFeature([Platform]), HttpModule],
   controllers: [PlatformsController],

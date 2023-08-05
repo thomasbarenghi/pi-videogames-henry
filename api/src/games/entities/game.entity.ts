@@ -26,7 +26,7 @@ export class Game {
   @Column()
   released: string;
 
-  @Column( )
+  @Column()
   rating: number;
 
   @Column()

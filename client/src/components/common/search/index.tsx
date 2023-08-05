@@ -9,11 +9,7 @@ type Props = {
 
 export default function Search({ handleOnSearch, mode, activeSearch }: Props) {
   return (
-    <div
-      className={
-        mode === "light" ? "searchLight" : "searchDark"
-      }
-    >
+    <div className={mode === "light" ? "searchLight" : "searchDark"}>
       <Image
         id={mode === "light" ? styles["search_icon"] : styles["search_icon-1"]}
         alt="search icon"

@@ -75,9 +75,6 @@ export const metadata: Metadata = {
   themeColor: "#000000",
 };
 
-
-
-
 export default function Home() {
   return (
     <>
@@ -96,10 +93,7 @@ export default function Home() {
             <strong>juega con amigos.</strong>
             <br />
           </h1>
-          <p
-   
-            className="margin-b-24 body-regular w-full lg:max-w-[45%] "
-          >
+          <p className="margin-b-24 body-regular w-full lg:max-w-[45%] ">
             ¿Listo para sumergirte en un mundo de videojuegos emocionante y
             diverso? En nuestra plataforma encontrarás una selección de los
             mejores títulos para todas las plataformas y géneros.

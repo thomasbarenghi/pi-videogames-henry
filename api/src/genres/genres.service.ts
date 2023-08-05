@@ -38,7 +38,7 @@ export class GenresService {
 
   async findOne(id: string) {
     try {
-      const genre = await this.genreRepository.findOne({where: {id: id}});
+      const genre = await this.genreRepository.findOne({ where: { id: id } });
       return genre;
     } catch (error) {
       Logger.error(error);

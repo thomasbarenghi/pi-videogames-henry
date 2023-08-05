@@ -29,7 +29,7 @@ export default function GameCard({ game }: any) {
                 console.log("e.target", e.target);
                 e.target.onerror = null;
                 e.target.src = "/img/Frame 1000002335.webp";
-              } }
+              }}
             />
           </div>
           <div id={styles["cardGames_contents"]}>

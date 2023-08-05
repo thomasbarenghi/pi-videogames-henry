@@ -22,10 +22,9 @@ const GamesGrid = () => {
   const dispatch = useAppDispatch();
   const [paginados, setPaginados] = useState([]);
   const [error, setError] = useState(null);
-  const {
-    isError,
-    isLoading,
-  } = useAppSelector((state) => state?.client?.games);
+  const { isError, isLoading } = useAppSelector(
+    (state) => state?.client?.games,
+  );
   const games = useAppSelector(selectorFilteredGames);
   const { currentPage } = useAppSelector((state) => state?.client?.games);
 

@@ -19,7 +19,7 @@ export default function FiltrosComponent() {
   const [SearchModalVisible, setSearchModalVisible] = useState(false);
   const [FiltersModalVisible, setFiltersModalVisible] = useState(false);
   const { ordering, filtering } = useAppSelector(
-    (state) => state?.client?.filters
+    (state) => state?.client?.filters,
   );
 
   const { genres: sGenres } = useAppSelector((state) => state?.client?.genres);
@@ -72,7 +72,6 @@ export default function FiltrosComponent() {
             rating={rating}
             origen={origen}
             titleOrdering={titleOrdering}
-         
             generalClassName="rounded-3xl bg-red-200 border-red-200 border-solid px-4 font-medium text-base border-r-[15px] border-r-4 py-4 text-red-700  p-4"
           />
         </div>
@@ -105,7 +104,7 @@ export default function FiltrosComponent() {
               origen={origen}
               titleOrdering={titleOrdering}
               generalClassName="rounded-3xl bg-red-700 border-red-700 border-solid px-4 font-medium text-base border-r-[15px] border-r-4 py-4 text-white  p-4"
-              />
+            />
           </FiltersInner>
         </BottomSheet>
       </div>
@@ -150,7 +149,7 @@ function InputsGroup({
         className={generalClassName}
       />
       <Input
-      label={origen.getTitle()}
+        label={origen.getTitle()}
         name={origen.getTitle()}
         value={origen.getActive()}
         selectSelected={origen.getActiveFormatted()}
@@ -176,7 +175,7 @@ function InputsGroup({
         className={`max-w-[100px] ${generalClassName}`}
       />
       <Input
-      label={rating.getTitle()}
+        label={rating.getTitle()}
         type="select"
         name={rating.getTitle()}
         selectSelected={rating.getActiveFormatted()}

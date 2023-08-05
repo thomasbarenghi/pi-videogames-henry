@@ -32,7 +32,6 @@ export const selectorFilteredGames = createSelector(
   games,
   filters,
   (games, filters) => {
-
     const currentFilters = getCurrentFilters(filters);
     const nameSorting = filters?.ordering?.active;
     const filteredGames = games?.filter((game: any) => {
