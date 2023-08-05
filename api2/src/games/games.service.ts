@@ -20,8 +20,38 @@ export class GamesService {
     private platformsService: PlatformsService,
   ) {}
 
-  create(createGameDto: CreateGameDto) {
-    return 'This action adds a new game';
+  async create(createGameDto: CreateGameDto) {
+    let genresToAssign = [];
+    let platformsToAssign = [];
+
+    if (createGameDto.genres) {
+      for (let i = 0; i < createGameDto.genres.length; i++) {
+        const genre = await this.genresService.findOne(createGameDto.genres[i]);
+        if (genre) {
+          genresToAssign = [...genresToAssign, genre];
+        }
+      }
+    }
+
+    if (createGameDto.platforms) {
+      for (let i = 0; i < createGameDto.platforms.length; i++) {
+        const platform = await this.platformsService.findOne(
+          createGameDto.platforms[i],
+        );
+        if (platform) {
+          platformsToAssign = [...platformsToAssign, platform];
+        }
+      }
+    }
+
+    createGameDto.genres = genresToAssign as any;
+    createGameDto.platforms = platformsToAssign as any;
+    createGameDto.source = 'local';
+    createGameDto.createdAt = new Date();
+    createGameDto.updatedAt = new Date();
+
+    const game = this.gameRepository.create(createGameDto);
+    return this.gameRepository.save(game);
   }
 
   async findAll(): Promise<any> {

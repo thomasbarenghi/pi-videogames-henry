@@ -24,7 +24,7 @@ export class Game {
   background_image: string;
 
   @Column()
-  released: Date;
+  released: string;
 
   @Column()
   rating: number;

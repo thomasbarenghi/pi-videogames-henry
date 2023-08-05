@@ -35,4 +35,14 @@ export class GenresService {
       return { error: 'Error al obtener los generos.' };
     }
   }
+
+  async findOne(id: string) {
+    try {
+      const genre = await this.genreRepository.findOne({where: {id: id}});
+      return genre;
+    } catch (error) {
+      Logger.error(error);
+      return { error: 'Error al obtener el genero.' };
+    }
+  }
 }

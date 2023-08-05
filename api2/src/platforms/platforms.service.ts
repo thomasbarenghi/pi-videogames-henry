@@ -35,4 +35,14 @@ export class PlatformsService {
       return { error: 'Error al obtener las plataformas.' };
     }
   }
+
+  async findOne(id: string) {
+    try {
+      const platform = await this.platformRepository.findOne({where: {id: id}});
+      return platform;
+    } catch (error) {
+      Logger.error(error);
+      return { error: 'Error al obtener la plataforma.' };
+    }
+  }
 }

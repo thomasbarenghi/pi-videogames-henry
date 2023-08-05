@@ -93,14 +93,12 @@ const getVideogames = async (req, res) => {
     filteredGames = filteredGames.sort((a, b) => a.id - b.id);
     cachedGames = filteredGames;
 
-    return res
-      .status(200)
-      .json({
-        results: filteredGames,
-        count: filteredGames.length,
-        genres: genres || [],
-        platforms: platforms || [],
-      });
+    return res.status(200).json({
+      results: filteredGames,
+      count: filteredGames.length,
+      genres: genres || [],
+      platforms: platforms || [],
+    });
   } catch (error) {
     console.error(error);
     //  return res.status(500).json({ error: "Error interno del servidor" });
