@@ -1,6 +1,0 @@
-#componente_gridGames {
-    gap: var(--gap-t1);
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(max(15vw, 250px), 1fr));
-    grid-auto-rows: auto;
-  }
