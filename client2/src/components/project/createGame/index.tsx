@@ -4,9 +4,46 @@ import { validateForm } from "@/utils/validateCreateGame";
 import { MultiSelect, Input, Modal, Button } from "@/components";
 import { useEffect, useState } from "react";
 import { GenresClass, PlatformsClass } from "@/types";
+import { changeManager, submitManager } from "@/utils/forms/validateAndSend";
+import useValidate from "@/hooks/useValidate";
+import { useRef } from "react";
+import { toast } from "sonner";
 
 export default function CreateGame() {
   const [visible, setVisible] = useState(false);
+  const validate = useValidate();
+  const [formValues, setFormValues] = useState({});
+  const [errors, setErrors] = useState<any>({});
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const dispatch = useAppDispatch();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("e", e.target);
+    changeManager({
+      e,
+      setFormValues,
+      setErrors,
+      validate,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      await submitManager({
+        e,
+        formRef,
+        formValues,
+        errors,
+        dispatch,
+        actionToDispatch: addGame,
+        setFormValues,
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error("Verifica los campos del formulario");
+    }
+  };
 
   return (
     <>
@@ -17,42 +54,38 @@ export default function CreateGame() {
         className="primaryButton"
       />
       <Modal visible={visible} setVisible={setVisible}>
-        <Form />
+        <Form
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          errors={errors}
+          formValues={formValues}
+        />
       </Modal>
     </>
   );
 }
 
-function Form() {
+type FormProps = {
+  handleSubmit: (e: any) => void;
+  handleChange: (e: any) => void;
+  errors: any;
+  formValues: any;
+};
+
+function Form({ handleSubmit, handleChange, errors, formValues }: FormProps) {
   const dispatch = useAppDispatch();
   const { isErrorAdd, isLoadingAdd } = useAppSelector(
-    (state) => state?.client?.games,
+    (state) => state?.client?.games
   );
   const { genres: sGenres } = useAppSelector((state) => state?.client?.genres);
   const { platforms: sPlatforms } = useAppSelector(
-    (state) => state?.client?.platforms,
+    (state) => state?.client?.platforms
   );
   const genres = GenresClass.deserializeList(sGenres);
   const platforms = PlatformsClass.deserializeList(sPlatforms);
   console.log("genres deserializeList", genres, "platforms", platforms);
   const [selected, setSelected] = useState([] as any);
   const [selectedPlatforms, setSelectedPlatforms] = useState([] as any);
-  const [errors, setErrors] = useState({} as any);
-  const [form, setForm] = useState({
-    name: "",
-    description: "",
-    released: "",
-    rating: "",
-    platforms: "",
-    genres: "",
-    background_image: "",
-    token: "",
-    source: "own",
-  } as any);
-
-  const handleSubmit = (e: any) => {};
-
-  const handleChange = (e: any) => {};
 
   // const options = generos
   //   .filter((genero) => genero.name !== "Default")
@@ -81,7 +114,6 @@ function Form() {
               label="Nombre del juego"
               type="text"
               name="name"
-              value={form.name}
               onChange={handleChange}
               placeholder="Nombre del juego"
               required
@@ -91,7 +123,6 @@ function Form() {
               label="Descripción del juego"
               type="textarea"
               name="description"
-              value={form.description}
               onChange={handleChange}
               placeholder="Descripción del juego"
               required
@@ -104,7 +135,6 @@ function Form() {
               label="Fecha de lanzamiento"
               type="date"
               name="released"
-              value={form.released}
               onChange={handleChange}
               placeholder="Fecha de lanzamiento"
               required
@@ -114,18 +144,18 @@ function Form() {
               label="Rating"
               type="number"
               name="rating"
-              value={form.rating}
               onChange={handleChange}
               placeholder="Rating"
               required
               error={errors.rating}
+              step="0.1"
             />
           </div>
           <div className="inputs-row" style={{ gap: 8 }}>
             <label id="label" className="form-label smallText-regular">
               Plataformas
               <MultiSelect
-                valores={platforms}
+                valores={platforms.map((platform) => ({ ...platform, value: platform.id, label: platform.name })) as any}
                 setSeleccionados={setSelectedPlatforms}
                 seleccionados={selectedPlatforms}
                 label="Plataformas"
@@ -139,7 +169,7 @@ function Form() {
             <label id="label" className="form-label smallText-regular">
               Generos
               <MultiSelect
-                valores={genres}
+                valores={genres.map((genre) => ({ ...genre, value: genre.id, label: genre.name })) as any}
                 setSeleccionados={setSelected}
                 seleccionados={selected}
                 label="Generos"
@@ -156,7 +186,6 @@ function Form() {
               label="Link imagen"
               type="text"
               name="background_image"
-              value={form.background_image}
               onChange={handleChange}
               placeholder="Link imagen"
               required
@@ -166,7 +195,6 @@ function Form() {
               label="Token"
               type="password"
               name="token"
-              value={form.token}
               onChange={handleChange}
               placeholder="Token"
               required

@@ -46,7 +46,6 @@ export default function Input(props: InputProps) {
           name={props.name}
           onChange={props.handleSelectChange}
           defaultValue={1}
-        
           value={props.selectSelected?.value}
           placeholder="Selecciona una opción"
         >
