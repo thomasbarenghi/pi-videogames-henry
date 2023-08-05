@@ -26,14 +26,14 @@ export class Game {
   @Column()
   released: string;
 
-  @Column()
+  @Column( )
   rating: number;
 
   @Column()
   source: string;
 
   // Relación Many-to-Many con Genre
-  @ManyToMany(() => Genre, { onDelete: 'NO ACTION', onUpdate: 'NO ACTION' })
+  @ManyToMany(() => Genre, { onDelete: 'CASCADE', onUpdate: 'NO ACTION' })
   @JoinTable({
     name: 'game_genre',
     joinColumn: {
@@ -48,7 +48,7 @@ export class Game {
   genres: Genre[];
 
   // Relación Many-to-Many con Platform
-  @ManyToMany(() => Platform, { onDelete: 'NO ACTION', onUpdate: 'NO ACTION' })
+  @ManyToMany(() => Platform, { onDelete: 'CASCADE', onUpdate: 'NO ACTION' })
   @JoinTable({
     name: 'game_platform',
     joinColumn: {

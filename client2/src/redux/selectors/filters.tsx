@@ -22,7 +22,7 @@ interface FilterState {
 }
 
 export const filtersCurrent = createSelector(
-  (state: FilterState) => state.filters,
+  (state: FilterState) => state?.filters,
   (filters) => {
     return getCurrentFilters(filters);
   },
@@ -32,12 +32,13 @@ export const selectorFilteredGames = createSelector(
   games,
   filters,
   (games, filters) => {
+
     const currentFilters = getCurrentFilters(filters);
-    const nameSorting = filters.ordering.active;
-    const filteredGames = games.filter((game: any) => {
+    const nameSorting = filters?.ordering?.active;
+    const filteredGames = games?.filter((game: any) => {
       const { name, genres } = game;
       const { search, origen, genres: selectedGenre } = currentFilters;
-
+      console.log("filteredGames", nameSorting, games);
       console.log(
         "search",
         search,
@@ -57,7 +58,7 @@ export const selectorFilteredGames = createSelector(
 
       const isSearch =
         search === "" || name.toLowerCase().includes(search.toLowerCase());
-      return isOrigen && isSearch && isGenre;
+      return isOrigen && isGenre && isSearch;
     });
 
     //sorting por rating y por nombre
@@ -65,7 +66,8 @@ export const selectorFilteredGames = createSelector(
     //selectedRating es el valor del select de rating
     console.log(currentFilters.rating);
 
-    filteredGames.sort((a: any, b: any) => {
+    console.log("filteredGames", nameSorting, games);
+    filteredGames?.sort((a: any, b: any) => {
       return nameSorting === "A-Z"
         ? a.name.localeCompare(b.name)
         : nameSorting === "Z-A"
@@ -73,7 +75,7 @@ export const selectorFilteredGames = createSelector(
         : 0;
     });
 
-    filteredGames.sort((a: any, b: any) => {
+    filteredGames?.sort((a: any, b: any) => {
       return currentFilters.rating === "0-5"
         ? a.rating - b.rating
         : currentFilters.rating === "5-0"
