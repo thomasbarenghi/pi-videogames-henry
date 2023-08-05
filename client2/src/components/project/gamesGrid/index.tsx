@@ -59,7 +59,7 @@ const GamesGrid = () => {
             ))}
         </div>
       )}
-      <Pagination totalItems={games.length} itemsPerPage={15} />
+      <Pagination totalItems={games?.length} itemsPerPage={15} />
     </main>
   );
 };

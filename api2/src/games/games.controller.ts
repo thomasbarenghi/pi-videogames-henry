@@ -29,4 +29,9 @@ export class GamesController {
   findOne(@Param('id') id: string) {
     return this.gamesService.findOne(id);
   }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.gamesService.remove(id);
+  }
 }

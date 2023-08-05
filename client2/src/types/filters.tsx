@@ -50,6 +50,21 @@ export class FilterSelect {
     return this.active;
   }
 
+  getActiveFormatted(): { value: string; label: string } {
+    if (!this?.values) {
+      return { value: "", label: "" };
+    }
+    const active = this?.values?.find(
+      (value: FilterSelectItem) => value?.id === this?.active,
+    );
+
+    if (!active) {
+      return { value: "", label: "" };
+    }
+
+    return { value: active.id, label: active.name };
+  }
+
   getValuesFormatted(): { value: string; label: string }[] {
     console.log("getValuesFormatted", this?.values);
     if (!this?.values) {

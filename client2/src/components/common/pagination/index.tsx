@@ -44,7 +44,7 @@ export default function PaginationComponent({
             : styles["handlerBtn"]
         }
       >
-        Prev
+        Anterior
       </button>
       <div className={styles["numberBtns"]}>
         {pages.map((page) => (
@@ -71,7 +71,7 @@ export default function PaginationComponent({
             : styles["handlerBtn"]
         }
       >
-        Next
+        Siguiente
       </button>
     </div>
   );

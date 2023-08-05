@@ -15,7 +15,7 @@ type StateFilter = {
 };
 
 const orderingState = new FilterSelect(
-  "Ordering",
+  "Orden",
   [
     { id: ASC, name: "Asc" },
     { id: DESC, name: "Desc" },
@@ -26,13 +26,13 @@ const orderingState = new FilterSelect(
 const origenState = new FilterSelect(
   "Origen",
   [
-    { id: "own", name: "own" },
-    { id: "public", name: "public" },
+    { id: "local", name: "De GamingX" },
+    { id: "public", name: "De Rawg" },
   ] as FilterSelectItem[],
   DEFAULT,
 );
 
-const searchState = new FilterSelect("Search", [], "");
+const searchState = new FilterSelect("Buscar", [], "");
 
 const ratingState = new FilterSelect(
   "Rating",
@@ -43,7 +43,7 @@ const ratingState = new FilterSelect(
   DEFAULT,
 );
 
-const genresState = new FilterSelect("Genres", [], DEFAULT);
+const genresState = new FilterSelect("Generos", [], DEFAULT);
 
 const initialState: StateFilter = {
   search: searchState,
@@ -65,6 +65,7 @@ const postsSlice = createSlice({
       state.search.active = action.payload as string;
     },
     setOrdering: (state, action) => {
+      console.log("setOrdering action.payload", action.payload);
       state.ordering.active = action.payload as string;
     },
     setFilterOrigen: (state, action) => {
@@ -72,6 +73,7 @@ const postsSlice = createSlice({
       state.filtering.origen.active = action.payload as string;
     },
     setFilterGenres: (state, action) => {
+      console.log("setFilterGenres action.payload", action.payload);
       state.filtering.genres.active = action.payload as string;
     },
     setFilterSearch: (state, action) => {

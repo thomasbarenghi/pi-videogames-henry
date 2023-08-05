@@ -25,7 +25,7 @@ export const getGames = createAsyncThunk(
       console.log("getGames res", res);
       dispatch(setGenres(res.genres));
       dispatch(setPlatforms(res.platforms));
-      return res.results;
+      return res.games;
     } catch (err: any) {
       throw new Error("Error al loguear el usuario", err);
     }
@@ -87,10 +87,9 @@ const postsSlice = createSlice({
       .addCase(getGames.fulfilled, (state, action) => {
         state.games = action.payload as GamesClass[];
         state.isLoading = false;
-        toast.success("Juegos obtenidos correctamente");
       })
       .addCase(getGames.pending, (state, action) => {
-        state.isLoading = true;
+        state.isLoading = state.games.length <= 0;
         state.isError = false;
       })
       .addCase(getGames.rejected, (state, action) => {
@@ -101,7 +100,6 @@ const postsSlice = createSlice({
       //Post game
       .addCase(addGame.fulfilled, (state, action) => {
         state.games.push(action.payload as GamesClass);
-        toast.success("Juego añadido correctamente");
       })
       .addCase(addGame.rejected, (state, action) => {
         toast.error("Error al añadir el juego");
@@ -121,7 +119,6 @@ const postsSlice = createSlice({
         console.log("getGameById.fulfilled", action.payload);
         state.currentGame = action.payload as GamesClass;
         state.isLoading = false;
-        toast.success("Juego obtenido correctamente");
       })
       .addCase(getGameById.pending, (state, action) => {
         state.isLoading = true;

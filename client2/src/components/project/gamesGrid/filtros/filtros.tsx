@@ -38,7 +38,7 @@ export default function FiltrosComponent() {
 
   const handleFilters = (e: any) => {
     const { name, value } = e.target;
-    console.log("name", name, titleOrdering.getTitle(), value);
+    console.log("name", name, genresFilter.getTitle(), value);
 
     name === titleOrdering.getTitle()
       ? dispatch(setOrdering(value))
@@ -76,15 +76,6 @@ export default function FiltrosComponent() {
             generalClassName="rounded-3xl bg-red-200 border-red-200 border-solid px-4 font-medium text-base border-r-[15px] border-r-4 py-4 text-red-700  p-4"
           />
         </div>
-        {/* <Button
-          text=""
-          type="button"
-          onClick={() => setSearchModalVisible(true)}
-          className="primaryButton aspect-square !p-4 flex sm:hidden "
-          image="/img/fi-br-searchClear.svg"
-          imageWidth={40}
-          imageHeight={40}
-        /> */}
         <Button
           text="Filtros"
           type="button"
@@ -126,9 +117,9 @@ type InputsGroupProps = {
   handleFilters: (e: any) => void;
   ordering: any;
   genresFilter: any;
-  rating: any;
-  origen: any;
-  titleOrdering: any;
+  rating: FilterSelect;
+  origen: FilterSelect;
+  titleOrdering: FilterSelect;
   formatGenres: any;
   generalClassName: string;
 };
@@ -146,19 +137,23 @@ function InputsGroup({
   return (
     <>
       <Input
+        label={titleOrdering.getTitle()}
         type="select"
-        name={"Ordering"}
+        name={titleOrdering?.getTitle()}
         value={ordering?.active}
+        selectSelected={titleOrdering?.getActiveFormatted()}
         selectOptions={titleOrdering?.getValuesFormatted()}
         onChange={handleFilters}
         handleSelectChange={handleFilters}
-        selectLabel="Ordering"
-        placeholder="Ordering"
+        selectLabel="Orden"
+        placeholder="Orden"
         className={generalClassName}
       />
       <Input
+      label={origen.getTitle()}
         name={origen.getTitle()}
         value={origen.getActive()}
+        selectSelected={origen.getActiveFormatted()}
         selectOptions={origen.getValuesFormatted()}
         onChange={handleFilters}
         handleSelectChange={handleFilters}
@@ -168,19 +163,23 @@ function InputsGroup({
         className={generalClassName}
       />
       <Input
+        label={genresFilter.getTitle()}
         type="select"
         name={genresFilter.getTitle()}
+        selectSelected={genresFilter.active}
         value={genresFilter.getActive()}
         selectOptions={formatGenres}
         onChange={handleFilters}
         handleSelectChange={handleFilters}
-        selectLabel="Genres"
-        placeholder="Genres"
-        className={generalClassName}
+        selectLabel="Default"
+        placeholder="Generos"
+        className={`max-w-[100px] ${generalClassName}`}
       />
       <Input
+      label={rating.getTitle()}
         type="select"
         name={rating.getTitle()}
+        selectSelected={rating.getActiveFormatted()}
         value={rating.getActive()}
         selectOptions={rating.getValuesFormatted()}
         onChange={handleFilters}

@@ -22,9 +22,14 @@ export default function GameCard({ game }: any) {
           <div id={styles["cardGames_image_div"]}>
             <Image
               id={styles["cardGames_img"]}
-              src={game.background_image}
+              src={game.background_image || "/img/Frame 1000002335.webp"}
               alt="imagen"
               fill
+              onError={(e: any) => {
+                console.log("e.target", e.target);
+                e.target.onerror = null;
+                e.target.src = "/img/Frame 1000002335.webp";
+              } }
             />
           </div>
           <div id={styles["cardGames_contents"]}>
