@@ -7,7 +7,7 @@ export const gamesFormater = (games) => {
       id: game.id,
       name: game.name,
       description: game?.description || 'No description',
-      released : game.released || 'No release date',
+      released: game.released || 'No release date',
       source: 'public',
       genres: genresFormater(game.genres),
       platforms: platformsFormater(game.platforms),

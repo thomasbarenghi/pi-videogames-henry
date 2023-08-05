@@ -5,7 +5,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Genre } from './entities/genre.entity';
 import { HttpModule } from '@nestjs/axios';
 
-
 @Module({
   imports: [TypeOrmModule.forFeature([Genre]), HttpModule],
   controllers: [GenresController],
