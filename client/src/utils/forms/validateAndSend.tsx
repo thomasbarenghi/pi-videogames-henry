@@ -82,6 +82,7 @@ export const submitManager = async ({
     !Object.values(errors).every((error) => error === null) ||
     Object.keys(formValues).length <= 0
   ) {
+    console.log("errors", errors);
     throw new Error("Formulario invalido");
   }
 
@@ -92,4 +93,5 @@ export const submitManager = async ({
   //reset form
   //e.currentTarget.reset();
   setFormValues({});
+  formRef.current?.reset();
 };

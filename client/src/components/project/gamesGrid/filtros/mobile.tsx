@@ -18,7 +18,7 @@ export function FiltersInner({ children }: FiltersInnerProps) {
         }}
         id="test"
       >
-        <h1 className="titulo3-bold margin-b-4" style={{ color: "#ffffff" }}>
+        <h1 className="titulo3-bold margin-b-4" style={{ color: "#000" }}>
           Filtrar juegos
         </h1>
         <div

@@ -36,9 +36,10 @@ export const addGame = createAsyncThunk("games/addGame", async (game: any) => {
   try {
     const gameToPost = {
       ...game,
-      genres: game.genres.map((genre: any) => genre.value),
-      platforms: game.platforms.map((platform: any) => platform.value),
+      genres: game?.genres?.map((genre: any) => genre?.value),
+      platforms: game?.platforms?.map((platform: any) => platform?.value),
     };
+    console.log("gameToPost", gameToPost);
     const res = await axiosPoster("/games", gameToPost);
     return res;
   } catch (err: any) {
@@ -51,7 +52,7 @@ export const deleteGame = createAsyncThunk(
   async (gameId: string) => {
     try {
       const res = await axiosDeleter(`/games/${gameId}`);
-      return res;
+      return gameId;
     } catch (err: any) {
       throw new Error("Error al loguear el usuario", err);
     }
@@ -100,14 +101,16 @@ const postsSlice = createSlice({
       //Post game
       .addCase(addGame.fulfilled, (state, action) => {
         state.games.push(action.payload as GamesClass);
+        toast.success("Juego creado correctamente");
       })
       .addCase(addGame.rejected, (state, action) => {
+        console.log("addGame.rejected", action);
         toast.error("Error al añadir el juego");
       })
       //Delete game
       .addCase(deleteGame.fulfilled, (state, action) => {
         state.games = state.games.filter(
-          (game: any) => game._id !== action.payload,
+          (game: any) => game.id !== action.payload,
         );
         toast.success("Juego eliminado correctamente");
       })

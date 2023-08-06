@@ -11,16 +11,14 @@ export default function Modal({ children, setVisible, visible }: ModalProps) {
     <>
       {visible && (
         <section className="modalContainerBase">
-          <div className="item-t1">
-            <div className="modalInner">{children}</div>
-            <ReactSVG
-              className="modalCloseBtn"
-              src="img/fi-rr-cross.svg"
-              width={15}
-              height={15}
-              onClick={() => setVisible(false)}
-            />
-          </div>
+          <div className="modalInner">{children}</div>
+          <ReactSVG
+            className="modalCloseBtn"
+            src="img/fi-rr-cross.svg"
+            width={15}
+            height={15}
+            onClick={() => setVisible(false)}
+          />
         </section>
       )}
     </>

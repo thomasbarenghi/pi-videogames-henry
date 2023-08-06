@@ -45,10 +45,10 @@ export const isDescriptionValid = (value: string): validResponse => {
 };
 
 export const isAccessCodeValid = (value: string): validResponse => {
-  if (!value || value.trim() === "") {
+  if (!value || value.trim() === "" || value !== "1234") {
     return {
       isValid: false,
-      error: "El código de acceso es requerido",
+      error: "El código de acceso es invalido",
     };
   }
   //regex

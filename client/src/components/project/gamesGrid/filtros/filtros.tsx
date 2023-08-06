@@ -172,7 +172,7 @@ function InputsGroup({
         handleSelectChange={handleFilters}
         selectLabel="Default"
         placeholder="Generos"
-        className={`max-w-[100px] ${generalClassName}`}
+        className={`xl:max-w-[100px] ${generalClassName}`}
       />
       <Input
         label={rating.getTitle()}

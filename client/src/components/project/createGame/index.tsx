@@ -59,6 +59,7 @@ export default function CreateGame() {
           handleChange={handleChange}
           errors={errors}
           formValues={formValues}
+          formRef={formRef}
         />
       </Modal>
     </>
@@ -70,33 +71,29 @@ type FormProps = {
   handleChange: (e: any) => void;
   errors: any;
   formValues: any;
+  formRef: any;
 };
 
-function Form({ handleSubmit, handleChange, errors, formValues }: FormProps) {
+function Form({
+  handleSubmit,
+  handleChange,
+  errors,
+  formValues,
+  formRef,
+}: FormProps) {
   const dispatch = useAppDispatch();
   const { isErrorAdd, isLoadingAdd } = useAppSelector(
-    (state) => state?.client?.games,
+    (state) => state?.client?.games
   );
   const { genres: sGenres } = useAppSelector((state) => state?.client?.genres);
   const { platforms: sPlatforms } = useAppSelector(
-    (state) => state?.client?.platforms,
+    (state) => state?.client?.platforms
   );
   const genres = GenresClass.deserializeList(sGenres);
   const platforms = PlatformsClass.deserializeList(sPlatforms);
   console.log("genres deserializeList", genres, "platforms", platforms);
   const [selected, setSelected] = useState([] as any);
   const [selectedPlatforms, setSelectedPlatforms] = useState([] as any);
-
-  // const options = generos
-  //   .filter((genero) => genero.name !== "Default")
-  //   .map((genero) => {
-  //     return { label: genero.name, value: genero.id };
-  //   });
-  // const optionsPlatforms = plataformas
-  //   .filter((genero) => genero.name !== "Default")
-  //   .map((genero) => {
-  //     return { label: genero.name, value: genero.id };
-  //   });
 
   return (
     <div className="flex flex-col gap-5">
@@ -108,7 +105,7 @@ function Form({ handleSubmit, handleChange, errors, formValues }: FormProps) {
       ) : isLoadingAdd ? (
         <p className="smallText-regular margin-b-24">Cargando...</p>
       ) : (
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit} ref={formRef}>
           <div className="inputs-row" style={{ gap: 8 }}>
             <Input
               label="Nombre del juego"

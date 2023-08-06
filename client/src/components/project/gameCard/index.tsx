@@ -9,9 +9,9 @@ export default function GameCard({ game }: any) {
 
   return (
     <div style={{ position: "relative" }}>
-      {game.source === "own" && (
+      {game.source === "local" && (
         <button
-          className="primaryButton"
+          className="primaryButton py-2 px-3 absolute top-0 right-0 z-[2] "
           onClick={() => dispatch(deleteGame(game.id))}
         >
           Delete

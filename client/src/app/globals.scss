@@ -69,7 +69,7 @@
   }
 
   .inputs-row {
-    @apply grid grid-cols-2 gap-4;
+    @apply md:grid flex flex-col md:grid-cols-2 gap-4;
   }
 
   .submitButton {
@@ -85,7 +85,7 @@
   }
 
   .modalInner {
-    @apply bg-white rounded-xl p-10 min-w-[75vw];
+    @apply bg-white max-h-full h-auto flex-grow overflow-y-scroll rounded-xl p-10 min-w-[75vw];
   }
 
   .modalCloseBtn {
@@ -93,7 +93,7 @@
   }
 
   .modalContainerBase {
-    @apply fixed inset-0 flex items-center justify-center z-50 bg-[#000000b0];
+    @apply fixed inset-0 py-14 flex overflow-hidden padding-lr-t1 items-center justify-center z-50 bg-[#000000b0];
   }
 }
 
