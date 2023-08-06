@@ -15,7 +15,6 @@ export default function Dropdown({
 }: DropdownProps) {
   const handleChange = (e: any) => {
     const selectedItems = e ? e.map((item: any) => item.value) : [];
-    console.log(selectedItems);
     setSeleccionados(selectedItems);
   };
 

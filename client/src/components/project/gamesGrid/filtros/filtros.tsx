@@ -19,7 +19,7 @@ export default function FiltrosComponent() {
   const [SearchModalVisible, setSearchModalVisible] = useState(false);
   const [FiltersModalVisible, setFiltersModalVisible] = useState(false);
   const { ordering, filtering } = useAppSelector(
-    (state) => state?.client?.filters,
+    (state) => state?.client?.filters
   );
 
   const { genres: sGenres } = useAppSelector((state) => state?.client?.genres);
@@ -34,11 +34,8 @@ export default function FiltrosComponent() {
   const origen = FilterSelect.deserialize(filtering.origen);
   const titleOrdering = FilterSelect.deserialize(ordering);
 
-  console.log("genresclass", GenresClass, FilterSelect);
-
   const handleFilters = (e: any) => {
     const { name, value } = e.target;
-    console.log("name", name, genresFilter.getTitle(), value);
 
     name === titleOrdering.getTitle()
       ? dispatch(setOrdering(value))

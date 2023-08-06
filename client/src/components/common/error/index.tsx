@@ -7,7 +7,7 @@ export default function errorBlack({ error, theme }: Props) {
   return (
     <section
       style={{
-        minHeight: "100vh",
+        minHeight: "30vh",
         background: theme === "dark" ? "#000" : "#FFF",
         display: "flex",
         justifyContent: "center",

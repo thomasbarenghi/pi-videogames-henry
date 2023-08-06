@@ -16,7 +16,6 @@ const GamesGrid = () => {
 
   useEffect(() => {
     setPaginados(paginate(games, 15, currentPage));
-    console.log("games setPaginados", games);
   }, [currentPage, games]);
 
   if (isLoading) {
