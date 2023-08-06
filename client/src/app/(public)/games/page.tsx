@@ -1,6 +1,5 @@
 import { GamesGrid } from "@/components";
 import styles from "./page.module.scss";
-
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

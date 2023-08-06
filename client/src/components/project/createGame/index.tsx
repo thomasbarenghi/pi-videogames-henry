@@ -1,12 +1,10 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addGame } from "@/redux/slices/client/games";
-import { validateForm } from "@/utils/validateCreateGame";
 import { MultiSelect, Input, Modal, Button } from "@/components";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { GenresClass, PlatformsClass } from "@/types";
 import { changeManager, submitManager } from "@/utils/forms/validateAndSend";
 import useValidate from "@/hooks/useValidate";
-import { useRef } from "react";
 import { toast } from "sonner";
 
 export default function CreateGame() {

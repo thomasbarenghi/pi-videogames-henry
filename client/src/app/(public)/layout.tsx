@@ -7,9 +7,7 @@ export default function RootLayout(props: any) {
     <>
       <Querier>
         <Header />
-
         <main>{props.children}</main>
-
         <Footer />
       </Querier>
     </>

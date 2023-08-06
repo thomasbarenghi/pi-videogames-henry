@@ -1,29 +1,15 @@
-//Hooks
 import React, { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "@/redux/hooks";
 import { selectorFilteredGames } from "@/redux/selectors/filters";
-//Componentes
 import FiltrosComponent from "./filtros/filtros";
-//Redu
-//Utils
 import { paginate } from "@/utils/paginateArray";
-//Estilos
-import {
-  CreateGame,
-  Error,
-  GameCard,
-  Loader,
-  Pagination,
-  Modal,
-} from "@/components";
+import { Error, GameCard, Loader, Pagination, Modal } from "@/components";
 import styles from "./gamesGrid.module.scss";
 
 const GamesGrid = () => {
-  const dispatch = useAppDispatch();
   const [paginados, setPaginados] = useState([]);
-  const [error, setError] = useState(null);
   const { isError, isLoading } = useAppSelector(
-    (state) => state?.client?.games,
+    (state) => state?.client?.games
   );
   const games = useAppSelector(selectorFilteredGames);
   const { currentPage } = useAppSelector((state) => state?.client?.games);
@@ -36,8 +22,8 @@ const GamesGrid = () => {
   if (isLoading) {
     return <Loader theme={"light"} />;
   }
-  if (error) {
-    return <Error error={error} theme={"light"} />;
+  if (isError) {
+    return <Error error={"Error"} theme={"light"} />;
   }
 
   return (

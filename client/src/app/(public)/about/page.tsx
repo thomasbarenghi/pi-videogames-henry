@@ -1,6 +1,5 @@
 import styles from "./page.module.scss";
 import { Tecnologias } from "@/data";
-import Head from "next/head";
 import { Metadata } from "next";
 import Image from "next/image";
 
