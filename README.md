@@ -1,4 +1,7 @@
+# PI Videogames
 
+ This application is designed to display games and game genres to the users, as well as allow them to be uploaded.
+ 
 ## Deployment
 
 Link to the deploy
@@ -8,9 +11,7 @@ https://pi-videogames-henry-rouge.vercel.app/games
 ```
 
 
-# PI Videogames
 
- This application is designed to display games and game genres to the users, as well as allow them to be uploaded.
 
 ## API Reference
 
