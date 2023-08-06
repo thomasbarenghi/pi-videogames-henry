@@ -26,7 +26,6 @@ export default function GameCard({ game }: any) {
               alt="imagen"
               fill
               onError={(e: any) => {
-                console.log("e.target", e.target);
                 e.target.onerror = null;
                 e.target.src = "/img/Frame 1000002335.webp";
               }}

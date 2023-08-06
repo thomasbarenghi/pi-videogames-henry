@@ -76,8 +76,6 @@ export const isValidRating = (value: string): validResponse => {
     };
   }
 
-  console.log("date", value);
-  //si esta entre 1 y 5
   const isValid = parseFloat(value) >= 1 && parseFloat(value) <= 5.0;
   if (!isValid) {
     return {

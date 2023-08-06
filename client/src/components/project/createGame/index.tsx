@@ -17,7 +17,6 @@ export default function CreateGame() {
   const dispatch = useAppDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("e", e.target);
     changeManager({
       e,
       setFormValues,
@@ -89,7 +88,6 @@ function Form({
   );
   const genres = GenresClass.deserializeList(sGenres);
   const platforms = PlatformsClass.deserializeList(sPlatforms);
-  console.log("genres deserializeList", genres, "platforms", platforms);
   const [selected, setSelected] = useState([] as any);
   const [selectedPlatforms, setSelectedPlatforms] = useState([] as any);
 

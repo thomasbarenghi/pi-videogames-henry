@@ -25,7 +25,7 @@ export const filtersCurrent = createSelector(
   (state: FilterState) => state?.filters,
   (filters) => {
     return getCurrentFilters(filters);
-  },
+  }
 );
 
 export const selectorFilteredGames = createSelector(
@@ -37,17 +37,6 @@ export const selectorFilteredGames = createSelector(
     const filteredGames = games?.filter((game: any) => {
       const { name, genres } = game;
       const { search, origen, genres: selectedGenre } = currentFilters;
-      console.log("filteredGames", nameSorting, games);
-      console.log(
-        "search",
-        search,
-        "origen",
-        origen,
-        "selectedGenre",
-        selectedGenre,
-        "genres",
-        genres,
-      );
 
       const isOrigen = origen === DEFAULT || game.source === origen;
 
@@ -60,12 +49,6 @@ export const selectorFilteredGames = createSelector(
       return isOrigen && isGenre && isSearch;
     });
 
-    //sorting por rating y por nombre
-    //active sorting es el valor del select de ordenamiento
-    //selectedRating es el valor del select de rating
-    console.log(currentFilters.rating);
-
-    console.log("filteredGames", nameSorting, games);
     filteredGames?.sort((a: any, b: any) => {
       return nameSorting === "A-Z"
         ? a.name.localeCompare(b.name)
@@ -83,5 +66,5 @@ export const selectorFilteredGames = createSelector(
     });
 
     return filteredGames;
-  },
+  }
 );
