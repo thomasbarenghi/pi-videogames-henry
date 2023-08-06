@@ -3,7 +3,7 @@
 
 Link to the deploy
 
-```http
+```bash
 https://pi-videogames-henry-rouge.vercel.app/games
 ```
 
@@ -16,13 +16,13 @@ https://pi-videogames-henry-rouge.vercel.app/games
 
 #### Get all games
 
-```http
+```bash
   GET /games
 ```
 
 #### Get game
 
-```http
+```bash
   GET /games/${id}
 ```
 
@@ -32,7 +32,7 @@ https://pi-videogames-henry-rouge.vercel.app/games
 
 #### Delete game
 
-```http
+```bash
   DELETE /games/${id}
 ```
 | Parameter | Type     | Description                       |
@@ -41,10 +41,10 @@ https://pi-videogames-henry-rouge.vercel.app/games
 
 #### Post game
 
-```http
+```bash
   POST /games
 ```
-```http
+```bash
 {
     "name": "Game",
     "description": "Description",
