@@ -1,0 +1,137 @@
+$font-titulo1-font-family: "Outfit", sans-serif;
+$font-titulo1-line-height: 135%;
+
+$font-titulo2-line-height: 135%;
+$font-titulo2-font-family: "Outfit", sans-serif;
+
+$font-titulo3-line-height: 135%;
+$font-titulo3-font-family: "Outfit", sans-serif;
+
+$font-subtitulo-line-height: 135%;
+$font-subtitulo-font-family: "Outfit", sans-serif;
+
+$font-body-line-height: 165%;
+$font-body-font-family: "Outfit", sans-serif;
+
+$font-bodyHigh-line-height: 165%;
+$font-bodyHigh-font-family: "Outfit", sans-serif;
+
+$font-boton-line-height: 135%;
+$font-boton-font-family: "Outfit", sans-serif;
+
+$font-smallText-line-height: 135%;
+$font-smallText-font-family: "Outfit", sans-serif;
+
+$font-topText-line-height: 135%;
+$font-topText-font-family: "Outfit", sans-serif;
+
+@media (min-width: 1025px) {
+  :root {
+    //Fuentes
+    --font-display1-font-size: max(42px, 3.08vw);
+    --font-titulo1-font-size: max(36px, 2.64vw);
+    --font-titulo2-font-size: max(30px, 2.2vw);
+    --font-titulo3-font-size: max(22px, 1.61vw);
+    --font-subtitulo-font-size: max(18px, 1.32vw);
+    --font-body-font-size: max(16px, 1.17vw);
+    --font-bodyHigh-font-size: max(16px, 1.17vw);
+    --font-boton-font-size: max(16px, 1.17vw);
+    --font-smallText-font-size: max(14px, 1.02vw);
+    --font-topText-font-size: max(16px, 1.17vw);
+    //Gap
+    --gap-t1: 40px;
+  }
+}
+
+@media (min-width: 767.99px) and (max-width: 1024.99px) {
+  :root {
+    --font-display1-font-size: clamp(36px, 4.68vw, 40px);
+
+    --font-titulo1-font-size: clamp(36px, 4.68vw, 40px);
+    --font-titulo2-font-size: max(30px, 3.9vw);
+    --font-titulo3-font-size: max(22px, 2.86vw);
+    --font-subtitulo-font-size: max(18px, 2.34vw);
+    --font-body-font-size: clamp(16px, 2.08vw, 20px);
+    --font-bodyHigh-font-size: max(16px, 2.08vw);
+    --font-boton-font-size: max(16px, 2.08vw);
+    --font-smallText-font-size: max(14px, 1.82vw);
+    --font-topText-font-size: max(16px, 2.08vw);
+    //Gap
+    --gap-t1: 20px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  :root {
+    --font-display1-font-size: clamp(36px, 8.73vw, 42px);
+    --font-titulo1-font-size: clamp(36px, 8.73vw, 42px);
+    --font-titulo2-font-size: clamp(30px, 7.28vw, 36px);
+    --font-titulo3-font-size: clamp(22px, 5.33vw, 28px);
+    --font-subtitulo-font-size: clamp(18px, 4.36vw, 22px);
+    --font-body-font-size: clamp(16px, 3.88vw, 18px);
+    --font-bodyHigh-font-size: clamp(16px, 3.88vw, 18px);
+    --font-boton-font-size: clamp(16px, 3.88vw, 18px);
+    --font-smallText-font-size: clamp(14px, 3.39vw, 18px);
+    --font-topText-font-size: clamp(16px, 3.88vw, 18px);
+    //Gap
+    --gap-t1: 20px;
+  }
+}
+
+:root {
+  --color-neutral900: #000000;
+  --color-neutral800: #000000;
+  --color-neutral700: #31333b;
+  --color-neutral150: #f1f1f1;
+  --color-neutral100: #000000;
+  --color-neutral0: #000000;
+  --color-primary800: #0000b2;
+  --color-primary700: #2b00d5;
+  --color-primary500: #0047ff;
+  --color-primary300: #ccdaff;
+  --color-primary100: #e6edff;
+  --color-secondary800: #3d00a7;
+  --color-secondary700: #5e00ff;
+  --color-secondary500: #9e66ff;
+  --color-secondary300: #dfccff;
+  --color-secondary100: #f2ebff;
+  --color-alternative700: #e50e89;
+  --color-alternative500: #ef6eb8;
+  --color-alternative300: #facfe7;
+  --color-alternative100: #fdf3f9;
+  --color-tP100: #001038;
+  --color-pP100: #0c2460;
+  --color-tS100: #130035;
+  --color-pS100: #341766;
+  --color-success700: #10704d;
+  --color-success600: #169667;
+  --color-success300: #d1f1e6;
+}
+
+$color-neutral900: #000000;
+$color-neutral800: #000000;
+$color-neutral700: #31333b;
+$color-neutral150: #f1f1f1;
+$color-neutral100: #000000;
+$color-neutral0: #000000;
+$color-primary800: #0000b2;
+$color-primary700: #2b00d5;
+$color-primary500: #0047ff;
+$color-primary300: #ccdaff;
+$color-primary100: #e6edff;
+$color-secondary800: #3d00a7;
+$color-secondary700: #5e00ff;
+$color-secondary500: #9e66ff;
+$color-secondary300: #dfccff;
+$color-secondary100: #f2ebff;
+$color-alternative700: #e50e89;
+$color-alternative500: #ef6eb8;
+$color-alternative300: #facfe7;
+$color-alternative100: #fdf3f9;
+$color-tP100: #001038;
+$color-pP100: #0c2460;
+$color-tS100: #130035;
+$color-pS100: #341766;
+$color-success700: #10704d;
+$color-success600: #169667;
+$color-success300: #d1f1e6;
