@@ -2,6 +2,12 @@
 
  This application is designed to display games and game genres to the users, as well as allow them to be uploaded.
  
+Front: NextJS, SASS, Redux Toolkit
+
+Back: NestJS
+
+DB: PostgreSQL
+
 ## Deployment
 
 Link to the deploy
