@@ -79,6 +79,7 @@ const postsSlice = createSlice({
       state.filtering.origen.active = action.payload
     },
     setFilterGenres: (state, action: PayloadAction<string>) => {
+      console.log('action.payload', action.payload)
       state.filtering.genres.active = action.payload
     },
     setFilterSearch: (state, action: PayloadAction<string>) => {

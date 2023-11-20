@@ -25,7 +25,7 @@ const Filters = () => {
 
   const handleFilters = (e: any) => {
     const { name, value } = e.target
-
+    console.log('name', name, origen)
     name === titleOrdering
       ? dispatch(setOrdering(value))
       : name === origen.title
@@ -51,6 +51,7 @@ const Filters = () => {
           ordering={ordering}
           genresFilter={genresFilter}
           rating={rating}
+          genres={genres}
           origen={origen}
           titleOrdering={ordering}
           generalClassName='rounded-3xl bg-red-200 border-red-200 border-solid px-4 font-medium text-base border-r-[15px] border-r-4 py-4 text-red-700  p-4'
@@ -75,6 +76,7 @@ const Filters = () => {
         <BottomSheet openModal={FiltersModalVisible} setOpenModal={setFiltersModalVisible}>
           <FiltersInner>
             <InputsGroup
+              genres={genres}
               formatGenres={formatGenres}
               handleFilters={handleFilters}
               ordering={ordering}

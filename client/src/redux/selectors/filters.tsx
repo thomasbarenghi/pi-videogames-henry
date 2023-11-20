@@ -2,7 +2,7 @@
 import { createSelector } from 'reselect'
 import { DEFAULT } from '@/utils/constants/filters.const'
 import { type RootState } from '../store/store'
-import { type FilterItem } from '@/interfaces'
+import { type Game, type FilterItem } from '@/interfaces'
 import { getCurrentFilters } from '@/utils/getCurrentFilters.utils'
 
 const games = (state: RootState) => state?.client?.games?.games
@@ -27,13 +27,13 @@ export const filtersCurrent = createSelector(
 export const selectorFilteredGames = createSelector(games, filters, (games, filters) => {
   const currentFilters = getCurrentFilters(filters)
   const nameSorting = filters?.ordering?.active
-  const filteredGames = games?.filter((game: any) => {
+  const filteredGames = games?.filter((game: Game) => {
     const { name, genres } = game
     const { search, origen, genres: selectedGenre } = currentFilters
 
     const isOrigen = origen === DEFAULT || game.source === origen
 
-    const isGenre = selectedGenre === DEFAULT || genres?.some((genre: any) => genre?.id === selectedGenre)
+    const isGenre = selectedGenre === DEFAULT || genres?.some((genre) => genre?.id.toString() === selectedGenre)
 
     const isSearch = search === '' || name.toLowerCase().includes(search.toLowerCase())
     return isOrigen && isGenre && isSearch

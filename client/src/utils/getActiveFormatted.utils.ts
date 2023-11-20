@@ -1,15 +1,9 @@
 import { type FilterSelect } from '@/interfaces'
 
 export const getActiveFormatted = (selected: FilterSelect, active: string) => {
-  if (!selected.values) {
-    return { value: '', label: '' }
-  }
-
-  if (!active) {
-    return { value: '', label: '' }
-  }
-
-  const activeItem = selected.values.find((value) => value?.id === active) ?? { id: '', name: '' }
-
+  console.log('getActiveFormatted', selected.title, typeof selected?.values[0]?.id, typeof active)
+  const activeItem = selected.values.find((value) => value?.id === active)
+  if (!activeItem) return
+  console.log('getActiveFormatted activeItem', activeItem)
   return { value: activeItem.id, label: activeItem.name }
 }
