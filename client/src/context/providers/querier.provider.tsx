@@ -19,8 +19,6 @@ const Querier = ({ children }: Props) => {
       dispatch(getGames())
     }
 
-    console.log('pathname', pathname, params.gameId, router)
-
     if (params?.gameId) {
       dispatch(getGameById(params?.gameId.toString()))
     }
