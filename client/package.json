@@ -11,6 +11,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@types/lodash": "^4.14.196",
+    "@types/react-svg": "^5.0.0",
     "axios": "^1.4.0",
     "lodash": "^4.17.21",
     "next": "13.4.12",
@@ -19,6 +20,7 @@
     "react-hook-form": "^7.48.2",
     "react-redux": "^8.1.2",
     "react-select": "^5.7.4",
+    "react-svg": "^16.1.30",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.2",
     "sass": "^1.64.2",

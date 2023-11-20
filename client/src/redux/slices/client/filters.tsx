@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-import { DEFAULT, ASC, DESC } from '@/constants'
-import { FilterSelect, FilterSelectItem } from '@/types'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+import { DEFAULT, ASC, DESC } from '@/utils/constants/filters.const'
+import { type FilterSelect } from '@/interfaces'
 
-type StateFilter = {
+interface State {
   search: FilterSelect
   ordering: FilterSelect
   filtering: {
@@ -14,45 +14,53 @@ type StateFilter = {
   created_by_me: boolean
 }
 
-const orderingState = new FilterSelect(
-  'Orden',
-  [
+const ordering: FilterSelect = {
+  title: 'Orden',
+  values: [
     { id: ASC, name: 'Asc' },
     { id: DESC, name: 'Desc' }
-  ] as FilterSelectItem[],
-  DEFAULT
-)
+  ],
+  active: DEFAULT
+}
 
-const origenState = new FilterSelect(
-  'Origen',
-  [
+const origin: FilterSelect = {
+  title: 'Origen',
+  values: [
     { id: 'local', name: 'De GamingX' },
     { id: 'public', name: 'De Rawg' }
-  ] as FilterSelectItem[],
-  DEFAULT
-)
+  ],
+  active: DEFAULT
+}
 
-const searchState = new FilterSelect('Buscar', [], '')
+const search: FilterSelect = {
+  title: 'Buscar',
+  values: [],
+  active: ''
+}
 
-const ratingState = new FilterSelect(
-  'Rating',
-  [
+const rating: FilterSelect = {
+  title: 'Rating',
+  values: [
     { id: '0-5', name: '0-5' },
     { id: '5-0', name: '5-0' }
-  ] as FilterSelectItem[],
-  DEFAULT
-)
+  ],
+  active: DEFAULT
+}
 
-const genresState = new FilterSelect('Generos', [], DEFAULT)
+const genres: FilterSelect = {
+  title: 'Generos',
+  values: [],
+  active: DEFAULT
+}
 
-const initialState: StateFilter = {
-  search: searchState,
-  ordering: orderingState,
+const initialState: State = {
+  search,
+  ordering,
   filtering: {
-    origen: origenState,
-    genres: genresState,
-    search: searchState,
-    rating: ratingState
+    origen: origin,
+    genres,
+    search,
+    rating
   },
   created_by_me: false
 }
@@ -61,28 +69,23 @@ const postsSlice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
-    setSearch: (state, action) => {
-      state.search.active = action.payload as string
+    setSearch: (state, action: PayloadAction<string>) => {
+      state.search.active = action.payload
     },
-    setOrdering: (state, action) => {
-      console.log('setOrdering action.payload', action.payload)
-      state.ordering.active = action.payload as string
+    setOrdering: (state, action: PayloadAction<string>) => {
+      state.ordering.active = action.payload
     },
-    setFilterOrigen: (state, action) => {
-      console.log('setFilterOrigen action.payload', action.payload)
-      state.filtering.origen.active = action.payload as string
+    setFilterOrigen: (state, action: PayloadAction<string>) => {
+      state.filtering.origen.active = action.payload
     },
-    setFilterGenres: (state, action) => {
-      console.log('setFilterGenres action.payload', action.payload)
-      state.filtering.genres.active = action.payload as string
+    setFilterGenres: (state, action: PayloadAction<string>) => {
+      state.filtering.genres.active = action.payload
     },
-    setFilterSearch: (state, action) => {
-      console.log('setFilterSearch action.payload', action.payload)
-      state.filtering.search.active = action.payload as string
+    setFilterSearch: (state, action: PayloadAction<string>) => {
+      state.filtering.search.active = action.payload
     },
-    setFilterRating: (state, action) => {
-      console.log('setFilterRating action.payload', action.payload)
-      state.filtering.rating.active = action.payload as string
+    setFilterRating: (state, action: PayloadAction<string>) => {
+      state.filtering.rating.active = action.payload
     },
     restoreFilters: (state) => {
       state.filtering.search.active = ''
@@ -92,8 +95,7 @@ const postsSlice = createSlice({
       state.filtering.search.active = ''
       state.filtering.rating.active = DEFAULT
     }
-  },
-  extraReducers: (builder) => {}
+  }
 })
 
 export const {

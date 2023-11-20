@@ -1,15 +1,18 @@
-'use client'
 import './globals.scss'
 import React from 'react'
-import Provider from '@/services/provider'
+import Provider from '@/context/providers/redux.provider'
 
-export default function RootLayout(props: any) {
-  return (
-    <html lang='es'>
-      <head></head>
-      <body className=''>
-        <Provider>{props.children}</Provider>
-      </body>
-    </html>
-  )
+interface Props {
+  children: React.ReactNode
 }
+
+const RootLayout = (props: Props) => (
+  <html lang='es'>
+    <head />
+    <body className=''>
+      <Provider>{props.children}</Provider>
+    </body>
+  </html>
+)
+
+export default RootLayout

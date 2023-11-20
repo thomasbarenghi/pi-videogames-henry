@@ -1,0 +1,5 @@
+export type { Platform } from './platform.interface'
+export type { Genre } from './genre.interface'
+export type { FilterItem } from './filter.interface'
+export type { FilterSelect } from './filter.interface'
+export type { Game } from './game.interface'
