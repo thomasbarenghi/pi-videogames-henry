@@ -1,16 +1,11 @@
-import GameDetailsContent from "./content";
-import { Metadata } from "next";
+import GameDetailsContent from './content'
+import { type Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "PI Videogames | Games",
-  description: "PI Videogames | Games",
-  themeColor: "#000000",
-};
-
-export default function GameDetails() {
-  return (
-    <>
-      <GameDetailsContent />
-    </>
-  );
+  title: 'PI Videogames | Games',
+  description: 'PI Videogames | Games'
 }
+
+const GameDetails = () => <GameDetailsContent />
+
+export default GameDetails

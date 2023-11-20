@@ -1,6 +1,5 @@
 #seccion-hero {
-  background: url("../../../../public/img/image 3.webp") center / cover
-    no-repeat;
+  background: url('../../../../public/img/image 3.webp') center / cover no-repeat;
   min-height: 70vh;
   color: #ffffff;
   display: flex;
@@ -30,7 +29,7 @@
 
   @media (max-width: 1200px) {
     & #proyecto_img {
-      background: url("../../../../public/img/Frame 1000002335.webp");
+      background: url('../../../../public/img/Frame 1000002335.webp');
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -41,7 +40,7 @@
 
   @media (min-width: 1200px) {
     & #proyecto_img {
-      background: url("../../../../public/img/Frame 1000002335.webp");
+      background: url('../../../../public/img/Frame 1000002335.webp');
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;

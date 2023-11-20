@@ -1,0 +1,72 @@
+.handlerBtn {
+  padding: 10px;
+  background: red;
+  border-radius: 20px;
+  color: white;
+  border-style: none;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: 'outfit', sans-serif;
+}
+
+.handlerBtn-disabled {
+  padding: 10px;
+  background: gray;
+  border-radius: 20px;
+  color: white;
+  border-style: none;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: 'outfit', sans-serif;
+}
+
+.numberBtnActive {
+  min-width: 10px;
+  height: 100%;
+  padding: 8px;
+  background: red;
+  border-radius: 20px;
+  color: white;
+  border-style: solid;
+  border-color: red;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: 'outfit', sans-serif;
+  aspect-ratio: 3/4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.numberBtn {
+  min-width: 10px;
+  height: 100%;
+  padding: 8px;
+  background: white;
+  border-radius: 20px;
+  color: red;
+  border-style: solid;
+  border-color: red;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: 'outfit', sans-serif;
+  aspect-ratio: 3/4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.numberBtns {
+  align-items: center;
+  align-content: stretch;
+  display: flex;
+  gap: 4px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+}
