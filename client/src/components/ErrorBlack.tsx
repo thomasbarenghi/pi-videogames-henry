@@ -6,7 +6,7 @@ interface Props {
 const ErrorBlack = ({ error, theme }: Props) => (
   <section
     style={{
-      minHeight: '30vh',
+      minHeight: '100vh',
       background: theme === 'dark' ? '#000' : '#FFF',
       display: 'flex',
       justifyContent: 'center',

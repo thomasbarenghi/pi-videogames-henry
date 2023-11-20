@@ -45,17 +45,19 @@ const Filters = () => {
     <div>
       <div id={styles.componente_filtros} className='margin-b-40'>
         <Search handleOnSearch={handleOnSearch} mode='light' activeSearch={search.active} />
-        <InputsGroup
-          formatGenres={formatGenres}
-          handleFilters={handleFilters}
-          ordering={ordering}
-          genresFilter={genresFilter}
-          rating={rating}
-          genres={genres}
-          origen={origen}
-          titleOrdering={ordering}
-          generalClassName='rounded-3xl bg-red-200 border-red-200 border-solid px-4 font-medium text-base border-r-[15px] border-r-4 py-4 text-red-700  p-4'
-        />
+        <div id={styles.filtros_boxDesktop}>
+          <InputsGroup
+            formatGenres={formatGenres}
+            handleFilters={handleFilters}
+            ordering={ordering}
+            genresFilter={genresFilter}
+            rating={rating}
+            genres={genres}
+            origen={origen}
+            titleOrdering={ordering}
+            generalClassName='rounded-3xl bg-red-200 border-red-200 border-solid px-4 font-medium text-base border-r-[15px] border-r-4 py-4 text-red-700  p-4'
+          />
+        </div>
         <Button
           text='Filtros'
           type='button'

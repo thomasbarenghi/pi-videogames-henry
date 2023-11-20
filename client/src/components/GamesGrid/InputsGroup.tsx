@@ -2,7 +2,6 @@ import { getActiveFormatted } from '@/utils/getActiveFormatted.utils'
 import { Input } from '..'
 import { getValuesFormatted } from '@/utils/getValuesFormatted.utils'
 import { type Genre, type FilterSelect } from '@/interfaces'
-import styles from './filtros.module.scss'
 
 interface InputsGroupProps {
   handleFilters: (e: any) => void
@@ -37,7 +36,7 @@ const InputsGroup = ({
     activeGenre?.id?.toString() ?? 'null'
   )
   return (
-    <div id={styles.filtros_boxDesktop}>
+    <>
       <Input
         label={titleOrdering.title}
         type='select'
@@ -90,7 +89,7 @@ const InputsGroup = ({
         placeholder='Rating'
         className={generalClassName}
       />
-    </div>
+    </>
   )
 }
 
