@@ -25,7 +25,6 @@ const Filters = () => {
 
   const handleFilters = (e: any) => {
     const { name, value } = e.target
-    console.log('name', name, origen)
     name === titleOrdering
       ? dispatch(setOrdering(value))
       : name === origen.title

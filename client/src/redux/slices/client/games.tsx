@@ -46,7 +46,6 @@ export const addGame = createAsyncThunk('games/addGame', async (game: Game) => {
       genres: game?.genres?.map((genre) => genre?.id),
       platforms: game?.platforms?.map((platform) => platform?.id)
     }
-    console.log('gameToPost', gameToPost)
     const { data } = await postRequest('/games', gameToPost)
     return data
   } catch (err) {
@@ -108,7 +107,6 @@ const postsSlice = createSlice({
         toast.success('Juego creado correctamente')
       })
       .addCase(addGame.rejected, (state, action) => {
-        console.log('addGame.rejected', action)
         toast.error('Error al añadir el juego')
       })
       // Delete game
