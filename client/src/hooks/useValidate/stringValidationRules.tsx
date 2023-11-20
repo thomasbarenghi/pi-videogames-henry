@@ -4,19 +4,19 @@ import {
   isAccessCodeValid,
   isValidRating,
   isValidReleased,
-  isValidImageString,
-} from "./validators";
+  isValidImageString
+} from './validators'
 
-type ValidationFunction = (value: string) => validResponse;
+type ValidationFunction = (value: string) => validResponse
 
 type ValidationRules = {
-  [key: string]: ValidationFunction;
-};
+  [key: string]: ValidationFunction
+}
 
 type validResponse = {
-  isValid: boolean;
-  error: string;
-};
+  isValid: boolean
+  error: string
+}
 
 export const validationRules: ValidationRules = {
   name: (value: string): validResponse => isValidName(value),
@@ -24,5 +24,5 @@ export const validationRules: ValidationRules = {
   rating: (value: string): validResponse => isValidRating(value),
   released: (value: string): validResponse => isValidReleased(value),
   background_image: (value: string): validResponse => isValidImageString(value),
-  token: (value: string): validResponse => isAccessCodeValid(value),
-};
+  token: (value: string): validResponse => isAccessCodeValid(value)
+}

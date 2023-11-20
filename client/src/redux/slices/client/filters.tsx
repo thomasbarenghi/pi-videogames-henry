@@ -1,49 +1,49 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { DEFAULT, ASC, DESC } from "@/constants";
-import { FilterSelect, FilterSelectItem } from "@/types";
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
+import { DEFAULT, ASC, DESC } from '@/constants'
+import { FilterSelect, FilterSelectItem } from '@/types'
 
 type StateFilter = {
-  search: FilterSelect;
-  ordering: FilterSelect;
+  search: FilterSelect
+  ordering: FilterSelect
   filtering: {
-    origen: FilterSelect;
-    genres: FilterSelect;
-    search: FilterSelect;
-    rating: FilterSelect;
-  };
-  created_by_me: boolean;
-};
+    origen: FilterSelect
+    genres: FilterSelect
+    search: FilterSelect
+    rating: FilterSelect
+  }
+  created_by_me: boolean
+}
 
 const orderingState = new FilterSelect(
-  "Orden",
+  'Orden',
   [
-    { id: ASC, name: "Asc" },
-    { id: DESC, name: "Desc" },
+    { id: ASC, name: 'Asc' },
+    { id: DESC, name: 'Desc' }
   ] as FilterSelectItem[],
-  DEFAULT,
-);
+  DEFAULT
+)
 
 const origenState = new FilterSelect(
-  "Origen",
+  'Origen',
   [
-    { id: "local", name: "De GamingX" },
-    { id: "public", name: "De Rawg" },
+    { id: 'local', name: 'De GamingX' },
+    { id: 'public', name: 'De Rawg' }
   ] as FilterSelectItem[],
-  DEFAULT,
-);
+  DEFAULT
+)
 
-const searchState = new FilterSelect("Buscar", [], "");
+const searchState = new FilterSelect('Buscar', [], '')
 
 const ratingState = new FilterSelect(
-  "Rating",
+  'Rating',
   [
-    { id: "0-5", name: "0-5" },
-    { id: "5-0", name: "5-0" },
+    { id: '0-5', name: '0-5' },
+    { id: '5-0', name: '5-0' }
   ] as FilterSelectItem[],
-  DEFAULT,
-);
+  DEFAULT
+)
 
-const genresState = new FilterSelect("Generos", [], DEFAULT);
+const genresState = new FilterSelect('Generos', [], DEFAULT)
 
 const initialState: StateFilter = {
   search: searchState,
@@ -52,49 +52,49 @@ const initialState: StateFilter = {
     origen: origenState,
     genres: genresState,
     search: searchState,
-    rating: ratingState,
+    rating: ratingState
   },
-  created_by_me: false,
-};
+  created_by_me: false
+}
 
 const postsSlice = createSlice({
-  name: "filters",
+  name: 'filters',
   initialState,
   reducers: {
     setSearch: (state, action) => {
-      state.search.active = action.payload as string;
+      state.search.active = action.payload as string
     },
     setOrdering: (state, action) => {
-      console.log("setOrdering action.payload", action.payload);
-      state.ordering.active = action.payload as string;
+      console.log('setOrdering action.payload', action.payload)
+      state.ordering.active = action.payload as string
     },
     setFilterOrigen: (state, action) => {
-      console.log("setFilterOrigen action.payload", action.payload);
-      state.filtering.origen.active = action.payload as string;
+      console.log('setFilterOrigen action.payload', action.payload)
+      state.filtering.origen.active = action.payload as string
     },
     setFilterGenres: (state, action) => {
-      console.log("setFilterGenres action.payload", action.payload);
-      state.filtering.genres.active = action.payload as string;
+      console.log('setFilterGenres action.payload', action.payload)
+      state.filtering.genres.active = action.payload as string
     },
     setFilterSearch: (state, action) => {
-      console.log("setFilterSearch action.payload", action.payload);
-      state.filtering.search.active = action.payload as string;
+      console.log('setFilterSearch action.payload', action.payload)
+      state.filtering.search.active = action.payload as string
     },
     setFilterRating: (state, action) => {
-      console.log("setFilterRating action.payload", action.payload);
-      state.filtering.rating.active = action.payload as string;
+      console.log('setFilterRating action.payload', action.payload)
+      state.filtering.rating.active = action.payload as string
     },
     restoreFilters: (state) => {
-      state.filtering.search.active = "";
-      state.ordering.active = DEFAULT;
-      state.filtering.origen.active = DEFAULT;
-      state.filtering.genres.active = DEFAULT;
-      state.filtering.search.active = "";
-      state.filtering.rating.active = DEFAULT;
-    },
+      state.filtering.search.active = ''
+      state.ordering.active = DEFAULT
+      state.filtering.origen.active = DEFAULT
+      state.filtering.genres.active = DEFAULT
+      state.filtering.search.active = ''
+      state.filtering.rating.active = DEFAULT
+    }
   },
-  extraReducers: (builder) => {},
-});
+  extraReducers: (builder) => {}
+})
 
 export const {
   setSearch,
@@ -103,7 +103,7 @@ export const {
   setFilterGenres,
   setFilterSearch,
   setFilterRating,
-  restoreFilters,
-} = postsSlice.actions;
+  restoreFilters
+} = postsSlice.actions
 
-export default postsSlice.reducer;
+export default postsSlice.reducer

@@ -1,24 +1,24 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { GenresClass } from "@/types";
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
+import { GenresClass } from '@/types'
 
 const initialState = {
-  genres: [] as GenresClass[],
-};
+  genres: [] as GenresClass[]
+}
 
 const genresSlice = createSlice({
-  name: "genres",
+  name: 'genres',
   initialState,
   reducers: {
     setGenres: (state, action: PayloadAction<GenresClass[]>) => {
       if (!Array.isArray(action.payload) || action.payload.length === 0) {
-        return;
+        return
       }
-      state.genres = action.payload as GenresClass[];
-    },
+      state.genres = action.payload as GenresClass[]
+    }
   },
-  extraReducers: (builder) => {},
-});
+  extraReducers: (builder) => {}
+})
 
-export const { setGenres } = genresSlice.actions;
+export const { setGenres } = genresSlice.actions
 
-export default genresSlice.reducer;
+export default genresSlice.reducer

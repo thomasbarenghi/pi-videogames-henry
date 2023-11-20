@@ -1,6 +1,6 @@
-import React from "react";
-import { Header, Footer } from "@/components";
-import Querier from "@/services/querier";
+import React from 'react'
+import { Header, Footer } from '@/components'
+import Querier from '@/services/querier'
 
 export default function RootLayout(props: any) {
   return (
@@ -11,5 +11,5 @@ export default function RootLayout(props: any) {
         <Footer />
       </Querier>
     </>
-  );
+  )
 }
