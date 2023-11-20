@@ -1,3 +1,4 @@
+'use client'
 import styles from './modal.module.scss'
 import { useEffect, useRef, useState } from 'react'
 

@@ -5,6 +5,6 @@ export interface FilterItem {
 
 export interface FilterSelect {
   title: string
-  values?: FilterItem[]
+  values: FilterItem[]
   active: string
 }

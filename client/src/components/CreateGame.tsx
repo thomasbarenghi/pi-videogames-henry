@@ -1,41 +1,25 @@
+'use client'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { addGame } from '@/redux/slices/client/games'
 import { MultiSelect, Input, Modal, Button } from '@/components'
-import { useRef, useState } from 'react'
-import { Genre, Platform } from '@/interfaces'
-import { changeManager, submitManager } from '@/utils/forms/validateAndSend'
-import useValidate from '@/hooks/useValidate'
+import { useState } from 'react'
 import { toast } from 'sonner'
+import { type SubmitHandler, useForm, type UseFormHandleSubmit, type FieldErrors } from 'react-hook-form'
 
 const CreateGame = () => {
-  const [visible, setVisible] = useState(false)
-  const validate = useValidate()
-  const [formValues, setFormValues] = useState({})
-  const [errors, setErrors] = useState<any>({})
-  const formRef = useRef<HTMLFormElement>(null)
-
   const dispatch = useAppDispatch()
+  const [visible, setVisible] = useState(false)
+  const {
+    formState: { errors },
+    handleSubmit
+  } = useForm<any>({
+    mode: 'onChange'
+  })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    changeManager({
-      e,
-      setFormValues,
-      setErrors,
-      validate
-    })
-  }
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit: SubmitHandler<any> = async (data) => {
     try {
-      await submitManager({
-        e,
-        formRef,
-        formValues,
-        errors,
-        dispatch,
-        actionToDispatch: addGame,
-        setFormValues
-      })
+      await dispatch(addGame(data))
+      toast.success('Juego creado con éxito')
     } catch (error) {
       console.error(error)
       toast.error('Verifica los campos del formulario')
@@ -48,37 +32,29 @@ const CreateGame = () => {
         text='Crear juego'
         type='button'
         onClick={() => {
-          setVisible(true)
+          alert('Funcionalidad desactivada por seguridad')
         }}
         className='primaryButton'
       />
       <Modal visible={visible} setVisible={setVisible}>
-        <Form
-          handleSubmit={handleSubmit}
-          handleChange={handleChange}
-          errors={errors}
-          formValues={formValues}
-          formRef={formRef}
-        />
+        <Form handleSubmit={handleSubmit} onSubmit={onSubmit} errors={errors} />
       </Modal>
     </>
   )
 }
 
 interface FormProps {
-  handleSubmit: (e: any) => void
-  handleChange: (e: any) => void
-  errors: any
-  formValues: any
-  formRef: any
+  handleSubmit: UseFormHandleSubmit<any, undefined>
+  onSubmit: SubmitHandler<any>
+  errors: FieldErrors<any>
 }
 
-const Form = ({ handleSubmit, handleChange, errors, formValues, formRef }: FormProps) => {
+const Form = ({ handleSubmit, onSubmit, errors }: FormProps) => {
   const { isErrorAdd, isLoadingAdd } = useAppSelector((state) => state?.client?.games)
   const { genres } = useAppSelector((state) => state?.client?.genres)
   const { platforms } = useAppSelector((state) => state?.client?.platforms)
-  const [selected, setSelected] = useState([])
-  const [selectedPlatforms, setSelectedPlatforms] = useState([])
+  const [setSelected] = useState<any>([])
+  const [setSelectedPlatforms] = useState<any>([])
 
   return (
     <div className='flex flex-col gap-5'>
@@ -88,26 +64,24 @@ const Form = ({ handleSubmit, handleChange, errors, formValues, formRef }: FormP
       ) : isLoadingAdd ? (
         <p className='smallText-regular margin-b-24'>Cargando...</p>
       ) : (
-        <form className='form' onSubmit={handleSubmit} ref={formRef}>
+        <form className='form' onSubmit={handleSubmit(onSubmit)}>
           <div className='inputs-row' style={{ gap: 8 }}>
             <Input
               label='Nombre del juego'
               type='text'
               name='name'
-              onChange={handleChange}
               placeholder='Nombre del juego'
               required
-              error={errors.name}
+              error={errors.name?.message?.toString()}
             />
             <Input
               label='Descripción del juego'
               type='textarea'
               name='description'
-              onChange={handleChange}
               placeholder='Descripción del juego'
               required
               rows={1}
-              error={errors.description}
+              error={errors.description?.message?.toString()}
             />
           </div>
           <div className='inputs-row' style={{ gap: 8 }}>
@@ -115,19 +89,17 @@ const Form = ({ handleSubmit, handleChange, errors, formValues, formRef }: FormP
               label='Fecha de lanzamiento'
               type='date'
               name='released'
-              onChange={handleChange}
               placeholder='Fecha de lanzamiento'
               required
-              error={errors.released}
+              error={errors.released?.message?.toString()}
             />
             <Input
               label='Rating'
               type='number'
               name='rating'
-              onChange={handleChange}
               placeholder='Rating'
               required
-              error={errors.rating}
+              error={errors.rating?.message?.toString()}
               step='0.1'
             />
           </div>
@@ -143,12 +115,10 @@ const Form = ({ handleSubmit, handleChange, errors, formValues, formRef }: FormP
                   })) as any
                 }
                 setSeleccionados={setSelectedPlatforms}
-                seleccionados={selectedPlatforms}
-                label='Plataformas'
               />
               {errors.platforms && (
                 <p className='smallText-regular' style={{ color: 'red' }}>
-                  {errors.platforms}
+                  {errors.platforms?.message?.toString()}
                 </p>
               )}
             </label>
@@ -163,12 +133,10 @@ const Form = ({ handleSubmit, handleChange, errors, formValues, formRef }: FormP
                   })) as any
                 }
                 setSeleccionados={setSelected}
-                seleccionados={selected}
-                label='Generos'
               />
               {errors.genres && (
                 <p className='smallText-regular' style={{ color: 'red' }}>
-                  {errors.genres}
+                  {errors.genres?.message?.toString()}
                 </p>
               )}
             </label>
@@ -178,19 +146,17 @@ const Form = ({ handleSubmit, handleChange, errors, formValues, formRef }: FormP
               label='Link imagen'
               type='text'
               name='background_image'
-              onChange={handleChange}
               placeholder='Link imagen'
               required
-              error={errors.background_image}
+              error={errors.background_image?.message?.toString()}
             />
             <Input
               label='Token'
               type='password'
               name='token'
-              onChange={handleChange}
               placeholder='Token'
               required
-              error={errors.token}
+              error={errors.token?.message?.toString()}
             />
           </div>
 

@@ -63,7 +63,12 @@ const GameDetailsContent = () => {
       <div id={styles.hero_col2}>
         <div id={styles.col2_card_inner}>
           <div id={styles.col2_card_inner2}>
-            <Image id={styles.inner_img} src={currentGame?.background_image} alt={currentGame?.name} fill />
+            <Image
+              id={styles.inner_img}
+              src={currentGame?.background_image ?? '/image/placeholder.png'}
+              alt={currentGame?.name ?? 'null'}
+              fill
+            />
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from 'react'
 import { useAppSelector } from '@/redux/hooks'
 import { selectorFilteredGames } from '@/redux/selectors/filters'

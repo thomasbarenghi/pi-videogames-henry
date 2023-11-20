@@ -1,3 +1,4 @@
+'use client'
 import { useState, useEffect } from 'react'
 import { Routes } from '@/utils/constants/routes.const'
 import { Button, Nav, Hamburguer } from '@/components'

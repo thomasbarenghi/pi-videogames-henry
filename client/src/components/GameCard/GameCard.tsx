@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 import styles from './gameCard.module.scss'
 import { deleteGame } from '@/redux/slices/client/games'

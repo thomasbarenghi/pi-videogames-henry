@@ -1,10 +1,8 @@
-import { type FilterSelect } from '@/interfaces'
-
 export const ASC = 'A-Z'
 export const DESC = 'Z-A'
 export const DEFAULT = 'Default'
 
-export const Filters: Record<string, FilterSelect> = {
+export const Filters: Record<string, any> = {
   ORIGEN: {
     title: 'Origen',
     values: [DEFAULT, 'own', 'public'],
