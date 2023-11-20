@@ -1,140 +1,140 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { axiosGetter, axiosPoster, axiosDeleter } from "@/utils/requests";
-import { setGenres } from "./genres";
-import { setPlatforms } from "./platforms";
-import { toast } from "sonner";
-import { GamesClass } from "@/types";
+import { createSlice, type PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
+import { getRequest, postRequest, deleteRequest } from '@/services/apiRequest.service'
+import { setGenres } from './genres'
+import { setPlatforms } from './platforms'
+import { toast } from 'sonner'
+import { type Game } from '@/interfaces'
 
-const initialState = {
-  games: [] as GamesClass[],
-  currentGame: {} as GamesClass,
+interface State {
+  games: Game[]
+  currentGame: Game | null
+  currentPage: number
+  error: any
+  isError: boolean
+  isLoading: boolean
+  isErrorAdd: boolean
+  isLoadingAdd: boolean
+}
+
+const initialState: State = {
+  games: [],
+  currentGame: null,
   currentPage: 1,
   error: null,
   isError: false,
   isLoading: false,
   isErrorAdd: false,
-  isLoadingAdd: false,
-};
+  isLoadingAdd: false
+}
 
-export const getGames = createAsyncThunk(
-  "games/getGames",
-  async (_, { dispatch }) => {
-    try {
-      console.log("getGames");
-      const res = await axiosGetter("/games");
-      console.log("getGames res", res);
-      dispatch(setGenres(res.genres));
-      dispatch(setPlatforms(res.platforms));
-      return res.games;
-    } catch (err: any) {
-      throw new Error("Error al loguear el usuario", err);
-    }
-  },
-);
+export const getGames = createAsyncThunk('games/getGames', async (_, { dispatch }) => {
+  try {
+    const { data } = await getRequest('/games')
+    dispatch(setGenres(data.genres))
+    dispatch(setPlatforms(data.platforms))
+    return data.games
+  } catch (err) {
+    console.error('Error al obtener los juegos', err)
+    throw new Error('Error al obtener los juegos')
+  }
+})
 
-export const addGame = createAsyncThunk("games/addGame", async (game: any) => {
+export const addGame = createAsyncThunk('games/addGame', async (game: Game) => {
   try {
     const gameToPost = {
       ...game,
-      genres: game?.genres?.map((genre: any) => genre?.value),
-      platforms: game?.platforms?.map((platform: any) => platform?.value),
-    };
-    console.log("gameToPost", gameToPost);
-    const res = await axiosPoster("/games", gameToPost);
-    return res;
-  } catch (err: any) {
-    throw new Error("Error al loguear el usuario", err);
+      genres: game?.genres?.map((genre) => genre?.id),
+      platforms: game?.platforms?.map((platform) => platform?.id)
+    }
+    console.log('gameToPost', gameToPost)
+    const { data } = await postRequest('/games', gameToPost)
+    return data
+  } catch (err) {
+    console.error('Error al subir el juego', err)
+    throw new Error('Error al subir el juego')
   }
-});
+})
 
-export const deleteGame = createAsyncThunk(
-  "games/deleteGame",
-  async (gameId: string) => {
-    try {
-      const res = await axiosDeleter(`/games/${gameId}`);
-      return gameId;
-    } catch (err: any) {
-      throw new Error("Error al loguear el usuario", err);
-    }
-  },
-);
+export const deleteGame = createAsyncThunk('games/deleteGame', async (gameId: string) => {
+  try {
+    await deleteRequest(`/games/${gameId}`)
+    return gameId
+  } catch (err) {
+    console.error('Error al eliminar el juego', err)
+    throw new Error('Error al eliminar el juego')
+  }
+})
 
-export const getGameById = createAsyncThunk(
-  "games/getGameById",
-  async (gameId: string) => {
-    try {
-      const res = await axiosGetter(`/games/${gameId}`);
-      return res;
-    } catch (err: any) {
-      throw new Error("Error al loguear el usuario", err);
-    }
-  },
-);
+export const getGameById = createAsyncThunk('games/getGameById', async (gameId: string) => {
+  try {
+    const { data } = await getRequest(`/games/${gameId}`)
+    return data
+  } catch (err) {
+    console.error('Error al obtener el juego', err)
+    throw new Error('Error al obtener el juego')
+  }
+})
 
 const postsSlice = createSlice({
-  name: "games",
+  name: 'games',
   initialState,
   reducers: {
-    setCurrentGame: (state, action: PayloadAction<GamesClass>) => {
-      state.currentGame = action.payload as GamesClass;
+    setCurrentGame: (state, action: PayloadAction<Game>) => {
+      state.currentGame = action.payload
     },
     setCurrentPage: (state, action: PayloadAction<number>) => {
-      state.currentPage = action.payload;
-    },
+      state.currentPage = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
-      //Get games
+      // Get games
       .addCase(getGames.fulfilled, (state, action) => {
-        state.games = action.payload as GamesClass[];
-        state.isLoading = false;
+        state.games = action.payload as Game[]
+        state.isLoading = false
       })
-      .addCase(getGames.pending, (state, action) => {
-        state.isLoading = state.games.length <= 0;
-        state.isError = false;
+      .addCase(getGames.pending, (state) => {
+        state.isLoading = state.games.length <= 0
+        state.isError = false
       })
-      .addCase(getGames.rejected, (state, action) => {
-        toast.error("Error al obtener los juegos");
-        state.isLoading = false;
-        state.isError = true;
+      .addCase(getGames.rejected, (state) => {
+        toast.error('Error al obtener los juegos')
+        state.isLoading = false
+        state.isError = true
       })
-      //Post game
-      .addCase(addGame.fulfilled, (state, action) => {
-        state.games.push(action.payload as GamesClass);
-        toast.success("Juego creado correctamente");
+      // Post game
+      .addCase(addGame.fulfilled, (state, action: PayloadAction<Game>) => {
+        state.games.push(action.payload)
+        toast.success('Juego creado correctamente')
       })
       .addCase(addGame.rejected, (state, action) => {
-        console.log("addGame.rejected", action);
-        toast.error("Error al añadir el juego");
+        console.log('addGame.rejected', action)
+        toast.error('Error al añadir el juego')
       })
-      //Delete game
+      // Delete game
       .addCase(deleteGame.fulfilled, (state, action) => {
-        state.games = state.games.filter(
-          (game: any) => game.id !== action.payload,
-        );
-        toast.success("Juego eliminado correctamente");
+        state.games = state.games.filter((game) => game.id !== action.payload)
+        toast.success('Juego eliminado correctamente')
       })
       .addCase(deleteGame.rejected, (state, action) => {
-        toast.error("Error al eliminar el juego");
+        toast.error('Error al eliminar el juego')
       })
-      //Get game by id
-      .addCase(getGameById.fulfilled, (state, action) => {
-        console.log("getGameById.fulfilled", action.payload);
-        state.currentGame = action.payload as GamesClass;
-        state.isLoading = false;
+      .addCase(getGameById.fulfilled, (state, action: PayloadAction<Game>) => {
+        state.currentGame = action.payload
+        state.isLoading = false
       })
       .addCase(getGameById.pending, (state, action) => {
-        state.isLoading = true;
-        state.isError = false;
+        state.isLoading = true
+        state.isError = false
       })
       .addCase(getGameById.rejected, (state, action) => {
-        toast.error("Error al obtener el juego");
-        state.isLoading = false;
-        state.isError = true;
-      });
-  },
-});
+        toast.error('Error al obtener el juego')
+        state.isLoading = false
+        state.isError = true
+      })
+  }
+})
 
-export const { setCurrentGame, setCurrentPage } = postsSlice.actions;
+export const { setCurrentGame, setCurrentPage } = postsSlice.actions
 
-export default postsSlice.reducer;
+export default postsSlice.reducer

@@ -1,21 +1,25 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { PlatformsClass } from "@/types";
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+import { type Platform } from '@/interfaces'
 
-const initialState = {
-  platforms: [] as PlatformsClass[],
-};
+interface State {
+  platforms: Platform[]
+}
+
+const initialState: State = {
+  platforms: []
+}
 
 const platformsSlice = createSlice({
-  name: "platforms",
+  name: 'platforms',
   initialState,
   reducers: {
-    setPlatforms: (state, action: PayloadAction<PlatformsClass[]>) => {
-      state.platforms = action.payload as PlatformsClass[];
-    },
+    setPlatforms: (state, action: PayloadAction<Platform[]>) => {
+      state.platforms = action.payload
+    }
   },
-  extraReducers: (builder) => {},
-});
+  extraReducers: (builder) => {}
+})
 
-export const { setPlatforms } = platformsSlice.actions;
+export const { setPlatforms } = platformsSlice.actions
 
-export default platformsSlice.reducer;
+export default platformsSlice.reducer
